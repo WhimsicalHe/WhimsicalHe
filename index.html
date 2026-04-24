@@ -6,22 +6,40 @@
   <title>Racco</title>
 
   <style>
+    /* ===== Base ===== */
     body {
       margin: 0;
       background: #ffffff;
       color: #1d1d1f;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-                   "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont,
+                   "SF Pro Display", "SF Pro Text",
+                   "Helvetica Neue", Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
+
+      opacity: 0;
+      animation: pageFadeIn 0.9s ease-out forwards;
     }
 
+    @keyframes pageFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== Layout ===== */
     .container {
       max-width: 720px;
       margin: 0 auto;
       padding: 120px 24px;
     }
 
+    /* ===== Typography ===== */
     h1 {
       font-size: 40px;
       font-weight: 600;
@@ -35,13 +53,19 @@
       margin: 0 0 24px;
     }
 
+    /* ===== Sections ===== */
     .section {
       margin-top: 64px;
+      transition: transform 0.25s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-2px);
     }
 
     .title {
-      font-size: 14px;
-      letter-spacing: 0.08em;
+      font-size: 12px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #86868b;
       margin-bottom: 16px;
@@ -51,27 +75,50 @@
       font-size: 17px;
       color: #1d1d1f;
       margin: 6px 0;
+      transition: transform 0.2s ease, color 0.2s ease;
     }
 
+    .item:hover {
+      transform: translateX(3px);
+      color: #000;
+    }
+
+    /* ===== Links ===== */
+    a {
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+    }
+
+    a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background: #1d1d1f;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.25s ease;
+    }
+
+    a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* ===== Footer ===== */
     .footer {
       margin-top: 80px;
       font-size: 14px;
       color: #86868b;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-      border-bottom: 1px solid #d2d2d7;
-    }
-
-    a:hover {
-      border-bottom: 1px solid #1d1d1f;
-    }
   </style>
 </head>
 
 <body>
+
   <div class="container">
 
     <h1>Hi, I'm Racco</h1>
@@ -79,7 +126,7 @@
     <p>
       I build things when I feel like it.<br>
       Exploring ideas on the internet.
-    </p >
+    </p>
 
     <div class="section">
       <div class="title">Now</div>
@@ -96,7 +143,9 @@
     <div class="section">
       <div class="title">Links</div>
       <div class="item">
-        <a href=" ">GitHub</a > · <a href="#">X</a > · <a href="#">Email</a >
+        <a href="#">GitHub</a> ·
+        <a href="#">X</a> ·
+        <a href="#">Email</a>
       </div>
     </div>
 
@@ -105,5 +154,6 @@
     </div>
 
   </div>
+
 </body>
 </html>
