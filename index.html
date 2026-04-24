@@ -1,232 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Racco</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Racco</title>
 
-  <style>
-    /* ======================
-       BASE
-    ====================== */
-    body {
-      margin: 0;
+<style>
 
-      /* 🧠 强制 Times New Roman */
-      font-family: "Times New Roman", Times, serif !important;
+/* 🧠 强制全局字体 */
+* {
+  font-family: "Times New Roman", Times, serif !important;
+}
 
-      line-height: 1.7;
+/* ======================
+   BASE
+====================== */
+body {
+  margin: 0;
+  color: #ffffff;
+}
 
-      transition: background 0.5s ease, color 0.5s ease;
-    }
+/* ======================
+   🌌 背景图层
+====================== */
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-    .container {
-      max-width: 720px;
-      margin-left: 10vw;
-      margin-right: auto;
-      padding: 120px 24px;
-    }
+  background-image: url("https://images.unsplash.com/photo-1520975922284-9a2b4a2c8c63");
+  background-size: cover;
+  background-position: center;
 
-    /* ======================
-       ☀️ LIGHT MODE
-    ====================== */
-    body.light {
-      background: radial-gradient(circle at top, #ffffff 0%, #f5f5f7 40%, #eceaf0 100%);
-      color: #1d1d1f;
-    }
+  filter: brightness(0.6) contrast(1.1);
+  z-index: -2;
+}
 
-    body.light p { color: #6e6e73; }
-    body.light .meta { color: #9a9aa0; }
-    body.light .title { color: #C5AEB1; }
-    body.light .section {
-      border-left: 1px solid rgba(197,174,177,0.28);
-    }
-    body.light a {
-      border-bottom: 1px solid rgba(197,174,177,0.4);
-    }
+/* 🌫 氛围遮罩 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-    /* ======================
-       🌙 DARK MODE
-    ====================== */
-    body.dark {
-      background: radial-gradient(circle at top, #1a1420 0%, #120d18 50%, #0d0a12 100%);
-      color: #e8e6ea;
-    }
+  background: radial-gradient(
+    circle at left,
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.78)
+  );
 
-    body.dark p { color: #b9b4c2; }
-    body.dark .meta { color: #9a94a8; }
-    body.dark .title { color: #C5AEB1; }
-    body.dark .section {
-      border-left: 1px solid rgba(197,174,177,0.22);
-    }
-    body.dark a {
-      border-bottom: 1px solid rgba(197,174,177,0.35);
-    }
-    body.dark .item:hover {
-      color: #ffffff;
-    }
+  z-index: -1;
+}
 
-    /* ======================
-       STRUCTURE
-    ====================== */
-    h1 {
-      font-size: 42px;
-      font-weight: 500;
-      margin: 0 0 14px;
-    }
+/* ======================
+   LAYOUT（横版）
+====================== */
+.layout {
+  display: flex;
+  height: 100vh;
+}
 
-    p {
-      font-size: 18px;
-      margin: 0 0 24px;
-    }
+/* 左侧文字 */
+.left {
+  width: 50%;
+  padding: 120px 80px;
+  box-sizing: border-box;
 
-    .section {
-      margin-top: 64px;
-      padding-left: 14px;
-      transition: transform 0.25s ease;
-    }
+  /* 🧠 轻微上移，让视觉更“漂” */
+  transform: translateY(-8px);
+}
 
-    .section:hover {
-      transform: translateY(-2px);
-    }
+/* 右侧（背景展示） */
+.right {
+  width: 50%;
+}
 
-    .title {
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
+/* ======================
+   TEXT
+====================== */
+h1 {
+  font-size: 44px;
+  margin: 0 0 20px;
 
-    .meta {
-      font-size: 12px;
-      margin-bottom: 6px;
-    }
+  /* ❗ 去掉默认粗体 */
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
 
-    .item {
-      font-size: 17px;
-      margin: 6px 0;
-      transition: transform 0.2s ease, color 0.2s ease;
-    }
+p {
+  font-size: 18px;
+  opacity: 0.75;
+  font-weight: 400;
+}
 
-    .item:hover {
-      transform: translateX(3px);
-    }
+.title {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 
-    /* lilac dot */
-    .dot {
-      width: 6px;
-      height: 6px;
-      background: #C5AEB1;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 10px;
-      position: relative;
-      top: -1px;
-    }
+  margin-top: 40px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 400;
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+.item {
+  font-size: 17px;
+  margin: 6px 0;
+  color: rgba(255,255,255,0.9);
+  font-weight: 400;
+}
 
-    /* ======================
-       TOGGLE BUTTON
-    ====================== */
-    .toggle {
-      position: fixed;
-      top: 24px;
-      right: 24px;
+/* ======================
+   LINKS
+====================== */
+a {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
+}
 
-      font-size: 16px;
-      padding: 10px 12px;
+a:hover {
+  border-bottom: 1px solid rgba(255,255,255,0.8);
+}
 
-      border-radius: 999px;
-      cursor: pointer;
+/* ======================
+   MOBILE
+====================== */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
 
-      background: transparent;
-      border: 1px solid rgba(197,174,177,0.4);
+  .left {
+    width: 100%;
+    padding: 80px 24px;
+  }
 
-      transition: transform 0.2s ease;
-    }
+  .right {
+    width: 100%;
+    height: 40vh;
+  }
+}
 
-    .toggle:hover {
-      transform: scale(1.05);
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- 🌗 切换按钮 -->
-  <button class="toggle" onclick="toggleTheme()">
-    <span id="icon">🌙</span>
-  </button>
+<!-- 🌌 背景 -->
+<div class="bg"></div>
+<div class="overlay"></div>
 
-  <div class="container">
+<!-- 🧭 主结构 -->
+<div class="layout">
 
-    <h1><span class="dot"></span>Hi, I'm Racco</h1>
+  <div class="left">
 
-    <p>
-      I build things when I feel like it.<br>
-      Exploring ideas on the internet.
-    </p>
+    <h1>Hi, I'm Racco</h1>
 
-    <!-- 🌤 NOW -->
-    <div class="section">
-      <div class="title">Now</div>
-      <div class="meta">2026 · current state</div>
-      <div class="item">Building a small personal site</div>
-      <div class="item">Thinking too much, sometimes</div>
-    </div>
+    <p>I build things when I feel like it.</p>
 
-    <!-- 🧠 NOTES -->
-    <div class="section">
-      <div class="title">Notes</div>
-      <div class="meta">2026 · fragments</div>
-      <div class="item">I wanted to make a website, so I did.</div>
-      <div class="item">Then I realized it doesn’t have to be perfect.</div>
-    </div>
+    <div class="title">Now</div>
+    <div class="item">Building a personal space</div>
+    <div class="item">Thinking too much sometimes</div>
 
-    <!-- 🔗 LINKS -->
-    <div class="section">
-      <div class="title">Links</div>
-      <div class="item">
-        <a href="https://x.com/Heisracco" target="_blank">X</a> ·
-        <a href="https://www.instagram.com/heisracco/" target="_blank">Instagram</a>
-      </div>
+    <div class="title">Notes</div>
+    <div class="item">I wanted a website, so I made one.</div>
+
+    <div class="title">Links</div>
+    <div class="item">
+      <a href="https://x.com/Heisracco" target="_blank">X</a> ·
+      <a href="https://www.instagram.com/heisracco/" target="_blank">Instagram</a>
     </div>
 
   </div>
 
-  <script>
-    // 初始化主题
-    const saved = localStorage.getItem("theme") || "light";
-    document.body.classList.add(saved);
-    updateIcon(saved);
+  <div class="right"></div>
 
-    function toggleTheme() {
-      if (document.body.classList.contains("light")) {
-        document.body.classList.replace("light", "dark");
-        localStorage.setItem("theme", "dark");
-        updateIcon("dark");
-      } else {
-        document.body.classList.replace("dark", "light");
-        localStorage.setItem("theme", "light");
-        updateIcon("light");
-      }
-    }
-
-    function updateIcon(theme) {
-      const icon = document.getElementById("icon");
-
-      if (theme === "light") {
-        icon.textContent = "🌙"; // 当前是白天 → 显示月亮（提示可切夜晚）
-      } else {
-        icon.textContent = "☀️"; // 当前是夜晚 → 显示太阳（提示可切白天）
-      }
-    }
-  </script>
+</div>
 
 </body>
 </html>
