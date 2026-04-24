@@ -1,6 +1,5 @@
 - 👋 Hi, I’m @WhimsicalHe, you can also called me Racco Ho:)
 - 💞️ I’m interested in music/makeup/perfume/arts/photography/literature.
-- 🌱 I’m currently preparing for English teaching certification exam.
 - 📫 How to reach me: 2648306289@qq.com; Instagram, Red, X: Heisracco
 - 😄 ISFP but easy going on the net.
 <!---
