@@ -27,9 +27,24 @@ html{
 }
 
 body{
-  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  font-family:"Times New Roman", Times, serif;
+  font-size:19px;
   background:
-    radial-gradient(circle at top left, rgba(255,255,255,0.04), transparent 30%),
+    repeating-linear-gradient(
+      110deg,
+      rgba(90,130,255,0.07) 0,
+      rgba(90,130,255,0.07) 1px,
+      transparent 1px,
+      transparent 24px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.03) 0,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 40px
+    ),
+    radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 34%),
     linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
   color:var(--text);
   min-height:100vh;
@@ -47,7 +62,7 @@ body::after{
     linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
   background-size:32px 32px;
   pointer-events:none;
-  opacity:.18;
+  opacity:.24;
 }
 
 /* layout */
@@ -71,8 +86,7 @@ body::after{
 }
 
 .brand{
-  font-family:"Times New Roman", Times, serif;
-  font-size:72px;
+  font-size:80px;
   font-weight:400;
   letter-spacing:-0.03em;
   line-height:0.95;
@@ -82,11 +96,12 @@ body::after{
 .subtitle{
   max-width:420px;
   color:var(--muted);
-  font-size:17px;
+  font-size:28px;
+  line-height:1.5;
 }
 
 .small{
-  font-size:12px;
+  font-size:15px;
   letter-spacing:.18em;
   text-transform:uppercase;
   color:var(--muted);
@@ -95,7 +110,8 @@ body::after{
 
 .meta{
   color:var(--muted);
-  font-size:14px;
+  font-size:30px;
+  line-height:1.5;
 }
 
 /* right content */
@@ -119,8 +135,7 @@ section:nth-child(4){animation-delay:.52s;}
 section:nth-child(5){animation-delay:.64s;}
 
 h2{
-  font-family:"Times New Roman", Times, serif;
-  font-size:42px;
+  font-size:50px;
   font-weight:400;
   margin-bottom:22px;
   letter-spacing:-0.02em;
@@ -129,7 +144,8 @@ h2{
 p{
   color:var(--muted);
   max-width:680px;
-  font-size:17px;
+  font-size:24px;
+  line-height:1.6;
 }
 
 .list{
@@ -143,13 +159,13 @@ p{
 }
 
 .item-title{
-  font-size:18px;
+  font-size:30px;
   margin-bottom:6px;
 }
 
 .item-desc{
   color:var(--muted);
-  font-size:15px;
+  font-size:24px;
 }
 
 .links{
@@ -188,7 +204,7 @@ a:hover::after{
 .time{
   margin-top:24px;
   color:var(--muted);
-  font-size:13px;
+  font-size:22px;
 }
 
 /* mobile */
@@ -207,7 +223,7 @@ a:hover::after{
   }
 
   .brand{
-    font-size:54px;
+    font-size:68px;
   }
 
   .right{
@@ -215,7 +231,7 @@ a:hover::after{
   }
 
   h2{
-    font-size:34px;
+    font-size:42px;
   }
 }
 
