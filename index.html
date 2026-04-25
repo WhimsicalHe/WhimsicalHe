@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Racco He</title>
+<title>Racco</title>
 
 <style>
 :root{
-  --bg1:#0c0f1a;
-  --bg2:#12192a;
-  --bg3:#1a2338;
-  --text:#f2f4f8;
-  --muted:#b7bfcc;
-  --line:rgba(255,255,255,0.10);
+  --bg1:#0d0d10;
+  --bg2:#17171c;
+  --bg3:#24242b;
+  --text:#f5f5f3;
+  --muted:#b8b8b4;
+  --line:rgba(255,255,255,0.08);
   --hover:#ffffff;
+  --cloud-dancer:#f0ede8;
 }
 
 *{
@@ -27,42 +28,198 @@ html{
 }
 
 body{
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   font-family:"Times New Roman", Times, serif;
-  font-size:17px; /* 比之前19小一点，更舒服 */
+  font-size:17px;
+  position:relative;
   background:
-    repeating-linear-gradient(
-      115deg,
-      rgba(120,160,255,0.06) 0,
-      rgba(120,160,255,0.06) 1px,
-      transparent 1px,
-      transparent 28px
-    ),
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.025) 0,
-      rgba(255,255,255,0.025) 1px,
-      transparent 1px,
-      transparent 46px
-    ),
-    radial-gradient(circle at top left, rgba(130,165,255,0.09), transparent 38%),
+    radial-gradient(circle at top left, rgba(255,255,255,0.04), transparent 30%),
     linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
   color:var(--text);
   min-height:100vh;
   overflow-x:hidden;
-  line-height:1.68;
+  line-height:1.7;
+  transition:background .4s ease, color .4s ease;
 }
 
-/* 背景轻微网格层 */
+/* background image layer */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  pointer-events:none;
+  z-index:-3;
+  transition:opacity .6s ease, filter .6s ease;
+}
+
+/* subtle grain */
+/* subtle grain / grid layer */
 body::after{
   content:"";
   position:fixed;
   inset:0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-  background-size:34px 34px;
+    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size:32px 32px;
   pointer-events:none;
+  z-index:-2;
   opacity:.18;
+}
+
+body.night{
+  color:var(--text);
+  background:
+    repeating-linear-gradient(
+      110deg,
+      rgba(90,130,255,0.08) 0,
+      rgba(90,130,255,0.08) 1px,
+      transparent 1px,
+      transparent 26px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.02) 0,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 44px
+    ),
+    linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+}
+
+body.night::before{
+  /* 可替换成你自己的宇宙星空图 */
+  background-image:
+    linear-gradient(rgba(4,8,20,.68), rgba(4,8,20,.68)),
+    url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2000&q=80");
+  opacity:.92;
+}
+
+body.day{
+  --text:#1f2530;
+  --muted:#4c586a;
+  --line:rgba(31,37,48,0.16);
+  --hover:#1f2530;
+  color:var(--text);
+  background:
+    repeating-linear-gradient(
+      112deg,
+      rgba(105,130,174,0.08) 0,
+      rgba(105,130,174,0.08) 1px,
+      transparent 1px,
+      transparent 36px
+    ),
+    linear-gradient(135deg, var(--cloud-dancer), #f7f4ef, #ece8e2);
+}
+
+body.day::before{
+  /* 可替换成你自己的白云图 */
+  background-image:
+    linear-gradient(rgba(240,237,232,.55), rgba(240,237,232,.55)),
+    url("https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2000&q=80");
+  opacity:.86;
+  filter:saturate(108%);
+}
+
+.theme-toggle{
+  position:fixed;
+  top:22px;
+  right:24px;
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  border:1px solid var(--line);
+  background:rgba(8,14,28,0.35);
+  backdrop-filter:blur(8px);
+  color:var(--text);
+  font-size:26px;
+  cursor:pointer;
+  z-index:40;
+  transition:transform .2s ease, background .3s ease, color .3s ease, border-color .3s ease;
+}
+
+body.day .theme-toggle{
+  background:rgba(255,255,255,.55);
+}
+
+.theme-toggle:hover{
+  transform:translateY(-2px) scale(1.04);
+}
+
+.clouds,
+.stars{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:-1;
+}
+
+.clouds{ opacity:0; transition:opacity .4s ease; }
+.stars{ opacity:0; transition:opacity .4s ease; }
+
+body.day .clouds{ opacity:1; }
+body.night .stars{ opacity:1; }
+
+.cloud{
+  position:absolute;
+  width:220px;
+  height:70px;
+  background:rgba(255,255,255,0.26);
+  border-radius:999px;
+  filter:blur(1px);
+  animation:floatCloud linear infinite;
+}
+
+.cloud::before,
+.cloud::after{
+  content:"";
+  position:absolute;
+  background:inherit;
+  border-radius:999px;
+}
+
+.cloud::before{
+  width:110px;
+  height:80px;
+  top:-30px;
+  left:26px;
+}
+
+.cloud::after{
+  width:95px;
+  height:65px;
+  top:-20px;
+  left:102px;
+}
+
+.cloud.c1{ top:16%; left:-20%; animation-duration:36s; }
+.cloud.c2{ top:33%; left:-26%; transform:scale(.8); animation-duration:48s; }
+.cloud.c3{ top:61%; left:-22%; transform:scale(.95); animation-duration:41s; }
+
+.star{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:rgba(255,255,255,.95);
+  box-shadow:0 0 8px rgba(255,255,255,.6);
+  animation:twinkle 1.5s ease-in-out infinite;
+}
+
+.star.s1{ top:12%; left:11%; animation-delay:.1s; }
+.star.s2{ top:17%; left:28%; animation-delay:.6s; }
+.star.s3{ top:23%; left:59%; animation-delay:.2s; }
+.star.s4{ top:31%; left:76%; animation-delay:.8s; }
+.star.s5{ top:39%; left:19%; animation-delay:.45s; }
+.star.s6{ top:44%; left:47%; animation-delay:1.1s; }
+.star.s7{ top:55%; left:68%; animation-delay:.25s; }
+.star.s8{ top:62%; left:84%; animation-delay:.9s; }
+.star.s9{ top:69%; left:31%; animation-delay:.15s; }
+.star.s10{ top:78%; left:57%; animation-delay:.7s; }
 }
 
 /* layout */
@@ -86,21 +243,25 @@ body::after{
 }
 
 .brand{
-  font-size:68px;
+  font-family:"Times New Roman", Times, serif;
+  font-size:72px;
+  font-size:66px;
   font-weight:400;
   letter-spacing:-0.03em;
   line-height:0.95;
-  margin-bottom:20px;
+  margin-bottom:22px;
 }
 
 .subtitle{
   max-width:420px;
   color:var(--muted);
-  font-size:22px;
-  line-height:1.55;
+  font-size:17px;
+  font-size:21px;
+  line-height:1.5;
 }
 
 .small{
+  font-size:12px;
   font-size:13px;
   letter-spacing:.18em;
   text-transform:uppercase;
@@ -110,8 +271,9 @@ body::after{
 
 .meta{
   color:var(--muted);
-  font-size:22px;
-  line-height:1.55;
+  font-size:14px;
+  font-size:21px;
+  line-height:1.5;
 }
 
 /* right content */
@@ -135,6 +297,8 @@ section:nth-child(4){animation-delay:.52s;}
 section:nth-child(5){animation-delay:.64s;}
 
 h2{
+  font-family:"Times New Roman", Times, serif;
+  font-size:42px;
   font-size:40px;
   font-weight:400;
   margin-bottom:22px;
@@ -144,8 +308,9 @@ h2{
 p{
   color:var(--muted);
   max-width:680px;
+  font-size:17px;
   font-size:20px;
-  line-height:1.65;
+  line-height:1.6;
 }
 
 .list{
@@ -159,12 +324,14 @@ p{
 }
 
 .item-title{
+  font-size:18px;
   font-size:28px;
   margin-bottom:6px;
 }
 
 .item-desc{
   color:var(--muted);
+  font-size:15px;
   font-size:20px;
 }
 
@@ -204,6 +371,7 @@ a:hover::after{
 .time{
   margin-top:24px;
   color:var(--muted);
+  font-size:13px;
   font-size:18px;
 }
 
@@ -223,6 +391,7 @@ a:hover::after{
   }
 
   .brand{
+    font-size:54px;
     font-size:52px;
   }
 
@@ -234,15 +403,12 @@ a:hover::after{
     font-size:34px;
   }
 
-  .subtitle,
-  .meta,
-  p,
-  .item-desc{
-    font-size:18px;
-  }
-
-  .item-title{
-    font-size:24px;
+  .theme-toggle{
+    top:14px;
+    right:14px;
+    width:46px;
+    height:46px;
+    font-size:23px;
   }
 }
 
@@ -257,10 +423,31 @@ a:hover::after{
     transform:translateY(0);
   }
 }
+
+@keyframes floatCloud{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(150vw); }
+}
+
+@keyframes twinkle{
+  0%,100%{ opacity:.2; transform:scale(.9); }
+  50%{ opacity:1; transform:scale(1.3); }
+}
 </style>
 </head>
 
 <body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="切换日夜模式">🌙</button>
+<div class="clouds" aria-hidden="true">
+  <span class="cloud c1"></span>
+  <span class="cloud c2"></span>
+  <span class="cloud c3"></span>
+</div>
+<div class="stars" aria-hidden="true">
+  <span class="star s1"></span><span class="star s2"></span><span class="star s3"></span><span class="star s4"></span><span class="star s5"></span>
+  <span class="star s6"></span><span class="star s7"></span><span class="star s8"></span><span class="star s9"></span><span class="star s10"></span>
+</div>
 
 <div class="wrapper">
 
@@ -287,60 +474,7 @@ a:hover::after{
     </div>
   </aside>
 
-  <!-- RIGHT -->
-  <main class="right">
-
-    <section>
-      <h2>Now</h2>
-      <div class="list">
-        <div class="item">
-          <div class="item-title">Building a small personal site</div>
-          <div class="item-desc">Learning how identity looks when turned into interface.</div>
-        </div>
-
-        <div class="item">
-          <div class="item-title">Thinking too much, sometimes</div>
-          <div class="item-desc">Trying to turn overthinking into usable signal.</div>
-        </div>
-
-        <div class="item">
-          <div class="item-title">Rebuilding direction</div>
-          <div class="item-desc">Less noise. Better foundations.</div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Projects</h2>
-      <div class="list">
-        <div class="item">
-          <div class="item-title">WhimsicalHe</div>
-          <div class="item-desc">A personal digital room built from curiosity.</div>
-        </div>
-
-        <div class="item">
-          <div class="item-title">Identity Experiments</div>
-          <div class="item-desc">Testing how personality translates into design.</div>
-        </div>
-
-        <div class="item">
-          <div class="item-title">Future Ideas</div>
-          <div class="item-desc">Loading quietly in the background.</div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Writing</h2>
-      <p>
-        Notes on identity, internet culture, emotional architecture,
-        uncertain ambition, and how people survive modern life.
-      </p>
-    </section>
-
-    <section>
-      <h2>Links</h2>
-      <div class="links">
+@@ -317,29 +516,46 @@ a:hover::after{
         <a href="https://github.com/" target="_blank">GitHub</a>
         <a href="https://x.com/Heisracco" target="_blank">X</a>
         <a href="https://instagram.com/heisracco" target="_blank">Instagram</a>
@@ -366,6 +500,23 @@ function updateClock(){
 }
 updateClock();
 setInterval(updateClock,1000);
+
+const themeToggle = document.getElementById('themeToggle');
+const savedTheme = localStorage.getItem('theme') || 'night';
+setTheme(savedTheme);
+
+themeToggle.addEventListener('click', () => {
+  const nextTheme = document.body.classList.contains('day') ? 'night' : 'day';
+  setTheme(nextTheme);
+  localStorage.setItem('theme', nextTheme);
+});
+
+function setTheme(theme){
+  document.body.classList.remove('day', 'night');
+  document.body.classList.add(theme);
+  themeToggle.textContent = theme === 'day' ? '☀️' : '🌙';
+  themeToggle.setAttribute('aria-label', theme === 'day' ? '切换到夜间模式' : '切换到日间模式');
+}
 </script>
 
 </body>
