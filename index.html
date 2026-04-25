@@ -99,10 +99,10 @@ body.night::before{
 }
 
 body.day{
-  --text:#1f2530;
-  --muted:#4c586a;
+  --text:#163046;
+  --muted:#34556f;
   --line:rgba(31,37,48,0.16);
-  --hover:#1f2530;
+  --hover:#163046;
   color:var(--text);
   background:
     repeating-linear-gradient(
@@ -116,12 +116,12 @@ body.day{
 }
 
 body.day::before{
-  /* 可替换成你自己的白云图 */
+  /* 可替换成你自己的晴天白云图 */
   background-image:
-    linear-gradient(rgba(240,237,232,.55), rgba(240,237,232,.55)),
-    url("https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=2000&q=80");
-  opacity:.86;
-  filter:saturate(108%);
+    linear-gradient(rgba(238,247,255,.33), rgba(238,247,255,.33)),
+    url("https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg?auto=compress&cs=tinysrgb&w=2000");
+  opacity:.94;
+  filter:saturate(118%) brightness(108%);
 }
 
 .theme-toggle{
@@ -220,7 +220,6 @@ body.night .stars{ opacity:1; }
 .star.s8{ top:62%; left:84%; animation-delay:.9s; }
 .star.s9{ top:69%; left:31%; animation-delay:.15s; }
 .star.s10{ top:78%; left:57%; animation-delay:.7s; }
-}
 
 /* layout */
 .wrapper{
@@ -287,6 +286,8 @@ section{
   border-bottom:1px solid var(--line);
   opacity:0;
   transform:translateY(24px);
+  opacity:1;
+  transform:none;
   animation:fadeUp .9s ease forwards;
 }
 
@@ -474,7 +475,7 @@ a:hover::after{
     </div>
   </aside>
 
-@@ -317,29 +516,46 @@ a:hover::after{
+@@ -317,29 +515,46 @@ a:hover::after{
         <a href="https://github.com/" target="_blank">GitHub</a>
         <a href="https://x.com/Heisracco" target="_blank">X</a>
         <a href="https://instagram.com/heisracco" target="_blank">Instagram</a>
