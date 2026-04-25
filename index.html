@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +7,12 @@
 
 <style>
 :root{
-  --bg1:#0d0d10;
-  --bg2:#17171c;
-  --bg3:#24242b;
-  --text:#f5f5f3;
-  --muted:#b8b8b4;
-  --line:rgba(255,255,255,0.08);
+  --bg1:#0c0f1a;
+  --bg2:#12192a;
+  --bg3:#1a2338;
+  --text:#f2f4f8;
+  --muted:#b7bfcc;
+  --line:rgba(255,255,255,0.10);
   --hover:#ffffff;
 }
 
@@ -29,41 +28,41 @@ html{
 
 body{
   font-family:"Times New Roman", Times, serif;
-  font-size:19px;
+  font-size:17px; /* 比之前19小一点，更舒服 */
   background:
     repeating-linear-gradient(
-      110deg,
-      rgba(90,130,255,0.07) 0,
-      rgba(90,130,255,0.07) 1px,
+      115deg,
+      rgba(120,160,255,0.06) 0,
+      rgba(120,160,255,0.06) 1px,
       transparent 1px,
-      transparent 24px
+      transparent 28px
     ),
     repeating-linear-gradient(
       0deg,
-      rgba(255,255,255,0.03) 0,
-      rgba(255,255,255,0.03) 1px,
+      rgba(255,255,255,0.025) 0,
+      rgba(255,255,255,0.025) 1px,
       transparent 1px,
-      transparent 40px
+      transparent 46px
     ),
-    radial-gradient(circle at top left, rgba(255,255,255,0.05), transparent 34%),
+    radial-gradient(circle at top left, rgba(130,165,255,0.09), transparent 38%),
     linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
   color:var(--text);
   min-height:100vh;
   overflow-x:hidden;
-  line-height:1.7;
+  line-height:1.68;
 }
 
-/* subtle grain */
+/* 背景轻微网格层 */
 body::after{
   content:"";
   position:fixed;
   inset:0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-  background-size:32px 32px;
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size:34px 34px;
   pointer-events:none;
-  opacity:.24;
+  opacity:.18;
 }
 
 /* layout */
@@ -87,22 +86,22 @@ body::after{
 }
 
 .brand{
-  font-size:80px;
+  font-size:68px;
   font-weight:400;
   letter-spacing:-0.03em;
   line-height:0.95;
-  margin-bottom:22px;
+  margin-bottom:20px;
 }
 
 .subtitle{
   max-width:420px;
   color:var(--muted);
-  font-size:28px;
-  line-height:1.5;
+  font-size:22px;
+  line-height:1.55;
 }
 
 .small{
-  font-size:15px;
+  font-size:13px;
   letter-spacing:.18em;
   text-transform:uppercase;
   color:var(--muted);
@@ -111,8 +110,8 @@ body::after{
 
 .meta{
   color:var(--muted);
-  font-size:30px;
-  line-height:1.5;
+  font-size:22px;
+  line-height:1.55;
 }
 
 /* right content */
@@ -136,7 +135,7 @@ section:nth-child(4){animation-delay:.52s;}
 section:nth-child(5){animation-delay:.64s;}
 
 h2{
-  font-size:50px;
+  font-size:40px;
   font-weight:400;
   margin-bottom:22px;
   letter-spacing:-0.02em;
@@ -145,8 +144,8 @@ h2{
 p{
   color:var(--muted);
   max-width:680px;
-  font-size:24px;
-  line-height:1.6;
+  font-size:20px;
+  line-height:1.65;
 }
 
 .list{
@@ -160,13 +159,13 @@ p{
 }
 
 .item-title{
-  font-size:30px;
+  font-size:28px;
   margin-bottom:6px;
 }
 
 .item-desc{
   color:var(--muted);
-  font-size:24px;
+  font-size:20px;
 }
 
 .links{
@@ -205,7 +204,7 @@ a:hover::after{
 .time{
   margin-top:24px;
   color:var(--muted);
-  font-size:22px;
+  font-size:18px;
 }
 
 /* mobile */
@@ -224,7 +223,7 @@ a:hover::after{
   }
 
   .brand{
-    font-size:68px;
+    font-size:52px;
   }
 
   .right{
@@ -232,7 +231,18 @@ a:hover::after{
   }
 
   h2{
-    font-size:42px;
+    font-size:34px;
+  }
+
+  .subtitle,
+  .meta,
+  p,
+  .item-desc{
+    font-size:18px;
+  }
+
+  .item-title{
+    font-size:24px;
   }
 }
 
