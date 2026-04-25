@@ -42,6 +42,7 @@ body{
   transition:background .4s ease, color .4s ease;
 }
 
+/* subtle grain */
 /* background image layer */
 body::before{
   content:"";
@@ -55,7 +56,6 @@ body::before{
   transition:opacity .6s ease, filter .6s ease;
 }
 
-/* subtle grain */
 /* subtle grain / grid layer */
 body::after{
   content:"";
@@ -118,10 +118,10 @@ body.day{
 body.day::before{
   /* 可替换成你自己的晴天白云图 */
   background-image:
-    linear-gradient(rgba(238,247,255,.33), rgba(238,247,255,.33)),
-    url("https://images.pexels.com/photos/531756/pexels-photo-531756.jpeg?auto=compress&cs=tinysrgb&w=2000");
-  opacity:.94;
-  filter:saturate(118%) brightness(108%);
+    linear-gradient(rgba(225,236,245,.56), rgba(225,236,245,.56)),
+    url("https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=2000&q=80");
+  opacity:.9;
+  filter:saturate(102%) brightness(88%);
 }
 
 .theme-toggle{
@@ -147,6 +147,85 @@ body.day .theme-toggle{
 
 .theme-toggle:hover{
   transform:translateY(-2px) scale(1.04);
+}
+
+.quick-links{
+  position:fixed;
+  top:86px;
+  right:24px;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:8px;
+  width:208px;
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(8,14,28,0.35);
+  backdrop-filter:blur(8px);
+  z-index:40;
+  transition:background .3s ease, border-color .3s ease;
+}
+
+body.day .quick-links{
+  background:rgba(255,255,255,.55);
+}
+
+.quick-link{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:38px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  font-size:14px;
+  letter-spacing:.02em;
+  color:var(--text);
+  background:rgba(255,255,255,.03);
+  transition:transform .2s ease, background .2s ease;
+}
+
+.quick-link:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.14);
+}
+
+.qq-popup{
+  position:absolute;
+  top:calc(100% + 8px);
+  right:0;
+  width:208px;
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:rgba(8,14,28,0.84);
+  display:none;
+  flex-direction:column;
+  gap:8px;
+  color:var(--text);
+}
+
+body.day .qq-popup{
+  background:rgba(255,255,255,.96);
+}
+
+.qq-popup.show{
+  display:flex;
+}
+
+.qq-number{
+  font-size:14px;
+  word-break:break-all;
+}
+
+.copy-btn{
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:transparent;
+  color:var(--text);
+  font:inherit;
+  font-size:13px;
+  padding:6px 8px;
+  cursor:pointer;
 }
 
 .clouds,
@@ -411,6 +490,17 @@ a:hover::after{
     height:46px;
     font-size:23px;
   }
+
+  .quick-links{
+    top:66px;
+    right:14px;
+    width:188px;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+  }
+
+  .qq-popup{
+    width:188px;
+  }
 }
 
 /* animation */
@@ -440,6 +530,18 @@ a:hover::after{
 <body>
 
 <button class="theme-toggle" id="themeToggle" aria-label="切换日夜模式">🌙</button>
+<div class="quick-links" id="quickLinks" aria-label="快捷链接">
+  <a class="quick-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+  <a class="quick-link" href="https://x.com/Heisracco" target="_blank" rel="noreferrer">X</a>
+  <a class="quick-link" href="https://instagram.com/heisracco" target="_blank" rel="noreferrer">IG</a>
+  <a class="quick-link" href="mailto:heisracco@gmail.com">Email</a>
+  <button class="quick-link" id="qqBtn" type="button">QQ</button>
+
+  <div class="qq-popup" id="qqPopup" role="dialog" aria-label="QQ号码">
+    <div class="qq-number" id="qqNumber">2648306289</div>
+    <button class="copy-btn" id="copyQqBtn" type="button">复制QQ号码</button>
+  </div>
+</div>
 <div class="clouds" aria-hidden="true">
   <span class="cloud c1"></span>
   <span class="cloud c2"></span>
@@ -475,7 +577,35 @@ a:hover::after{
     </div>
   </aside>
 
-@@ -317,29 +515,46 @@ a:hover::after{
+@@ -289,57 +589,86 @@ a:hover::after{
+        <div class="item">
+          <div class="item-title">WhimsicalHe</div>
+          <div class="item-desc">A personal digital room built from curiosity.</div>
+        </div>
+
+        <div class="item">
+          <div class="item-title">Identity Experiments</div>
+          <div class="item-desc">Testing how personality translates into design.</div>
+        </div>
+
+        <div class="item">
+          <div class="item-title">Future Ideas</div>
+          <div class="item-desc">Loading quietly in the background.</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Writing</h2>
+      <p>
+        Notes on identity, internet culture, emotional architecture,
+        uncertain ambition, and how people survive modern life.
+      </p>
+    </section>
+
+    <section>
+      <h2>Links</h2>
+      <div class="links">
         <a href="https://github.com/" target="_blank">GitHub</a>
         <a href="https://x.com/Heisracco" target="_blank">X</a>
         <a href="https://instagram.com/heisracco" target="_blank">Instagram</a>
@@ -504,6 +634,10 @@ setInterval(updateClock,1000);
 
 const themeToggle = document.getElementById('themeToggle');
 const savedTheme = localStorage.getItem('theme') || 'night';
+const qqBtn = document.getElementById('qqBtn');
+const qqPopup = document.getElementById('qqPopup');
+const copyQqBtn = document.getElementById('copyQqBtn');
+const qqNumber = document.getElementById('qqNumber');
 setTheme(savedTheme);
 
 themeToggle.addEventListener('click', () => {
@@ -518,6 +652,23 @@ function setTheme(theme){
   themeToggle.textContent = theme === 'day' ? '☀️' : '🌙';
   themeToggle.setAttribute('aria-label', theme === 'day' ? '切换到夜间模式' : '切换到日间模式');
 }
+
+qqBtn.addEventListener('click', (event) => {
+  event.stopPropagation();
+  qqPopup.classList.toggle('show');
+});
+
+copyQqBtn.addEventListener('click', async () => {
+  await navigator.clipboard.writeText(qqNumber.textContent.trim());
+  copyQqBtn.textContent = '已复制 ✅';
+  setTimeout(() => copyQqBtn.textContent = '复制QQ号码', 1200);
+});
+
+document.addEventListener('click', (event) => {
+  if(!qqPopup.contains(event.target) && event.target !== qqBtn){
+    qqPopup.classList.remove('show');
+  }
+});
 </script>
 
 </body>
