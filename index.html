@@ -61,7 +61,7 @@ body.dark::before{
   radial-gradient(2px 2px at 72% 28%, white, transparent 60%),
   radial-gradient(1px 1px at 88% 70%, white, transparent 60%),
   radial-gradient(2px 2px at 20% 75%, white, transparent 60%),
-  radial-gradient(1px 1px at 65% 82%, white, transparent 60%);
+  radial-gradient(2px 2px at 65% 82%, white, transparent 60%);
   animation:twinkle 4s infinite alternate;
   z-index:-1;
 }
@@ -125,7 +125,9 @@ nav a{
   display:grid;
   grid-template-columns:1.1fr .9fr;
   gap:70px;
-  align-items:center;
+
+  /* ⭐⭐⭐ 关键修复：顶部对齐 */
+  align-items:start;
 }
 
 .small{
@@ -214,9 +216,6 @@ header{
   flex-direction:column;
   gap:10px;
   align-items:flex-start;
-  position:sticky;
-  top:0;
-  backdrop-filter: blur(10px);
 }
 
 nav{
