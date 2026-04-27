@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Racco Ho — Digital Garden</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -16,302 +14,118 @@
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 :root{
   --bg:#F0EEE9;
   --text:#171717;
   --muted:#666;
-  --soft:#8a8a8a;
-  --line:rgba(0,0,0,.08);
-  --card:rgba(255,255,255,.55);
 }
 
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:"Inter",sans-serif;
-  overflow-x:hidden;
+  font-family:"Inter", sans-serif;
 }
 
-/* background texture */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-  radial-gradient(circle at 12% 18%, rgba(255,255,255,.7), transparent 18%),
-  radial-gradient(circle at 85% 20%, rgba(255,255,255,.45), transparent 16%),
-  radial-gradient(circle at 70% 75%, rgba(255,255,255,.25), transparent 18%);
-  z-index:-2;
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background-image:
-  linear-gradient(rgba(0,0,0,.012) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(0,0,0,.012) 1px, transparent 1px);
-  background-size:32px 32px;
-  z-index:-1;
-}
-
-section{
-  max-width:1380px;
+header, section, footer{
+  max-width:1100px;
   margin:auto;
-  padding:70px 56px;
+  padding:70px 40px;
 }
 
-/* HEADER */
 header{
-  max-width:1380px;
-  margin:auto;
-  padding:28px 56px;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 
 .logo{
-  font-family:"Cormorant Garamond",serif;
-  font-size:38px;
-}
-
-nav{
-  display:flex;
-  gap:28px;
-}
-
-nav a{
-  text-decoration:none;
-  color:var(--text);
-  font-size:13px;
-  text-transform:uppercase;
-  letter-spacing:1.8px;
-  opacity:.7;
-}
-
-nav a:hover{
-  opacity:1;
-}
-
-/* HERO */
-.hero{
-  display:grid;
-  grid-template-columns:1.3fr .7fr;
-  gap:80px;
-  align-items:start;
-}
-
-.eyebrow{
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:3px;
-  opacity:.55;
-  margin-bottom:24px;
+  font-family:"Cormorant Garamond", serif;
+  font-size:34px;
 }
 
 h1{
-  font-family:"Cormorant Garamond",serif;
-  font-size:108px;
-  line-height:.92;
-  font-weight:500;
+  font-family:"Cormorant Garamond", serif;
+  font-size:86px;
+  line-height:0.95;
   margin-bottom:28px;
 }
 
-.sub{
-  max-width:680px;
-  font-size:22px;
-  line-height:1.75;
-  margin-bottom:26px;
+/* 世界观句 */
+.philosophy{
+  font-family:"Cormorant Garamond", serif;
+  font-style:italic;
+  font-size:20px;
+  line-height:1.8;
+  max-width:760px;
+  color:var(--muted);
+  margin-bottom:18px;
 }
 
-.manifesto{
-  font-size:13px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--soft);
+/* layout */
+.hero{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:60px;
+  align-items:start;
 }
 
-.photo-box{
-  background:var(--card);
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:18px;
-  padding:18px;
-  box-shadow:0 25px 55px rgba(0,0,0,.08);
-}
-
-.photo{
+/* avatar */
+.avatar{
   width:100%;
-  display:block;
-  border-radius:12px;
+  border-radius:18px;
+  box-shadow:0 30px 60px rgba(0,0,0,.12);
+  transition:.4s ease;
 }
 
-.note{
-  margin-top:14px;
-  font-size:12px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  color:var(--soft);
+.avatar:hover{
+  transform:scale(1.02);
 }
 
-/* COMMON */
+/* about */
 .label{
   font-size:12px;
-  text-transform:uppercase;
   letter-spacing:3px;
-  color:var(--soft);
-  margin-bottom:18px;
+  text-transform:uppercase;
+  color:#999;
+  margin-bottom:16px;
 }
 
 h2{
-  font-family:"Cormorant Garamond",serif;
-  font-size:64px;
-  font-weight:500;
-  line-height:1;
+  font-family:"Cormorant Garamond", serif;
+  font-size:46px;
   margin-bottom:18px;
 }
 
-p.big{
-  max-width:820px;
-  font-size:22px;
+/* About必须正体 */
+.about{
+  font-family:"Inter", sans-serif;
+  font-size:18px;
   line-height:1.8;
   color:#222;
+  max-width:800px;
 }
 
-/* ABOUT */
 .facts{
-  margin-top:34px;
+  margin-top:20px;
   display:flex;
   flex-wrap:wrap;
-  gap:14px;
+  gap:10px;
 }
 
 .facts span{
-  padding:12px 16px;
-  border:1px solid var(--line);
+  border:1px solid rgba(0,0,0,.08);
+  padding:8px 12px;
   border-radius:999px;
-  font-size:14px;
-  background:rgba(255,255,255,.45);
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:24px;
-  margin-top:30px;
-}
-
-.card{
-  padding:28px;
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:rgba(255,255,255,.42);
-}
-
-.card h3{
   font-size:13px;
-  letter-spacing:2px;
-  text-transform:uppercase;
-  margin-bottom:16px;
-  color:var(--soft);
+  color:var(--muted);
 }
 
-.card p{
-  font-size:20px;
-  line-height:1.7;
-}
-
-/* FOOTER */
 footer{
-  max-width:1380px;
-  margin:auto;
-  padding:24px 56px 70px;
-  border-top:1px solid var(--line);
   display:flex;
   justify-content:space-between;
-  gap:20px;
-}
-
-.links{
-  display:flex;
-  gap:24px;
-  flex-wrap:wrap;
-}
-
-.links a{
-  text-decoration:none;
-  color:var(--text);
-  opacity:.75;
-}
-
-.links a:hover{
-  opacity:1;
-}
-
-/* MOBILE */
-@media (max-width:1100px){
-
-.hero{
-  grid-template-columns:1fr;
-}
-
-h1{
-  font-size:68px;
-}
-
-h2{
-  font-size:48px;
-}
-
-.sub,p.big{
-  font-size:18px;
-}
-
-.grid{
-  grid-template-columns:1fr;
-}
-
-}
-
-@media (max-width:760px){
-
-header,section,footer{
-  padding-left:20px;
-  padding-right:20px;
-}
-
-header{
-  flex-direction:column;
-  align-items:flex-start;
-  gap:14px;
-}
-
-nav{
-  flex-wrap:wrap;
-  gap:12px;
-}
-
-h1{
-  font-size:46px;
-}
-
-h2{
-  font-size:36px;
-}
-
-.sub,p.big{
-  font-size:16px;
-}
-
-.card p{
-  font-size:17px;
-}
-
+  border-top:1px solid rgba(0,0,0,.08);
+  font-size:13px;
+  color:var(--muted);
 }
 </style>
 </head>
@@ -319,21 +133,12 @@ h2{
 <body>
 
 <header>
-<div class="logo">Racco Ho</div>
-
-<nav>
-<a href="#about">About</a>
-<a href="#mind">Mind</a>
-<a href="#obsessions">Obsessions</a>
-<a href="#links">Links</a>
-</nav>
+  <div class="logo">Racco Ho</div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
 
 <div>
-<div class="eyebrow">Personal Digital Garden</div>
 
 <h1>
 Racco Ho<br>
@@ -341,114 +146,45 @@ building slowly,<br>
 with intention.
 </h1>
 
-<!-- 🌙 这里改你那句“世界观句” -->
 <p class="philosophy">
 A private homepage shaped like a digital garden — where ideas, images, identity, and quiet obsessions are cultivated over time. Less archive, more living thought.
 </p>
 
-<div class="manifesto">
+<p class="philosophy">
 Observer of beauty · Builder of self · Collector of moods
-</div>
-</div>
-
-<div>
-<div class="photo-box">
-<img class="photo" src="https://raw.githubusercontent.com/WhimsicalHe/WhimsicalHe/main/For%20github.jpg" alt="Racco Ho">
-</div>
-
-</section>
-
-<!-- ABOUT -->
-<section id="about">
+</p>
 
 <div class="label">About</div>
+
 <h2>A soft mind with sharp taste.</h2>
 
-<p class="big">
-Introverted by default, expressive when the energy feels right.  
-Somewhere between ISFP and INFP. Curious about people, beauty, symbols, psychology, and the invisible patterns behind life.
+<p class="about">
+Moves between observation and intuition. Quiet presence, but intentional awareness. Drawn to how people behave, how beauty takes shape, and how meaning is quietly constructed in everyday life.
 </p>
 
 <div class="facts">
-<span>✨ Also known as Racco / Xiao He</span>
-<span>📷 Nikon D7500</span>
-<span>♏ Scorpio Sun</span>
-<span>🌙 Pisces Moon</span>
-<span>⬆ Aries Rising</span>
-<span>🎧 Loyal to songs on repeat</span>
+<span>Racco / Xiao He</span>
+<span>Nikon D7500</span>
+<span>Scorpio Sun</span>
+<span>Pisces Moon</span>
+<span>Aries Rising</span>
+</div>
+
+</div>
+
+<!-- 🌌 AVATAR（已修复双源） -->
+<div>
+<img class="avatar"
+     src="https://cdn.jsdelivr.net/gh/WhimsicalHe/WhimsicalHe@main/For%20github.jpg"
+     onerror="this.onerror=null;this.src='https://raw.githubusercontent.com/WhimsicalHe/WhimsicalHe/main/For%20github.jpg';"
+     alt="Racco Ho">
 </div>
 
 </section>
 
-<!-- MIND -->
-<section id="mind">
-
-<div class="label">Current Mind</div>
-<h2>Quiet, but never empty.</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>Interests</h3>
-<p>
-Japanese cuisine, fragrance, fashion, architecture, photography, museums, parks, reading, psychology, mysticism, Lego.
-</p>
-</div>
-
-<div class="card">
-<h3>Music</h3>
-<p>
-Mostly R&B, pop, alternative, and electronic. Prefers one perfect track on repeat over random playlists.
-</p>
-</div>
-
-<div class="card">
-<h3>Dreams</h3>
-<p>
-Solo travel, meaningful friendships, more museums and galleries, and a life that feels truly chosen.
-</p>
-</div>
-
-<div class="card">
-<h3>No Thanks</h3>
-<p>
-Spicy food, extreme rides, marathons, endless hiking, and unnecessary chaos.
-</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- OBSESSIONS -->
-<section id="obsessions">
-
-<div class="label">Current Obsessions</div>
-<h2>What holds my attention lately.</h2>
-
-<div class="facts">
-<span>Perfume notes</span>
-<span>Identity design</span>
-<span>Clean interfaces</span>
-<span>Street photography</span>
-<span>Museum spaces</span>
-<span>Human behavior</span>
-<span>Beautiful loneliness</span>
-</div>
-
-</section>
-
-<!-- FOOTER -->
-<footer id="links">
-
-<div>© 2026 Racco Ho</div>
-
-<div class="links">
-<a href="https://github.com/WhimsicalHe" target="_blank">GitHub</a>
-<a href="https://x.com/Heisracco" target="_blank">X</a>
-<a href="https://www.instagram.com/heisracco/" target="_blank">Instagram</a>
-</div>
-
+<footer>
+  <div>© 2026 Racco Ho</div>
+  <div>GitHub · X · Instagram</div>
 </footer>
 
 </body>
