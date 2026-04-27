@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Racco Ho — Digital Garden</title>
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -28,34 +27,49 @@
 body{
   background:var(--bg);
   color:var(--text);
-  font-family:"Inter",sans-serif;
+  font-family:"Inter","Noto Sans SC",sans-serif;
   overflow-x:hidden;
   transition:.4s ease;
 }
 
-/* subtle texture */
+/* 多层光线晕染 */
 body::before{
   content:"";
   position:fixed;
   inset:0;
   background:
-  radial-gradient(circle at 15% 20%, rgba(255,255,255,.65), transparent 18%),
-  radial-gradient(circle at 82% 15%, rgba(255,255,255,.45), transparent 16%),
-  radial-gradient(circle at 60% 70%, rgba(255,255,255,.25), transparent 18%);
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.7), transparent 20%),
+    radial-gradient(circle at 85% 10%, rgba(255,255,255,.5), transparent 18%),
+    radial-gradient(circle at 55% 65%, rgba(255,255,255,.3), transparent 22%),
+    radial-gradient(circle at 30% 75%, rgba(255,255,255,.25), transparent 15%),
+    radial-gradient(circle at 75% 55%, rgba(255,255,255,.2), transparent 12%);
   pointer-events:none;
   z-index:-2;
 }
 
+/* 网格 */
 body::after{
   content:"";
   position:fixed;
   inset:0;
   background-image:
-  linear-gradient(rgba(0,0,0,.012) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(0,0,0,.012) 1px, transparent 1px);
+    linear-gradient(rgba(0,0,0,.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.012) 1px, transparent 1px);
   background-size:32px 32px;
   pointer-events:none;
   z-index:-1;
+}
+
+/* 噪点层 */
+.noise{
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+  pointer-events:none;
+  z-index:-1;
+  opacity:0.045;
+  mix-blend-mode:multiply;
 }
 
 /* HEADER */
@@ -69,7 +83,7 @@ header{
 }
 
 .logo{
-  font-family:"Cormorant Garamond",serif;
+  font-family:"Cormorant Garamond","Noto Serif SC",serif;
   font-size:38px;
   letter-spacing:.5px;
 }
@@ -114,7 +128,7 @@ nav a:hover{
 }
 
 h1{
-  font-family:"Cormorant Garamond",serif;
+  font-family:"Cormorant Garamond","Noto Serif SC",serif;
   font-size:106px;
   line-height:.92;
   font-weight:500;
@@ -155,13 +169,36 @@ h1{
 }
 
 .meta-text{
-  font-family:"Cormorant Garamond",serif;
+  font-family:"Cormorant Garamond","Noto Serif SC",serif;
   font-size:40px;
   line-height:1.2;
   margin-bottom:10px;
 }
 
-/* IMAGE SIDE */
+.meta-sub{
+  font-size:15px;
+  line-height:1.7;
+  color:#444;
+  margin-top:4px;
+}
+
+.tag-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:8px;
+}
+
+.tag{
+  font-size:12px;
+  letter-spacing:.5px;
+  color:#555;
+  background:rgba(0,0,0,.05);
+  padding:4px 12px;
+  border-radius:20px;
+  font-family:"Inter","Noto Sans SC",sans-serif;
+}
+
 .visual{
   position:relative;
 }
@@ -197,7 +234,6 @@ h1{
   color:#777;
 }
 
-/* FOOTER */
 footer{
   max-width:1400px;
   margin:auto;
@@ -232,74 +268,62 @@ footer{
   opacity:1;
 }
 
-/* MOBILE */
 @media (max-width:1100px){
-
 .container{
   grid-template-columns:1fr;
   gap:42px;
 }
-
 h1{
   font-size:64px;
 }
-
 .sub{
   font-size:18px;
 }
-
 .meta-text{
   font-size:32px;
 }
-
 }
 
 @media (max-width:760px){
-
 header{
   padding:24px 20px;
   flex-direction:column;
   align-items:flex-start;
   gap:16px;
 }
-
 nav{
   gap:14px;
   flex-wrap:wrap;
 }
-
 .container{
   padding:28px 20px 50px;
 }
-
 h1{
   font-size:46px;
 }
-
 .sub{
   font-size:16px;
   line-height:1.7;
 }
-
 .meta-text{
   font-size:26px;
 }
-
 footer{
   padding:24px 20px 50px;
   flex-direction:column;
   align-items:flex-start;
 }
-
 }
 </style>
 </head>
 
 <body>
 
+<!-- 噪点层 -->
+<div class="noise"></div>
+
 <header>
 <div class="logo">Racco Ho</div>
-
 <nav>
 <a href="#">Garden</a>
 <a href="#">Journal</a>
@@ -330,13 +354,40 @@ Observer of beauty · Builder of self · Collector of moods
 
 <div class="line"></div>
 
-<div class="meta-title">Current State</div>
-<div class="meta-text">Rebuilding direction with patience.</div>
+<div class="meta-title">About</div>
+<div class="meta-text">非典型 I 人</div>
+<div class="meta-sub">
+  🌞♏️太阳天蝎 · 🌙♓月亮双鱼 · ⬆️♈️上升白羊<br>
+  MBTI 在 ISFP / INFP 间反复横跳
+</div>
 
 <div class="line"></div>
 
-<div class="meta-title">Focus</div>
-<div class="meta-text">Design taste, identity systems, photography, slow thinking.</div>
+<div class="meta-title">Interest</div>
+<div class="meta-text">审美、身份与慢思考</div>
+<div class="tag-row">
+  <span class="tag">日料</span>
+  <span class="tag">摄影 Nikon D7500</span>
+  <span class="tag">香水</span>
+  <span class="tag">建筑时尚</span>
+  <span class="tag">逛博物馆</span>
+  <span class="tag">听歌</span>
+  <span class="tag">阅读</span>
+  <span class="tag">神秘学</span>
+  <span class="tag">心理学</span>
+  <span class="tag">乐高</span>
+</div>
+
+<div class="line"></div>
+
+<div class="meta-title">Music</div>
+<div class="meta-text">单曲循环型人格</div>
+<div class="meta-sub">RNB · 流行 · 另类 · 电子</div>
+
+<div class="line"></div>
+
+<div class="meta-title">Currently</div>
+<div class="meta-text">慢慢重建方向</div>
 
 </div>
 
