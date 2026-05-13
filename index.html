@@ -4,12 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="light dark" />
-
-<title>Racco Ho — Digital Garden</title>
+<title>Racco Ho — Visual Portfolio</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <script>
 (function () {
@@ -28,37 +27,39 @@
 }
 
 :root{
-  --bg:#F1EFEA;
-  --bg-soft:#F7F5F1;
-  --text:#181818;
+  --bg:#F3F1EC;
+  --bg-soft:#F8F6F2;
+  --text:#1A1A1A;
   --text-strong:#111111;
-  --muted:#6C6C6C;
-  --line:rgba(0,0,0,.08);
-  --card:rgba(255,255,255,.34);
-  --card-solid:rgba(255,255,255,.58);
-  --shadow:0 30px 80px rgba(0,0,0,.08), 0 10px 25px rgba(0,0,0,.04);
-  --shadow-hover:0 36px 90px rgba(0,0,0,.10), 0 14px 28px rgba(0,0,0,.06);
-  --btn-bg:rgba(255,255,255,.5);
+  --muted:#6D6D6D;
+  --line:rgba(0,0,0,.07);
+  --card:rgba(255,255,255,.42);
+  --card-solid:rgba(255,255,255,.68);
+  --shadow:0 26px 70px rgba(0,0,0,.06), 0 10px 22px rgba(0,0,0,.03);
+  --shadow-hover:0 34px 90px rgba(0,0,0,.08), 0 14px 28px rgba(0,0,0,.05);
+  --btn-bg:rgba(255,255,255,.6);
   --btn-border:rgba(0,0,0,.08);
   --btn-text:#222;
-  --focus:rgba(0,0,0,.18);
+  --focus:rgba(0,0,0,.16);
+  --accent:#2b2b2b;
 }
 
 html[data-theme="dark"]{
-  --bg:#121212;
-  --bg-soft:#181818;
-  --text:#E5E5E5;
-  --text-strong:#F1F1F1;
-  --muted:#A0A0A0;
-  --line:rgba(255,255,255,.08);
+  --bg:#0E0F10;
+  --bg-soft:#151618;
+  --text:#D8D6D2;
+  --text-strong:#F0EEEA;
+  --muted:#9A9893;
+  --line:rgba(255,255,255,.06);
   --card:rgba(255,255,255,.04);
   --card-solid:rgba(255,255,255,.06);
-  --shadow:0 26px 70px rgba(0,0,0,.34), 0 10px 25px rgba(0,0,0,.22);
-  --shadow-hover:0 34px 84px rgba(0,0,0,.42), 0 16px 32px rgba(0,0,0,.24);
+  --shadow:0 28px 80px rgba(0,0,0,.52), 0 12px 30px rgba(0,0,0,.34);
+  --shadow-hover:0 36px 95px rgba(0,0,0,.62), 0 18px 38px rgba(0,0,0,.4);
   --btn-bg:rgba(255,255,255,.06);
-  --btn-border:rgba(255,255,255,.10);
-  --btn-text:#ECECEC;
-  --focus:rgba(255,255,255,.18);
+  --btn-border:rgba(255,255,255,.1);
+  --btn-text:#EAE8E4;
+  --focus:rgba(255,255,255,.16);
+  --accent:#f1efe9;
 }
 
 html{
@@ -69,13 +70,13 @@ body{
   background:var(--bg);
   color:var(--text);
   font-family:"Inter",sans-serif;
+  font-size:16px;
+  line-height:1.8;
   overflow-x:hidden;
   min-height:100vh;
   -webkit-font-smoothing:antialiased;
   transition:background-color .25s ease, color .25s ease;
 }
-
-/* subtle texture */
 
 body::before{
   content:"";
@@ -83,17 +84,17 @@ body::before{
   inset:0;
   z-index:-2;
   background:
-    radial-gradient(circle at 18% 20%, rgba(255,255,255,.40), transparent 20%),
-    radial-gradient(circle at 82% 14%, rgba(255,255,255,.18), transparent 18%),
-    radial-gradient(circle at 70% 80%, rgba(255,255,255,.12), transparent 20%);
+    radial-gradient(circle at 14% 16%, rgba(255,255,255,.34), transparent 22%),
+    radial-gradient(circle at 78% 14%, rgba(255,255,255,.16), transparent 18%),
+    radial-gradient(circle at 70% 82%, rgba(255,255,255,.10), transparent 20%);
   pointer-events:none;
 }
 
 html[data-theme="dark"] body::before{
   background:
-    radial-gradient(circle at 18% 20%, rgba(255,255,255,.05), transparent 20%),
-    radial-gradient(circle at 82% 14%, rgba(255,255,255,.03), transparent 18%),
-    radial-gradient(circle at 70% 80%, rgba(255,255,255,.03), transparent 20%);
+    radial-gradient(circle at 14% 16%, rgba(255,255,255,.05), transparent 22%),
+    radial-gradient(circle at 78% 14%, rgba(255,255,255,.03), transparent 18%),
+    radial-gradient(circle at 70% 82%, rgba(255,255,255,.03), transparent 20%);
 }
 
 body::after{
@@ -116,37 +117,53 @@ html[data-theme="dark"] body::after{
 
 a{
   color:inherit;
+  text-decoration:none;
 }
 
 button{
   font:inherit;
 }
 
-/* =========================
-HEADER
-========================= */
+img{
+  max-width:100%;
+  display:block;
+}
+
+::selection{
+  background:rgba(128,128,128,.22);
+}
+
+/* HEADER */
 
 header{
   width:min(1400px,100%);
   margin:auto;
-  padding:30px 56px;
+  padding:28px 56px 24px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   gap:20px;
 }
 
-.header-left{
+.brand{
   display:flex;
-  align-items:center;
-  gap:18px;
+  flex-direction:column;
+  gap:4px;
 }
 
 .logo{
   font-family:"Cormorant Garamond",serif;
   font-size:40px;
-  letter-spacing:.5px;
+  line-height:1;
+  letter-spacing:.4px;
   color:var(--text-strong);
+}
+
+.brand-sub{
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
 }
 
 .nav-wrap{
@@ -157,40 +174,41 @@ header{
 
 nav{
   display:flex;
-  gap:34px;
+  gap:28px;
+  align-items:center;
 }
 
 nav a{
-  text-decoration:none;
   font-size:13px;
   letter-spacing:2px;
   text-transform:uppercase;
-  opacity:.62;
-  transition:.25s ease;
+  opacity:.65;
+  transition:opacity .22s ease, transform .22s ease;
 }
 
 nav a:hover{
   opacity:1;
+  transform:translateY(-1px);
 }
 
 .theme-toggle{
+  width:44px;
+  height:44px;
+  border-radius:999px;
   border:1px solid var(--btn-border);
   background:var(--btn-bg);
   color:var(--btn-text);
-  border-radius:999px;
-  width:44px;
-  height:44px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   cursor:pointer;
   box-shadow:0 8px 18px rgba(0,0,0,.04);
-  transition:transform .25s ease, background-color .25s ease, border-color .25s ease, color .25s ease;
-  flex:0 0 auto;
+  transition:transform .22s ease, background-color .25s ease, border-color .25s ease, color .25s ease, box-shadow .22s ease;
 }
 
 .theme-toggle:hover{
   transform:translateY(-1px);
+  box-shadow:0 10px 22px rgba(0,0,0,.08);
 }
 
 .theme-toggle:focus-visible{
@@ -198,9 +216,7 @@ nav a:hover{
   outline-offset:3px;
 }
 
-/* =========================
-LAYOUT
-========================= */
+/* LAYOUT */
 
 .wrapper{
   width:min(1400px,100%);
@@ -208,35 +224,33 @@ LAYOUT
   padding:0 56px 120px;
 }
 
-/* =========================
-HERO
-========================= */
+/* HERO */
 
 .hero{
-  min-height:82vh;
+  min-height:84vh;
   display:grid;
   grid-template-columns:1.1fr .9fr;
-  gap:100px;
+  gap:96px;
   align-items:center;
-  padding-top:20px;
+  padding-top:18px;
 }
 
 .eyebrow{
   font-size:11px;
   letter-spacing:3px;
   text-transform:uppercase;
-  opacity:.48;
-  margin-bottom:26px;
+  color:var(--muted);
+  margin-bottom:20px;
 }
 
 h1{
   font-family:"Cormorant Garamond",serif;
-  font-size:clamp(72px,9vw,142px);
+  font-size:clamp(72px,8.8vw,140px);
   line-height:.88;
   font-weight:500;
   letter-spacing:-2px;
   max-width:8ch;
-  margin-bottom:34px;
+  margin-bottom:28px;
   color:var(--text-strong);
 }
 
@@ -245,9 +259,30 @@ h1{
   font-size:18px;
   line-height:1.9;
   color:var(--text);
+  margin-bottom:34px;
 }
 
-/* right side */
+.hero-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.pill{
+  padding:9px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.18);
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  backdrop-filter:blur(8px);
+}
+
+html[data-theme="dark"] .pill{
+  background:rgba(255,255,255,.03);
+}
 
 .hero-visual{
   position:relative;
@@ -257,30 +292,32 @@ h1{
   position:relative;
   width:100%;
   background:var(--card);
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(10px);
   border:1px solid var(--line);
-  border-radius:24px;
+  border-radius:26px;
   padding:18px;
   box-shadow:var(--shadow);
-  transform:translateY(30px);
+  transform:translateY(18px);
   transition:transform .35s ease, box-shadow .35s ease, background-color .25s ease, border-color .25s ease;
 }
 
 .photo-wrap:hover{
   box-shadow:var(--shadow-hover);
+  transform:translateY(14px);
 }
 
 .photo{
   width:100%;
-  display:block;
-  border-radius:16px;
-  filter:grayscale(6%) contrast(1.02);
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:18px;
+  filter:grayscale(4%) contrast(1.02);
 }
 
 .float-note{
   position:absolute;
-  left:-36px;
-  bottom:20px;
+  left:-38px;
+  bottom:18px;
   font-size:11px;
   letter-spacing:2px;
   text-transform:uppercase;
@@ -288,44 +325,44 @@ h1{
   writing-mode:vertical-rl;
 }
 
-/* =========================
-SECTION
-========================= */
+/* SECTIONS */
 
 .section{
-  padding-top:140px;
+  padding-top:132px;
 }
 
 .section-top{
-  margin-bottom:46px;
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:24px;
+  align-items:end;
+  margin-bottom:42px;
 }
 
 .section-kicker{
   font-size:11px;
   letter-spacing:3px;
   text-transform:uppercase;
-  opacity:.5;
-  margin-bottom:18px;
+  color:var(--muted);
+  padding-bottom:10px;
 }
 
 .section-title{
   font-family:"Cormorant Garamond",serif;
-  font-size:clamp(42px,5vw,76px);
+  font-size:clamp(42px,5vw,72px);
   line-height:1;
   font-weight:500;
-  margin-bottom:20px;
   color:var(--text-strong);
 }
 
 .section-desc{
-  max-width:620px;
+  max-width:680px;
   color:var(--text);
   line-height:1.9;
+  font-size:16px;
 }
 
-/* =========================
-WORKS
-========================= */
+/* PROJECT GRID */
 
 .works-grid{
   display:grid;
@@ -334,12 +371,12 @@ WORKS
 }
 
 .work-large{
-  grid-column:span 7;
+  grid-column:span 8;
 }
 
-.work-small{
-  grid-column:span 5;
-  margin-top:80px;
+.work-medium{
+  grid-column:span 4;
+  margin-top:72px;
 }
 
 .work-wide{
@@ -349,11 +386,11 @@ WORKS
 .work-card{
   background:var(--card);
   border:1px solid var(--line);
-  border-radius:26px;
+  border-radius:28px;
   overflow:hidden;
-  backdrop-filter:blur(12px);
-  transition:.35s ease, background-color .25s ease, border-color .25s ease;
+  backdrop-filter:blur(10px);
   box-shadow:0 1px 0 rgba(255,255,255,.02) inset;
+  transition:transform .3s ease, box-shadow .3s ease, background-color .25s ease, border-color .25s ease;
 }
 
 .work-card:hover{
@@ -363,47 +400,144 @@ WORKS
 
 .work-image{
   width:100%;
-  display:block;
   aspect-ratio:16/10;
   object-fit:cover;
 }
 
 .work-body{
-  padding:24px;
+  padding:24px 24px 26px;
+}
+
+.work-topline{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin-bottom:12px;
+}
+
+.work-index{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.work-type{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
 }
 
 .work-name{
   font-family:"Cormorant Garamond",serif;
-  font-size:40px;
-  line-height:1.1;
-  margin-bottom:12px;
+  font-size:38px;
+  line-height:1.08;
+  margin-bottom:14px;
   color:var(--text-strong);
 }
 
 .work-text{
-  font-size:14px;
-  line-height:1.9;
+  max-width:54ch;
+  font-size:16px;
+  line-height:1.8;
   color:var(--text);
-  max-width:48ch;
+}
+
+.work-foot{
+  margin-top:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
 }
 
 .work-link{
-  display:inline-block;
-  margin-top:18px;
-  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
   font-size:12px;
   letter-spacing:2px;
   text-transform:uppercase;
-  opacity:.7;
+  color:var(--text-strong);
+  opacity:.72;
+  transition:opacity .22s ease, transform .22s ease;
 }
 
 .work-link:hover{
   opacity:1;
+  transform:translateY(-1px);
 }
 
-/* =========================
-JOURNAL
-========================= */
+.work-note{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* EXPERIENCE */
+
+.experience-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:24px;
+}
+
+.exp-card{
+  grid-column:span 6;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:26px;
+  backdrop-filter:blur(10px);
+  box-shadow:var(--shadow);
+  transition:transform .3s ease, box-shadow .3s ease, background-color .25s ease, border-color .25s ease;
+}
+
+.exp-card:hover{
+  transform:translateY(-3px);
+  box-shadow:var(--shadow-hover);
+}
+
+.exp-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+}
+
+.exp-company{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.exp-date{
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.exp-role{
+  font-family:"Cormorant Garamond",serif;
+  font-size:34px;
+  line-height:1.1;
+  margin-bottom:10px;
+  color:var(--text-strong);
+}
+
+.exp-text{
+  font-size:16px;
+  line-height:1.85;
+  color:var(--text);
+  max-width:58ch;
+}
+
+/* NOTES */
 
 .notes{
   display:grid;
@@ -413,13 +547,14 @@ JOURNAL
 
 .note-card{
   grid-column:span 4;
-  min-height:280px;
+  min-height:260px;
   background:var(--card);
   border:1px solid var(--line);
   border-radius:24px;
   padding:28px;
   backdrop-filter:blur(10px);
-  transition:.3s ease, background-color .25s ease, border-color .25s ease;
+  box-shadow:var(--shadow);
+  transition:transform .3s ease, box-shadow .3s ease, background-color .25s ease, border-color .25s ease;
 }
 
 .note-card:hover{
@@ -431,29 +566,35 @@ JOURNAL
   font-size:11px;
   letter-spacing:2px;
   text-transform:uppercase;
-  opacity:.45;
-  margin-bottom:22px;
+  color:var(--muted);
+  margin-bottom:18px;
 }
 
 .note-title{
   font-family:"Cormorant Garamond",serif;
-  font-size:34px;
+  font-size:32px;
   line-height:1.12;
-  margin-bottom:18px;
+  margin-bottom:14px;
   color:var(--text-strong);
 }
 
 .note-text{
-  font-size:14px;
-  line-height:1.9;
+  font-size:16px;
+  line-height:1.85;
   color:var(--text);
 }
 
-/* =========================
-ABOUT
-========================= */
+/* ABOUT */
 
 .about{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:24px;
+  align-items:start;
+  max-width:100%;
+}
+
+.about-content{
   max-width:760px;
 }
 
@@ -461,22 +602,45 @@ ABOUT
   font-size:16px;
   line-height:2;
   color:var(--text);
-  margin-bottom:24px;
+  margin-bottom:22px;
 }
 
-/* =========================
-FOOTER
-========================= */
+/* SKILLS */
+
+.skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:18px;
+}
+
+.skill{
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.16);
+  font-size:12px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+html[data-theme="dark"] .skill{
+  background:rgba(255,255,255,.03);
+}
+
+/* FOOTER */
 
 footer{
   width:min(1400px,100%);
   margin:auto;
-  padding:40px 56px 70px;
+  padding:44px 56px 70px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:flex-start;
+  gap:20px;
   border-top:1px solid var(--line);
-  margin-top:140px;
+  margin-top:130px;
 }
 
 .copy{
@@ -486,29 +650,29 @@ footer{
 
 .links{
   display:flex;
-  gap:24px;
+  gap:22px;
+  flex-wrap:wrap;
 }
 
 .links a{
-  text-decoration:none;
   font-size:14px;
-  opacity:.7;
+  opacity:.72;
+  transition:opacity .2s ease, transform .2s ease;
 }
 
 .links a:hover{
   opacity:1;
+  transform:translateY(-1px);
 }
 
-/* =========================
-MOBILE
-========================= */
+/* RESPONSIVE */
 
-@media(max-width:1000px){
+@media(max-width:1020px){
   .hero{
     grid-template-columns:1fr;
-    gap:60px;
+    gap:56px;
     min-height:auto;
-    padding-top:30px;
+    padding-top:28px;
   }
 
   .photo-wrap{
@@ -519,24 +683,33 @@ MOBILE
     display:none;
   }
 
+  .section-top,
+  .about{
+    grid-template-columns:1fr;
+  }
+
   .work-large,
-  .work-small,
+  .work-medium,
   .work-wide,
+  .exp-card,
   .note-card{
     grid-column:span 12;
   }
 
-  .work-small{
+  .work-medium{
     margin-top:0;
   }
 }
 
 @media(max-width:760px){
   header{
-    padding:24px 20px;
+    padding:22px 20px 18px;
     flex-direction:column;
     align-items:flex-start;
-    gap:18px;
+  }
+
+  .wrapper{
+    padding:0 20px 80px;
   }
 
   .nav-wrap{
@@ -545,12 +718,16 @@ MOBILE
   }
 
   nav{
-    flex-wrap:wrap;
     gap:14px;
+    flex-wrap:wrap;
   }
 
-  .wrapper{
-    padding:0 20px 80px;
+  .logo{
+    font-size:34px;
+  }
+
+  h1{
+    font-size:clamp(58px,16vw,92px);
   }
 
   .sub{
@@ -558,15 +735,28 @@ MOBILE
   }
 
   .section{
-    padding-top:90px;
+    padding-top:92px;
+  }
+
+  .work-name,
+  .exp-role,
+  .note-title{
+    font-size:30px;
+  }
+
+  .section-desc,
+  .work-text,
+  .exp-text,
+  .about p,
+  .note-text{
+    font-size:15px;
   }
 
   footer{
     padding:30px 20px 50px;
     flex-direction:column;
     align-items:flex-start;
-    gap:18px;
-    margin-top:90px;
+    margin-top:88px;
   }
 }
 </style>
@@ -575,14 +765,15 @@ MOBILE
 <body>
 
 <header>
-  <div class="header-left">
+  <div class="brand">
     <div class="logo">Racco Ho</div>
+    <div class="brand-sub">Visual portfolio · digital archive</div>
   </div>
 
   <div class="nav-wrap">
     <nav>
       <a href="#works">Works</a>
-      <a href="#journal">Journal</a>
+      <a href="#experience">Experience</a>
       <a href="#about">About</a>
     </nav>
 
@@ -594,10 +785,9 @@ MOBILE
 
 <div class="wrapper">
 
-  <!-- HERO -->
   <section class="hero">
     <div>
-      <div class="eyebrow">Personal Digital Garden</div>
+      <div class="eyebrow">Selected work and ongoing notes</div>
 
       <h1>
         An evolving<br>
@@ -605,184 +795,188 @@ MOBILE
       </h1>
 
       <div class="sub">
-        A quiet digital garden for my creative works,
-        introspective thoughts, and things that 
-        I would like to share to still feel real.
+        A quiet portfolio for creative experiments, visual storytelling, and thoughtful work across content, imagery, and AI-assisted making. Built slowly, with attention to tone, structure, and what feels real.
+      </div>
+
+      <div class="hero-meta">
+        <span class="pill">Visual design</span>
+        <span class="pill">Content operations</span>
+        <span class="pill">AI-assisted creation</span>
       </div>
     </div>
 
     <div class="hero-visual">
       <div class="photo-wrap">
-        <img
-          class="photo"
-          src="images/profile-picture.jpg"
-          alt="Racco Ho"
-        >
+        <img class="photo" src="images/profile-picture.jpg" alt="Racco Ho">
       </div>
-
       <div class="float-note">racco ho</div>
     </div>
   </section>
 
-  <!-- WORKS -->
   <section class="section" id="works">
     <div class="section-top">
       <div class="section-kicker">Selected Works</div>
-      <div class="section-title">Expressions</div>
+      <div class="section-title">Projects</div>
       <div class="section-desc">
-        A collection of emotional interfaces,
-        visual fragments,
-        and AI-assisted creative experiments.
-        Less commercial portfolio,
-        more evolving personal language.
+        A small collection of pieces that sit between design, writing, and personal experimentation. Less about polish for its own sake, more about building a language that feels consistent.
       </div>
     </div>
 
     <div class="works-grid">
-      <!-- big -->
       <div class="work-large">
-        <div class="work-card">
-          <img
-            class="work-image"
-            src="images/sticker-cover.jpg"
-            alt="WeChat Sticker Pack"
-          >
-
+        <article class="work-card">
+          <img class="work-image" src="images/sticker-cover.jpg" alt="WeChat Sticker Pack">
           <div class="work-body">
+            <div class="work-topline">
+              <div class="work-index">01</div>
+              <div class="work-type">Sticker Pack</div>
+            </div>
             <div class="work-name">WeChat Sticker Pack</div>
-
             <div class="work-text">
-              An emotion-driven sticker project built around
-              small social reactions, awkward honesty,
-              and soft humor.
-              Created through an AI-assisted workflow
-              with focus on visual consistency and emotional tone.
+              An emotion-driven sticker project built around small social reactions, awkward honesty, and soft humor. It was designed to feel familiar, usable, and a little bit alive.
             </div>
-
-            <a class="work-link" href="#">
-              View Project →
-            </a>
+            <div class="work-foot">
+              <a class="work-link" href="#">View Project →</a>
+              <div class="work-note">AI-assisted workflow · visual consistency · social expression</div>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
 
-      <!-- small -->
-      <div class="work-small">
-        <div class="work-card">
-          <img
-            class="work-image"
-            src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1400&auto=format&fit=crop"
-            alt="Mood Archive"
-          >
-
+      <div class="work-medium">
+        <article class="work-card">
+          <img class="work-image" src="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1400&auto=format&fit=crop" alt="Mood Archive">
           <div class="work-body">
+            <div class="work-topline">
+              <div class="work-index">02</div>
+              <div class="work-type">Archive</div>
+            </div>
             <div class="work-name">Mood Archive</div>
-
             <div class="work-text">
-              Fragments of typography,
-              textures,
-              screenshots,
-              and visual references collected over time.
+              A running collection of textures, references, typography, and screenshots used to shape the overall mood of the site and the work around it.
             </div>
-
-            <a class="work-link" href="#">
-              Open →
-            </a>
           </div>
-        </div>
+        </article>
       </div>
 
-      <!-- wide -->
       <div class="work-wide">
-        <div class="work-card">
-          <img
-            class="work-image"
-            src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop"
-            alt="Identity & Quiet Systems"
-          >
-
+        <article class="work-card">
+          <img class="work-image" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1600&auto=format&fit=crop" alt="Identity & Quiet Systems">
           <div class="work-body">
-            <div class="work-name">Identity & Quiet Systems</div>
-
-            <div class="work-text">
-              An ongoing exploration of identity design,
-              slow aesthetics,
-              personal rhythm,
-              and emotionally aware interfaces.
-              Not branding in the traditional sense —
-              more like building a space that feels inhabitable.
+            <div class="work-topline">
+              <div class="work-index">03</div>
+              <div class="work-type">Ongoing Study</div>
             </div>
-
-            <a class="work-link" href="#">
-              Read Notes →
-            </a>
+            <div class="work-name">Identity & Quiet Systems</div>
+            <div class="work-text">
+              An ongoing exploration of identity design, slow aesthetics, and emotionally aware interfaces. The goal is not to look loud, but to feel coherent, usable, and personal.
+            </div>
+            <div class="work-foot">
+              <a class="work-link" href="#">Read Notes →</a>
+              <div class="work-note">Design language · rhythm · restraint · atmosphere</div>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- JOURNAL -->
+  <section class="section" id="experience">
+    <div class="section-top">
+      <div class="section-kicker">Experience</div>
+      <div class="section-title">Background</div>
+      <div class="section-desc">
+        A more grounded view of the work behind the page — operations, communication, content, and the shift toward more visual and independent creative work.
+      </div>
+    </div>
+
+    <div class="experience-grid">
+      <article class="exp-card">
+        <div class="exp-meta">
+          <div class="exp-company">Ctrip · Guangzhou</div>
+          <div class="exp-date">2024.09 — 2025.01</div>
+        </div>
+        <div class="exp-role">Overseas Business Operations</div>
+        <div class="exp-text">
+          Handled hotel orders, supplier communication, customer complaints, and process coordination. The work trained me to stay precise, responsive, and calm under constant operational pressure.
+        </div>
+      </article>
+
+      <article class="exp-card">
+        <div class="exp-meta">
+          <div class="exp-company">Independent</div>
+          <div class="exp-date">2025 — present</div>
+        </div>
+        <div class="exp-role">Content & Creative Practice</div>
+        <div class="exp-text">
+          Building content across Xiaohongshu and Instagram, shaping visual direction, and exploring AI-assisted workflows through images, short writing, and small digital projects.
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="section" id="journal">
     <div class="section-top">
       <div class="section-kicker">Journal</div>
       <div class="section-title">Field Notes</div>
+      <div class="section-desc">
+        Small observations, creative reminders, and things I do not want to flatten into content too quickly.
+      </div>
     </div>
 
     <div class="notes">
-      <div class="note-card">
+      <article class="note-card">
         <div class="note-date">May · 2026</div>
         <div class="note-title">Some things do not need to become content.</div>
         <div class="note-text">
-          Not every feeling needs optimization,
-          performance,
-          or explanation to still matter.
+          Not every feeling needs to be optimized, explained, or posted in order to matter.
         </div>
-      </div>
+      </article>
 
-      <div class="note-card">
-        <div class="note-date">May · 2026</div>
-        <div class="note-title">A sticker pack is a tiny emotional interface.</div>
-        <div class="note-text">
-          People use them to soften language,
-          hide awkwardness,
-          or express what words cannot hold directly.
-        </div>
-      </div>
-
-      <div class="note-card">
+      <article class="note-card">
         <div class="note-date">May · 2026</div>
         <div class="note-title">Quiet work is still real work.</div>
         <div class="note-text">
-          Not everything valuable arrives loudly.
-          Some things become visible slowly.
+          The work that looks small from the outside can still be precise, difficult, and useful.
         </div>
-      </div>
+      </article>
+
+      <article class="note-card">
+        <div class="note-date">May · 2026</div>
+        <div class="note-title">Taste is a system, not a vibe.</div>
+        <div class="note-text">
+          The more consistent the choices become, the more the whole page starts to feel like one person.
+        </div>
+      </article>
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="section about" id="about">
-    <div class="section-top">
-      <div class="section-kicker">About</div>
-      <div class="section-title">A small profile</div>
+    <div class="section-kicker">About</div>
+
+    <div class="about-content">
+      <div class="section-title" style="margin-bottom:18px;">A small profile</div>
+
+      <p>
+        I studied English and later worked in overseas business operations at Ctrip Guangzhou, where most days were filled with hotel systems, supplier communication, customer complaints, and the quiet pressure of keeping things running smoothly.
+      </p>
+
+      <p>
+        Over time, I found myself drawn more toward visual storytelling, writing, and emotionally driven creative work. Now I spend much of my time building small digital projects, creating content, and exploring AI-assisted workflows through images, words, and online spaces.
+      </p>
+
+      <p>
+        This website is less a polished portfolio and more an ongoing record of taste, emotion, work, and the slow process of becoming someone I can recognize more clearly.
+      </p>
+
+      <div class="skills">
+        <span class="skill">Visual storytelling</span>
+        <span class="skill">Content planning</span>
+        <span class="skill">Workflow design</span>
+        <span class="skill">AI-assisted creation</span>
+        <span class="skill">English communication</span>
+      </div>
     </div>
-
-    <p>
-     I studied English and later worked in overseas business operations at Ctrip Guangzhou, 
-      where most days were filled with hotel systems, supplier communication, 
-      customer complaints, and the quiet pressure of keeping things running smoothly. 
-    </p>
-
-    <p>
-      Over time, I found myself drawn more toward visual storytelling, 
-      writing, and emotionally driven creative work.
-      Now I spend much of my time building small digital projects, 
-      creating content, and exploring AI-assisted workflows through images, 
-      words, and online spaces. This website is less a polished 
-      portfolio and more an ongoing record of taste, emotion, work, and the 
-      slow process of becoming someone I can recognize more clearly.
-    </p>
   </section>
 
 </div>
@@ -791,17 +985,9 @@ MOBILE
   <div class="copy">© 2026 Racco Ho</div>
 
   <div class="links">
-    <a href="https://github.com/WhimsicalHe" target="_blank" rel="noopener noreferrer">
-      GitHub
-    </a>
-
-    <a href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer">
-      X
-    </a>
-
-    <a href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer">
-      Instagram
-    </a>
+    <a href="https://github.com/WhimsicalHe" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer">X</a>
+    <a href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer">Instagram</a>
   </div>
 </footer>
 
@@ -822,8 +1008,7 @@ MOBILE
     toggle.setAttribute('title', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 
-  const initialTheme = getCurrentTheme();
-  setTheme(initialTheme);
+  setTheme(getCurrentTheme());
 
   toggle.addEventListener('click', function () {
     const current = getCurrentTheme();
@@ -831,8 +1016,7 @@ MOBILE
   });
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) return;
+    if (localStorage.getItem('theme')) return;
     setTheme(e.matches ? 'dark' : 'light');
   });
 })();
