@@ -11,6 +11,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --page-padding-x: clamp(18px, 7vw, 72px);
+      --page-padding-y: clamp(18px, 4vw, 32px);
+      --glass: rgba(255, 255, 255, .12);
+      --glass-strong: rgba(255, 255, 255, .18);
+      --text-soft: rgba(255, 255, 255, .86);
+      --text-muted: rgba(255, 255, 255, .76);
+      --shadow: 0 14px 30px rgba(21, 31, 22, .14);
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -24,14 +34,14 @@
       min-height: 100%;
       margin: 0;
       overflow-x: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      color: #fff;
       background:
         radial-gradient(circle at 18% 14%, rgba(255, 255, 255, .58), transparent 28%),
         radial-gradient(circle at 86% 78%, rgba(127, 177, 128, .2), transparent 30%),
         linear-gradient(135deg, #d8c2ad 0%, #cbb49e 45%, #eadbc9 100%);
-      color: #fff;
-      font-family: Inter, ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
     }
 
     a,
@@ -41,18 +51,20 @@
 
     .page {
       min-height: 100svh;
-      padding: 0;
     }
 
     .hero-card {
       position: relative;
-      width: 100%;
       min-height: 100svh;
       overflow: hidden;
-      border: 0;
-      border-radius: 0;
-      background: #8ab9a8;
       isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      padding:
+        var(--page-padding-y)
+        var(--page-padding-x)
+        calc(var(--page-padding-y) + 10px);
+      background: #8ab9a8;
     }
 
     .hero-card::before {
@@ -72,13 +84,15 @@
       inset: 0;
       z-index: -2;
       background:
-        linear-gradient(90deg,
+        linear-gradient(
+          90deg,
           rgba(18, 35, 28, .84) 0%,
           rgba(18, 35, 28, .72) 34%,
           rgba(18, 35, 28, .28) 66%,
           rgba(18, 35, 28, .12) 100%
         ),
-        linear-gradient(180deg,
+        linear-gradient(
+          180deg,
           rgba(18, 29, 22, .08) 0%,
           transparent 46%,
           rgba(24, 35, 28, .24) 100%
@@ -98,15 +112,12 @@
     }
 
     .topbar {
-      position: absolute;
-      top: 28px;
-      left: 7%;
-      right: 7%;
       z-index: 10;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
+      flex-wrap: wrap;
     }
 
     .brand {
@@ -129,6 +140,7 @@
       backdrop-filter: blur(14px);
       font-size: 14px;
       font-weight: 900;
+      letter-spacing: -.02em;
     }
 
     .brand-name {
@@ -172,23 +184,6 @@
       flex: 0 0 auto;
     }
 
-    .glass-button {
-      display: inline-flex;
-      min-height: 40px;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 1px solid rgba(255, 255, 255, .2);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .12);
-      color: #fff;
-      padding: 0 14px;
-      font-size: 12px;
-      font-weight: 800;
-      text-decoration: none;
-      backdrop-filter: blur(16px);
-    }
-
     .solid-button {
       display: inline-flex;
       min-height: 40px;
@@ -202,16 +197,34 @@
       font-size: 12px;
       font-weight: 900;
       text-decoration: none;
-      box-shadow: 0 14px 30px rgba(21, 31, 22, .14);
+      box-shadow: var(--shadow);
       white-space: nowrap;
     }
 
-    .hero-copy {
-      position: absolute;
-      left: 7%;
-      top: 24%;
+    .solid-button svg {
+      width: 14px;
+      height: 14px;
+      flex: 0 0 auto;
+    }
+
+    .hero-main {
+      position: relative;
       z-index: 5;
-      width: min(600px, 52%);
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding-top: clamp(18px, 3vw, 36px);
+      padding-bottom: clamp(18px, 2vw, 28px);
+      min-height: 0;
+    }
+
+    .hero-copy {
+      width: min(100%, 620px);
+      max-width: 620px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-right: 18px;
     }
 
     .eyebrow {
@@ -220,7 +233,7 @@
       gap: 9px;
       max-width: 100%;
       min-height: 34px;
-      margin-bottom: 26px;
+      width: fit-content;
       border: 1px solid rgba(255, 255, 255, .24);
       border-radius: 999px;
       background: rgba(255, 255, 255, .1);
@@ -228,6 +241,7 @@
       padding: 0 16px;
       font-size: 12px;
       font-weight: 800;
+      line-height: 1;
       backdrop-filter: blur(16px);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14);
     }
@@ -241,20 +255,20 @@
     .hero-title {
       margin: 0;
       color: #fff;
-      font-size: clamp(3.8rem, 7.2vw, 6.7rem);
+      font-size: clamp(3.4rem, 7.1vw, 6.8rem);
       font-weight: 820;
       letter-spacing: -.05em;
-      line-height: .9;
-      max-width: 8.5ch;
+      line-height: .92;
+      max-width: 8ch;
       text-wrap: balance;
       text-shadow: 0 10px 32px rgba(0, 0, 0, .42);
     }
 
     .hero-subtitle {
+      margin: 0;
       width: min(100%, 520px);
-      margin: 22px 0 0;
       color: rgba(255, 255, 255, .94);
-      font-size: clamp(.98rem, 1.1vw, 1.08rem);
+      font-size: clamp(.98rem, 1.12vw, 1.08rem);
       font-weight: 500;
       line-height: 1.8;
     }
@@ -266,7 +280,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      margin-top: 26px;
+      margin-top: 4px;
       border: 1px solid rgba(255, 255, 255, .18);
       border-radius: 999px;
       background: rgba(255, 255, 255, .14);
@@ -301,15 +315,15 @@
     }
 
     .footer-links {
-      position: absolute;
-      left: 7%;
-      right: 7%;
-      bottom: 28px;
+      position: relative;
       z-index: 8;
+      margin-top: auto;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 36px;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-top: 22px;
       color: rgba(255, 255, 255, .82);
       font-size: 11px;
       font-weight: 800;
@@ -325,6 +339,7 @@
     .social-label {
       margin-right: 2px;
       color: rgba(255, 255, 255, .82);
+      white-space: nowrap;
     }
 
     .social-icon {
@@ -370,6 +385,7 @@
       font-weight: 950;
       letter-spacing: -.02em;
       white-space: nowrap;
+      flex-wrap: wrap;
     }
 
     .footer-note {
@@ -377,15 +393,7 @@
       font-size: 11px;
       font-weight: 850;
       white-space: nowrap;
-    }
-
-    .fade-1 { animation-delay: .08s; }
-    .fade-2 { animation-delay: .2s; }
-    .fade-3 { animation-delay: .34s; }
-    .fade-4 { animation-delay: .48s; }
-
-    .animate-softIn {
-      animation: softIn .9s cubic-bezier(.2,.7,.2,1) both;
+      flex: 0 0 auto;
     }
 
     @keyframes softIn {
@@ -401,14 +409,22 @@
       }
     }
 
+    .animate-softIn {
+      animation: softIn .9s cubic-bezier(.2,.7,.2,1) both;
+    }
+
+    .fade-1 { animation-delay: .08s; }
+    .fade-2 { animation-delay: .2s; }
+    .fade-3 { animation-delay: .34s; }
+    .fade-4 { animation-delay: .48s; }
+
     @media (max-width: 1080px) {
       .hero-card {
         min-height: 900px;
       }
 
       .topbar {
-        left: 28px;
-        right: 28px;
+        gap: 14px;
       }
 
       .nav-menu {
@@ -416,29 +432,21 @@
       }
 
       .hero-copy {
-        left: 32px;
-        top: 130px;
-        width: min(560px, calc(100% - 64px));
+        width: min(100%, 560px);
       }
 
       .hero-title {
-        max-width: 600px;
-      }
-
-      .footer-links {
-        left: 32px;
-        right: 32px;
+        max-width: 7.5ch;
       }
     }
 
     @media (max-width: 760px) {
-      .page {
-        padding: 0;
-      }
-
       .hero-card {
         min-height: 100svh;
-        border-radius: 0;
+        padding:
+          20px
+          18px
+          18px;
       }
 
       .hero-card::before {
@@ -447,7 +455,8 @@
 
       .hero-card::after {
         background:
-          linear-gradient(180deg,
+          linear-gradient(
+            180deg,
             rgba(26, 56, 42, .74) 0%,
             rgba(26, 56, 42, .58) 42%,
             rgba(26, 56, 42, .26) 78%,
@@ -456,39 +465,44 @@
       }
 
       .topbar {
-        top: 20px;
-        left: 18px;
-        right: 18px;
+        align-items: flex-start;
       }
 
       .brand-name {
         font-size: 14px;
       }
 
-      .glass-button {
-        display: none;
+      .solid-button {
+        padding: 0 13px;
+      }
+
+      .hero-main {
+        align-items: flex-start;
+        padding-top: 88px;
+        padding-bottom: 18px;
       }
 
       .hero-copy {
-        left: 22px;
-        right: 22px;
-        top: 112px;
-        width: auto;
+        width: 100%;
+        max-width: 100%;
+        padding-right: 0;
+        gap: 16px;
       }
 
       .eyebrow {
         min-height: 32px;
-        margin-bottom: 18px;
         padding: 0 12px;
         font-size: 11px;
       }
 
       .hero-title {
-        font-size: clamp(3.2rem, 15vw, 4.8rem);
+        font-size: clamp(3.1rem, 15vw, 4.9rem);
+        max-width: 7ch;
       }
 
       .hero-subtitle {
-        max-width: 92%;
+        max-width: 100%;
+        line-height: 1.7;
       }
 
       .email-pill {
@@ -497,30 +511,29 @@
       }
 
       .footer-links {
-        left: 22px;
-        right: 22px;
-        bottom: 22px;
-        align-items: flex-end;
-        gap: 18px;
-        flex-wrap: wrap;
+        gap: 16px 20px;
+        padding-top: 14px;
       }
 
       .logo-row {
+        display: none;
+      }
+
+      .footer-note {
         display: none;
       }
     }
 
     @media (max-width: 430px) {
       .hero-card {
-        min-height: 100svh;
+        padding:
+          18px
+          16px
+          16px;
       }
 
-      .solid-button {
-        padding: 0 13px;
-      }
-
-      .hero-subtitle {
-        max-width: 100%;
+      .hero-main {
+        padding-top: 84px;
       }
 
       .email-pill {
@@ -537,10 +550,6 @@
 
       .email-pill a {
         width: 100%;
-      }
-
-      .footer-note {
-        display: none;
       }
     }
   </style>
@@ -566,7 +575,7 @@
 
         <div class="nav-actions">
           <a class="solid-button" href="#links">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4 4h16v16H4z"></path>
               <path d="m22 6-10 7L2 6"></path>
             </svg>
@@ -575,27 +584,29 @@
         </div>
       </header>
 
-      <div class="hero-copy" id="home">
-        <div class="eyebrow animate-softIn fade-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3l2.4 5.2L20 10.6l-5.1 2.1L12 18l-2.9-5.3L4 10.6l5.6-2.4L12 3Z"></path>
-          </svg>
-          Personal site for visual stories, stickers & small experiments
+      <section class="hero-main" id="home">
+        <div class="hero-copy">
+          <div class="eyebrow animate-softIn fade-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3l2.4 5.2L20 10.6l-5.1 2.1L12 18l-2.9-5.3L4 10.6l5.6-2.4L12 3Z"></path>
+            </svg>
+            Personal site for visual stories, stickers & small experiments
+          </div>
+
+          <h1 class="hero-title animate-softIn fade-2" id="hero-title">
+            Turn Feelings<br />Into Visible
+          </h1>
+
+          <p class="hero-subtitle animate-softIn fade-3">
+            Hi, I am Racco Ho. I collect quiet moods, visual references, AI-assisted workflows, and tiny social reactions, then turn them into stickers, images, writing, and personal web experiments.
+          </p>
+
+          <div class="email-pill animate-softIn fade-4">
+            <span>Currently building a soft, awkward, honest sticker pack</span>
+            <a href="#links">Explore →</a>
+          </div>
         </div>
-
-        <h1 class="hero-title animate-softIn fade-2" id="hero-title">
-          Turn Feelings<br />Into Visible
-        </h1>
-
-        <p class="hero-subtitle animate-softIn fade-3">
-          Hi, I am Racco Ho. I collect quiet moods, visual references, AI-assisted workflows, and tiny social reactions, then turn them into stickers, images, writing, and personal web experiments.
-        </p>
-
-        <div class="email-pill animate-softIn fade-4">
-          <span>Currently building a soft, awkward, honest sticker pack</span>
-          <a href="#links">Explore →</a>
-        </div>
-      </div>
+      </section>
 
       <footer class="footer-links" id="links">
         <div class="socials">
