@@ -6,32 +6,9 @@
   <meta name="color-scheme" content="light" />
   <title>Racco Ho | Personal Website</title>
 
-  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Helvetica', 'Arial', 'sans-serif']
-          },
-          keyframes: {
-            floatCard: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
-            },
-            softIn: {
-              '0%': { opacity: '0', transform: 'translateY(18px)', filter: 'blur(8px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)', filter: 'blur(0)' }
-            }
-          },
-          animation: {
-            floatCard: 'floatCard 5.8s ease-in-out infinite',
-            softIn: 'softIn .9s cubic-bezier(.2,.7,.2,1) both'
-          }
-        }
-      }
-    };
-  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -85,7 +62,7 @@
       z-index: -3;
       background-image: url("./images/personal-hero.png");
       background-size: cover;
-      background-position: center center;
+      background-position: 72% 40%;
       transform: none;
     }
 
@@ -95,8 +72,17 @@
       inset: 0;
       z-index: -2;
       background:
-        linear-gradient(90deg, rgba(36, 72, 59, .72) 0%, rgba(36, 72, 59, .48) 31%, rgba(36, 72, 59, .12) 58%, rgba(20, 33, 26, .18) 100%),
-        linear-gradient(180deg, rgba(18, 29, 22, .1) 0%, transparent 46%, rgba(24, 35, 28, .3) 100%);
+        linear-gradient(90deg,
+          rgba(18, 35, 28, .84) 0%,
+          rgba(18, 35, 28, .72) 34%,
+          rgba(18, 35, 28, .28) 66%,
+          rgba(18, 35, 28, .12) 100%
+        ),
+        linear-gradient(180deg,
+          rgba(18, 29, 22, .08) 0%,
+          transparent 46%,
+          rgba(24, 35, 28, .24) 100%
+        );
       pointer-events: none;
     }
 
@@ -106,7 +92,7 @@
       z-index: -1;
       width: 54rem;
       height: 42rem;
-      background: radial-gradient(circle, rgba(255, 245, 189, .45), transparent 62%);
+      background: radial-gradient(circle, rgba(255, 245, 189, .42), transparent 62%);
       pointer-events: none;
       mix-blend-mode: screen;
     }
@@ -129,6 +115,7 @@
       gap: 10px;
       color: #fff;
       text-decoration: none;
+      flex: 0 0 auto;
     }
 
     .brand-mark {
@@ -148,6 +135,7 @@
       font-size: 15px;
       font-weight: 900;
       letter-spacing: -.01em;
+      white-space: nowrap;
     }
 
     .nav-menu {
@@ -164,12 +152,12 @@
     .nav-menu a {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      color: rgba(255, 255, 255, .86);
+      color: rgba(255, 255, 255, .9);
       font-size: 12px;
       font-weight: 700;
       text-decoration: none;
       transition: color .2s ease, transform .2s ease;
+      white-space: nowrap;
     }
 
     .nav-menu a:hover {
@@ -181,6 +169,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex: 0 0 auto;
     }
 
     .glass-button {
@@ -214,6 +203,7 @@
       font-weight: 900;
       text-decoration: none;
       box-shadow: 0 14px 30px rgba(21, 31, 22, .14);
+      white-space: nowrap;
     }
 
     .hero-copy {
@@ -234,7 +224,7 @@
       border: 1px solid rgba(255, 255, 255, .24);
       border-radius: 999px;
       background: rgba(255, 255, 255, .1);
-      color: rgba(255, 255, 255, .88);
+      color: rgba(255, 255, 255, .9);
       padding: 0 16px;
       font-size: 12px;
       font-weight: 800;
@@ -251,26 +241,27 @@
     .hero-title {
       margin: 0;
       color: #fff;
-      font-size: clamp(3.6rem, 7.4vw, 6.9rem);
-      font-weight: 950;
-      letter-spacing: -.045em;
+      font-size: clamp(3.8rem, 7.2vw, 6.7rem);
+      font-weight: 820;
+      letter-spacing: -.05em;
       line-height: .9;
+      max-width: 8.5ch;
       text-wrap: balance;
-      text-shadow: 0 16px 36px rgba(16, 28, 21, .24);
+      text-shadow: 0 10px 32px rgba(0, 0, 0, .42);
     }
 
     .hero-subtitle {
-      width: min(100%, 500px);
+      width: min(100%, 520px);
       margin: 22px 0 0;
-      color: rgba(255, 255, 255, .82);
-      font-size: clamp(.95rem, 1.1vw, 1.08rem);
+      color: rgba(255, 255, 255, .94);
+      font-size: clamp(.98rem, 1.1vw, 1.08rem);
       font-weight: 500;
-      line-height: 1.78;
+      line-height: 1.8;
     }
 
     .email-pill {
       display: flex;
-      width: min(100%, 390px);
+      width: min(100%, 320px);
       min-height: 44px;
       align-items: center;
       justify-content: space-between;
@@ -286,7 +277,7 @@
     .email-pill span {
       min-width: 0;
       overflow: hidden;
-      color: rgba(255, 255, 255, .82);
+      color: rgba(255, 255, 255, .86);
       font-size: 12px;
       font-weight: 700;
       text-overflow: ellipsis;
@@ -306,6 +297,7 @@
       font-size: 12px;
       font-weight: 900;
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .footer-links {
@@ -316,8 +308,8 @@
       z-index: 8;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 18px;
+      justify-content: flex-start;
+      gap: 36px;
       color: rgba(255, 255, 255, .82);
       font-size: 11px;
       font-weight: 800;
@@ -327,6 +319,7 @@
       display: flex;
       align-items: center;
       gap: 9px;
+      flex-wrap: wrap;
     }
 
     .social-label {
@@ -347,6 +340,7 @@
       backdrop-filter: blur(14px);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 12px 24px rgba(21, 31, 22, .12);
       transition: transform .2s ease, background-color .2s ease, color .2s ease;
+      flex: 0 0 auto;
     }
 
     .social-icon:hover {
@@ -375,18 +369,37 @@
       font-size: 13px;
       font-weight: 950;
       letter-spacing: -.02em;
+      white-space: nowrap;
     }
 
     .footer-note {
       color: rgba(255, 255, 255, .82);
       font-size: 11px;
       font-weight: 850;
+      white-space: nowrap;
     }
 
     .fade-1 { animation-delay: .08s; }
     .fade-2 { animation-delay: .2s; }
     .fade-3 { animation-delay: .34s; }
     .fade-4 { animation-delay: .48s; }
+
+    .animate-softIn {
+      animation: softIn .9s cubic-bezier(.2,.7,.2,1) both;
+    }
+
+    @keyframes softIn {
+      0% {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(8px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
 
     @media (max-width: 1080px) {
       .hero-card {
@@ -434,7 +447,12 @@
 
       .hero-card::after {
         background:
-          linear-gradient(180deg, rgba(26, 56, 42, .72) 0%, rgba(26, 56, 42, .56) 42%, rgba(26, 56, 42, .26) 78%, rgba(26, 56, 42, .5) 100%);
+          linear-gradient(180deg,
+            rgba(26, 56, 42, .74) 0%,
+            rgba(26, 56, 42, .58) 42%,
+            rgba(26, 56, 42, .26) 78%,
+            rgba(26, 56, 42, .5) 100%
+          );
       }
 
       .topbar {
@@ -475,6 +493,7 @@
 
       .email-pill {
         width: 100%;
+        max-width: 100%;
       }
 
       .footer-links {
@@ -482,6 +501,8 @@
         right: 22px;
         bottom: 22px;
         align-items: flex-end;
+        gap: 18px;
+        flex-wrap: wrap;
       }
 
       .logo-row {
@@ -537,41 +558,33 @@
         </a>
 
         <nav class="nav-menu" aria-label="Primary navigation">
-          <a href="#home">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-8 9 8"></path><path d="M5 10v10h14V10"></path></svg>
-            Home
-          </a>
-          <a href="https://github.com/WhimsicalHe/WhimsicalHe/blob/main/images/sticker-cover.jpg" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 10h16"></path></svg>
-            Projects
-          </a>
-          <a href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h11a3 3 0 0 1 3 3v13"></path><path d="M8 7h7"></path><path d="M8 11h8"></path></svg>
-            Notes
-          </a>
-          <a href="#links">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M20 21a8 8 0 0 0-16 0"></path></svg>
-            About
-          </a>
+          <a href="#home">Home</a>
+          <a href="https://github.com/WhimsicalHe/WhimsicalHe/blob/main/images/sticker-cover.jpg" target="_blank" rel="noopener noreferrer">Projects</a>
+          <a href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer">Notes</a>
+          <a href="#links">About</a>
         </nav>
 
         <div class="nav-actions">
-          <a class="glass-button" href="#links">Menu</a>
           <a class="solid-button" href="#links">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="m22 6-10 7L2 6"></path></svg>
-            Say Hi
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16v16H4z"></path>
+              <path d="m22 6-10 7L2 6"></path>
+            </svg>
+            View Work
           </a>
         </div>
       </header>
 
       <div class="hero-copy" id="home">
         <div class="eyebrow animate-softIn fade-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.4 5.2L20 10.6l-5.1 2.1L12 18l-2.9-5.3L4 10.6l5.6-2.4L12 3Z"></path></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3l2.4 5.2L20 10.6l-5.1 2.1L12 18l-2.9-5.3L4 10.6l5.6-2.4L12 3Z"></path>
+          </svg>
           Personal site for visual stories, stickers & small experiments
         </div>
 
         <h1 class="hero-title animate-softIn fade-2" id="hero-title">
-          Make Small<br />Feelings Visible
+          Turn Feelings<br />Into Visible
         </h1>
 
         <p class="hero-subtitle animate-softIn fade-3">
@@ -580,18 +593,20 @@
 
         <div class="email-pill animate-softIn fade-4">
           <span>Currently building a soft, awkward, honest sticker pack</span>
-          <a href="#links">View Links</a>
+          <a href="#links">Explore →</a>
         </div>
       </div>
 
       <footer class="footer-links" id="links">
         <div class="socials">
           <span class="social-label">Find me:</span>
+
           <a class="social-icon" href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer" aria-label="X profile">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M17.6 3h3.1l-6.8 7.8L22 21h-6.4l-5-6.5L4.9 21H1.8l7.3-8.4L1.3 3h6.6l4.5 5.9L17.6 3Zm-1.1 16.2h1.7L7 4.7H5.2l11.3 14.5Z"></path>
             </svg>
           </a>
+
           <a class="social-icon" href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5"></rect>
@@ -599,7 +614,11 @@
               <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
             </svg>
           </a>
-          <a class="social-icon social-icon-xhs" href="https://xhslink.com/m/186QZTYAQSd" target="_blank" rel="noopener noreferrer" aria-label="Xiaohongshu profile">RED</a>
+
+          <a class="social-icon social-icon-xhs" href="https://xhslink.com/m/186QZTYAQSd" target="_blank" rel="noopener noreferrer" aria-label="Xiaohongshu profile">
+            RED
+          </a>
+
           <a class="social-icon" href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer" aria-label="Xiaoyuzhou podcast">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="12" cy="12" r="8"></circle>
