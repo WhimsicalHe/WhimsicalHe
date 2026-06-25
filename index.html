@@ -1,655 +1,799 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="light" />
-  <title>Racco Ho | Personal Website</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --page-padding-x: clamp(18px, 7vw, 72px);
-      --page-padding-y: clamp(18px, 4vw, 32px);
-      --glass: rgba(255, 255, 255, .12);
-      --glass-strong: rgba(255, 255, 255, .18);
-      --text-soft: rgba(255, 255, 255, .86);
-      --text-muted: rgba(255, 255, 255, .76);
-      --shadow: 0 14px 30px rgba(21, 31, 22, .14);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      min-height: 100%;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100%;
-      margin: 0;
-      overflow-x: hidden;
-      font-family: Inter, ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      color: #fff;
-      background:
-        radial-gradient(circle at 18% 14%, rgba(255, 255, 255, .58), transparent 28%),
-        radial-gradient(circle at 86% 78%, rgba(127, 177, 128, .2), transparent 30%),
-        linear-gradient(135deg, #d8c2ad 0%, #cbb49e 45%, #eadbc9 100%);
-    }
-
-    a,
-    button {
-      font: inherit;
-    }
-
-    .page {
-      min-height: 100svh;
-    }
-
-    .hero-card {
-      position: relative;
-      min-height: 100svh;
-      overflow: hidden;
-      isolation: isolate;
-      display: flex;
-      flex-direction: column;
-      padding:
-        var(--page-padding-y)
-        var(--page-padding-x)
-        calc(var(--page-padding-y) + 10px);
-      background: #8ab9a8;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -3;
-      background-image: url("./images/personal-hero.png");
-      background-size: cover;
-      background-position: 72% 40%;
-      transform: none;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      background:
-        linear-gradient(
-          90deg,
-          rgba(18, 35, 28, .84) 0%,
-          rgba(18, 35, 28, .72) 34%,
-          rgba(18, 35, 28, .28) 66%,
-          rgba(18, 35, 28, .12) 100%
-        ),
-        linear-gradient(
-          180deg,
-          rgba(18, 29, 22, .08) 0%,
-          transparent 46%,
-          rgba(24, 35, 28, .24) 100%
-        );
-      pointer-events: none;
-    }
-
-    .sun-wash {
-      position: absolute;
-      inset: -18% auto auto -12%;
-      z-index: -1;
-      width: 54rem;
-      height: 42rem;
-      background: radial-gradient(circle, rgba(255, 245, 189, .42), transparent 62%);
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    .topbar {
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #fff;
-      text-decoration: none;
-      flex: 0 0 auto;
-    }
-
-    .brand-mark {
-      display: grid;
-      width: 36px;
-      height: 36px;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, .36);
-      border-radius: 12px;
-      background: rgba(255, 255, 255, .12);
-      backdrop-filter: blur(14px);
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: -.02em;
-    }
-
-    .brand-name {
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: -.01em;
-      white-space: nowrap;
-    }
-
-    .nav-menu {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      padding: 10px 16px;
-      border: 1px solid rgba(255, 255, 255, .16);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .1);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav-menu a {
-      display: inline-flex;
-      align-items: center;
-      color: rgba(255, 255, 255, .9);
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: color .2s ease, transform .2s ease;
-      white-space: nowrap;
-    }
-
-    .nav-menu a:hover {
-      color: #fff;
-      transform: translateY(-1px);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 0 0 auto;
-    }
-
-    .solid-button {
-      display: inline-flex;
-      min-height: 40px;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .95);
-      color: #193526;
-      padding: 0 16px;
-      font-size: 12px;
-      font-weight: 900;
-      text-decoration: none;
-      box-shadow: var(--shadow);
-      white-space: nowrap;
-    }
-
-    .solid-button svg {
-      width: 14px;
-      height: 14px;
-      flex: 0 0 auto;
-    }
-
-    .hero-main {
-      position: relative;
-      z-index: 5;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      padding-top: clamp(18px, 3vw, 36px);
-      padding-bottom: clamp(18px, 2vw, 28px);
-      min-height: 0;
-    }
-
-    .hero-copy {
-      width: min(100%, 620px);
-      max-width: 620px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      padding-right: 18px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      max-width: 100%;
-      min-height: 34px;
-      width: fit-content;
-      border: 1px solid rgba(255, 255, 255, .24);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .1);
-      color: rgba(255, 255, 255, .9);
-      padding: 0 16px;
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 1;
-      backdrop-filter: blur(16px);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14);
-    }
-
-    .eyebrow svg {
-      width: 14px;
-      height: 14px;
-      flex: 0 0 auto;
-    }
-
-    .hero-title {
-      margin: 0;
-      color: #fff;
-      font-size: clamp(2.8rem,5.8vw,5.2rem);
-      font-weight: 820;
-      letter-spacing: -.05em;
-      line-height:1;
-      max-width: 8ch;
-      text-wrap: balance;
-      text-shadow: 0 10px 32px rgba(0, 0, 0, .42);
-    }
-
-    .hero-subtitle {
-      margin: 0;
-      width: min(100%, 520px);
-      color: rgba(255, 255, 255, .94);
-      font-size: clamp(.98rem, 1.12vw, 1.08rem);
-      font-weight: 500;
-      line-height: 1.8;
-    }
-
-    .email-pill {
-      display: flex;
-      width: min(100%, 320px);
-      min-height: 44px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-top: 4px;
-      border: 1px solid rgba(255, 255, 255, .18);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .14);
-      padding: 5px 5px 5px 17px;
-      backdrop-filter: blur(16px);
-    }
-
-    .email-pill span {
-      min-width: 0;
-      overflow: hidden;
-      color: rgba(255, 255, 255, .86);
-      font-size: 12px;
-      font-weight: 700;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .email-pill a {
-      display: inline-flex;
-      min-height: 34px;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-      border-radius: 999px;
-      background: #fff;
-      color: #1c3d2d;
-      padding: 0 16px;
-      font-size: 12px;
-      font-weight: 900;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .footer-links {
-      position: relative;
-      z-index: 8;
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-      padding-top: 22px;
-      color: rgba(255, 255, 255, .82);
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .socials {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      flex-wrap: wrap;
-    }
-
-    .social-label {
-      margin-right: 2px;
-      color: rgba(255, 255, 255, .82);
-      white-space: nowrap;
-    }
-
-    .social-icon {
-      display: inline-grid;
-      width: 38px;
-      height: 38px;
-      place-items: center;
-      border: 1px solid rgba(255, 255, 255, .2);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .12);
-      color: rgba(255, 255, 255, .9);
-      text-decoration: none;
-      backdrop-filter: blur(14px);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 12px 24px rgba(21, 31, 22, .12);
-      transition: transform .2s ease, background-color .2s ease, color .2s ease;
-      flex: 0 0 auto;
-    }
-
-    .social-icon:hover {
-      background: rgba(255, 255, 255, .22);
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    .social-icon svg {
-      width: 17px;
-      height: 17px;
-      display: block;
-    }
-
-    .social-icon-xhs {
-      font-size: 10px;
-      font-weight: 950;
-      letter-spacing: -.04em;
-    }
-
-    .logo-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      color: rgba(255, 255, 255, .82);
-      font-size: 13px;
-      font-weight: 950;
-      letter-spacing: -.02em;
-      white-space: nowrap;
-      flex-wrap: wrap;
-    }
-
-    .footer-note {
-      color: rgba(255, 255, 255, .82);
-      font-size: 11px;
-      font-weight: 850;
-      white-space: nowrap;
-      flex: 0 0 auto;
-    }
-
-    @keyframes softIn {
-      0% {
-        opacity: 0;
-        transform: translateY(18px);
-        filter: blur(8px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-      }
-    }
-
-    .animate-softIn {
-      animation: softIn .9s cubic-bezier(.2,.7,.2,1) both;
-    }
-
-    .fade-1 { animation-delay: .08s; }
-    .fade-2 { animation-delay: .2s; }
-    .fade-3 { animation-delay: .34s; }
-    .fade-4 { animation-delay: .48s; }
-
-    @media (max-width: 1080px) {
-      .hero-card {
-        min-height: 900px;
-      }
-
-      .topbar {
-        gap: 14px;
-      }
-
-      .nav-menu {
-        display: none;
-      }
-
-      .hero-copy {
-        width: min(100%, 560px);
-      }
-
-      .hero-title {
-        max-width: 7.5ch;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .hero-card {
-        min-height: 100svh;
-        padding:
-          20px
-          18px
-          18px;
-      }
-
-      .hero-card::before {
-        background-position: 62% center;
-      }
-
-      .hero-card::after {
-        background:
-          linear-gradient(
-            180deg,
-            rgba(26, 56, 42, .74) 0%,
-            rgba(26, 56, 42, .58) 42%,
-            rgba(26, 56, 42, .26) 78%,
-            rgba(26, 56, 42, .5) 100%
-          );
-      }
-
-      .topbar {
-        align-items: flex-start;
-      }
-
-      .brand-name {
-        font-size: 14px;
-      }
-
-      .solid-button {
-        padding: 0 13px;
-      }
-
-      .hero-main {
-        align-items: flex-start;
-        padding-top: 88px;
-        padding-bottom: 18px;
-      }
-
-      .hero-copy {
-        width: 100%;
-        max-width: 100%;
-        padding-right: 0;
-        gap: 16px;
-      }
-
-      .eyebrow {
-        min-height: 32px;
-        padding: 0 12px;
-        font-size: 11px;
-      }
-
-      .hero-title {
-        font-size: clamp(3.1rem, 15vw, 4.9rem);
-        max-width: 7ch;
-      }
-
-      .hero-subtitle {
-        max-width: 100%;
-        line-height: 1.7;
-      }
-
-      .email-pill {
-        width: 100%;
-        max-width: 100%;
-      }
-
-      .footer-links {
-        gap: 16px 20px;
-        padding-top: 14px;
-      }
-
-      .logo-row {
-        display: none;
-      }
-
-      .footer-note {
-        display: none;
-      }
-    }
-
-    @media (max-width: 430px) {
-      .hero-card {
-        padding:
-          18px
-          16px
-          16px;
-      }
-
-      .hero-main {
-        padding-top: 84px;
-      }
-
-      .email-pill {
-        align-items: stretch;
-        border-radius: 18px;
-        flex-direction: column;
-        padding: 12px;
-      }
-
-      .email-pill span {
-        white-space: normal;
-        line-height: 1.35;
-      }
-
-      .email-pill a {
-        width: 100%;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light" />
+<title>Racco Ho | Personal Website</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --page-padding-x: clamp(18px, 7vw, 72px);
+  --page-padding-y: clamp(18px, 4vw, 32px);
+  --glass: rgba(255, 255, 255, .12);
+  --glass-strong: rgba(255, 255, 255, .18);
+  --text-soft: rgba(255, 255, 255, .86);
+  --text-muted: rgba(255, 255, 255, .76);
+  --shadow: 0 14px 30px rgba(21, 31, 22, .14);
+}
+* { box-sizing: border-box; }
+html { min-height: 100%; scroll-behavior: smooth; }
+body {
+  min-height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Inter, ui-sans-serif, system-ui, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: #fff;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(255, 255, 255, .58), transparent 28%),
+    radial-gradient(circle at 86% 78%, rgba(127, 177, 128, .2), transparent 30%),
+    linear-gradient(135deg, #d8c2ad 0%, #cbb49e 45%, #eadbc9 100%);
+}
+a, button { font: inherit; }
+.page { min-height: 100svh; }
+
+/* ===== HERO ===== */
+.hero-card {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  padding: var(--page-padding-y) var(--page-padding-x) calc(var(--page-padding-y) + 10px);
+  background: #8ab9a8;
+}
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background-image: url("./images/personal-hero.png");
+  background-size: cover;
+  background-position: 72% 40%;
+}
+.hero-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(18, 35, 28, .84) 0%, rgba(18, 35, 28, .72) 34%, rgba(18, 35, 28, .28) 66%, rgba(18, 35, 28, .12) 100%),
+    linear-gradient(180deg, rgba(18, 29, 22, .08) 0%, transparent 46%, rgba(24, 35, 28, .24) 100%);
+  pointer-events: none;
+}
+.sun-wash {
+  position: absolute;
+  inset: -18% auto auto -12%;
+  z-index: -1;
+  width: 54rem;
+  height: 42rem;
+  background: radial-gradient(circle, rgba(255, 245, 189, .42), transparent 62%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.topbar {
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+.brand-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .36);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .12);
+  backdrop-filter: blur(14px);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+}
+.brand-name {
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 10px 16px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  backdrop-filter: blur(18px);
+}
+.nav-menu a {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255, 255, 255, .9);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease;
+  white-space: nowrap;
+}
+.nav-menu a:hover { color: #fff; transform: translateY(-1px); }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+.solid-button {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .95);
+  color: #193526;
+  padding: 0 16px;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.solid-button:hover { opacity: .88; transform: translateY(-1px); }
+.solid-button svg { width: 14px; height: 14px; flex: 0 0 auto; }
+
+.hero-main {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(18px, 3vw, 36px);
+  padding-bottom: clamp(18px, 2vw, 28px);
+  min-height: 0;
+}
+.hero-copy {
+  width: min(100%, 620px);
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 18px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  max-width: 100%;
+  min-height: 34px;
+  width: fit-content;
+  border: 1px solid rgba(255, 255, 255, .24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  color: rgba(255, 255, 255, .9);
+  padding: 0 16px;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+  backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14);
+}
+.eyebrow svg { width: 14px; height: 14px; flex: 0 0 auto; }
+.hero-title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.8rem, 5.8vw, 5.2rem);
+  font-weight: 820;
+  letter-spacing: -.05em;
+  line-height: 1;
+  max-width: 8ch;
+  text-wrap: balance;
+  text-shadow: 0 10px 32px rgba(0, 0, 0, .42);
+}
+.hero-subtitle {
+  margin: 0;
+  width: min(100%, 520px);
+  color: rgba(255, 255, 255, .94);
+  font-size: clamp(.98rem, 1.12vw, 1.08rem);
+  font-weight: 500;
+  line-height: 1.8;
+}
+.email-pill {
+  display: flex;
+  width: min(100%, 320px);
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 4px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .14);
+  padding: 5px 5px 5px 17px;
+  backdrop-filter: blur(16px);
+}
+.email-pill span {
+  min-width: 0;
+  overflow: hidden;
+  color: rgba(255, 255, 255, .86);
+  font-size: 12px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.email-pill a {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #fff;
+  color: #1c3d2d;
+  padding: 0 16px;
+  font-size: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: relative;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0 4px;
+  color: rgba(255, 255, 255, .6);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.scroll-hint svg {
+  width: 16px;
+  height: 16px;
+  animation: bounceDown 2s ease-in-out infinite;
+}
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* Footer links (hero) */
+.footer-links {
+  position: relative;
+  z-index: 8;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 22px;
+  color: rgba(255, 255, 255, .82);
+  font-size: 11px;
+  font-weight: 800;
+}
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.social-label {
+  margin-right: 2px;
+  color: rgba(255, 255, 255, .82);
+  white-space: nowrap;
+}
+.social-icon {
+  display: inline-grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .12);
+  color: rgba(255, 255, 255, .9);
+  text-decoration: none;
+  backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 12px 24px rgba(21, 31, 22, .12);
+  transition: transform .2s ease, background-color .2s ease, color .2s ease;
+  flex: 0 0 auto;
+}
+.social-icon:hover {
+  background: rgba(255, 255, 255, .22);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.social-icon svg { width: 17px; height: 17px; display: block; }
+.social-icon-xhs {
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: -.04em;
+}
+.logo-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: rgba(255, 255, 255, .82);
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+  flex-wrap: wrap;
+}
+.footer-note {
+  color: rgba(255, 255, 255, .82);
+  font-size: 11px;
+  font-weight: 850;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+/* Animations */
+@keyframes softIn {
+  0% { opacity: 0; transform: translateY(18px); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.animate-softIn { animation: softIn .9s cubic-bezier(.2, .7, .2, 1) both; }
+.fade-1 { animation-delay: .08s; }
+.fade-2 { animation-delay: .2s; }
+.fade-3 { animation-delay: .34s; }
+.fade-4 { animation-delay: .48s; }
+
+/* ===== STICKER SECTION ===== */
+.sticker-section {
+  position: relative;
+  padding: clamp(60px, 10vw, 120px) var(--page-padding-x) clamp(48px, 8vw, 96px);
+  background:
+    radial-gradient(circle at 30% 5%, rgba(138, 200, 181, .35), transparent 45%),
+    radial-gradient(circle at 75% 85%, rgba(120, 185, 165, .25), transparent 40%),
+    linear-gradient(175deg, #b8d9cc 0%, #a8cdbf 30%, #9bc4b3 60%, #8fbba6 100%);
+  color: #1e332a;
+}
+.sticker-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.sticker-header {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+.sticker-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #3a6b58;
+  background: rgba(255, 255, 255, .28);
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+.sticker-eyebrow svg { width: 13px; height: 13px; }
+.sticker-heading {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 820;
+  letter-spacing: -.04em;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  color: #1a332a;
+}
+.sticker-sub {
+  font-size: clamp(.92rem, 1.4vw, 1.05rem);
+  color: #2d5245;
+  line-height: 1.7;
+  max-width: 440px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+/* Pack cards */
+.packs {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5vw, 52px);
+}
+.pack-card {
+  background: rgba(255, 255, 255, .78);
+  backdrop-filter: blur(20px);
+  border-radius: 22px;
+  padding: clamp(28px, 4vw, 40px) clamp(24px, 3.5vw, 36px) clamp(32px, 4vw, 44px);
+  box-shadow: 0 1px 3px rgba(30, 51, 42, .05), 0 12px 40px rgba(30, 51, 42, .08);
+  border: 1px solid rgba(255, 255, 255, .65);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.pack-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 2px 6px rgba(30, 51, 42, .06), 0 16px 50px rgba(30, 51, 42, .08);
+}
+.pack-label {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #2e7a5c;
+  background: rgba(46, 122, 92, .1);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+.pack-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin: 0 0 8px;
+  color: #1a332a;
+}
+.pack-desc {
+  color: #3d6b58;
+  font-size: clamp(.88rem, 1.3vw, .96rem);
+  margin: 0 0 28px;
+  line-height: 1.65;
+  font-weight: 500;
+}
+
+/* Sticker grid */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.sticker-item {
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f4faf7;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+  border: 1px solid rgba(0, 0, 0, .04);
+}
+.sticker-item:hover {
+  transform: scale(1.06);
+  z-index: 1;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .1);
+}
+.sticker-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Download button */
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1a332a;
+  color: #fff;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.download-btn:hover { opacity: .85; transform: translateY(-1px); }
+.download-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+.download-hint {
+  display: block;
+  font-size: 11.5px;
+  color: #5a8a75;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* Sticker footer */
+.sticker-footer {
+  text-align: center;
+  margin-top: clamp(48px, 7vw, 72px);
+  padding-top: 32px;
+  border-top: 1px solid rgba(30, 51, 42, .08);
+}
+.back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #3d6b58;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease;
+}
+.back-top:hover { color: #1a332a; transform: translateY(-1px); }
+.back-top svg { width: 14px; height: 14px; }
+.sticker-copy {
+  margin-top: 14px;
+  font-size: 11px;
+  color: #6a9a85;
+  font-weight: 600;
+}
+
+/* Lightbox */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.lightbox-overlay.active { opacity: 1; pointer-events: all; }
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 16px;
+  transform: scale(.92);
+  transition: transform .25s ease;
+}
+.lightbox-overlay.active .lightbox-img { transform: scale(1); }
+.lightbox-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .15);
+  border: 1px solid rgba(255, 255, 255, .2);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background .2s ease;
+}
+.lightbox-close:hover { background: rgba(255, 255, 255, .25); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1080px) {
+  .hero-card { min-height: 900px; }
+  .topbar { gap: 14px; }
+  .nav-menu { display: none; }
+  .hero-copy { width: min(100%, 560px); }
+  .hero-title { max-width: 7.5ch; }
+}
+@media (max-width: 760px) {
+  .hero-card { min-height: 100svh; padding: 20px 18px 18px; }
+  .hero-card::before { background-position: 62% center; }
+  .hero-card::after {
+    background:
+      linear-gradient(180deg, rgba(26, 56, 42, .74) 0%, rgba(26, 56, 42, .58) 42%, rgba(26, 56, 42, .26) 78%, rgba(26, 56, 42, .5) 100%);
+  }
+  .topbar { align-items: flex-start; }
+  .brand-name { font-size: 14px; }
+  .solid-button { padding: 0 13px; }
+  .hero-main { align-items: flex-start; padding-top: 88px; padding-bottom: 18px; }
+  .hero-copy { width: 100%; max-width: 100%; padding-right: 0; gap: 16px; }
+  .eyebrow { min-height: 32px; padding: 0 12px; font-size: 11px; }
+  .hero-title { font-size: clamp(3.1rem, 15vw, 4.9rem); max-width: 7ch; }
+  .hero-subtitle { max-width: 100%; line-height: 1.7; }
+  .email-pill { width: 100%; max-width: 100%; }
+  .footer-links { gap: 16px 20px; padding-top: 14px; }
+  .logo-row { display: none; }
+  .footer-note { display: none; }
+  .sticker-grid { gap: 8px; }
+}
+@media (max-width: 430px) {
+  .hero-card { padding: 18px 16px 16px; }
+  .hero-main { padding-top: 84px; }
+  .email-pill {
+    align-items: stretch;
+    border-radius: 18px;
+    flex-direction: column;
+    padding: 12px;
+  }
+  .email-pill span { white-space: normal; line-height: 1.35; }
+  .email-pill a { width: 100%; }
+  .pack-card { padding: 24px 18px 28px; }
+  .sticker-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
 </head>
-
 <body>
-  <main class="page">
-    <section class="hero-card" aria-labelledby="hero-title">
-      <div class="sun-wash"></div>
+<main class="page">
 
-      <header class="topbar">
-        <a class="brand" href="#" aria-label="Racco Ho home">
-          <span class="brand-mark">RH</span>
-          <span class="brand-name">RACCO HO</span>
+  <!-- ===== HERO ===== -->
+  <section class="hero-card" aria-labelledby="hero-title">
+    <div class="sun-wash"></div>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Racco Ho home">
+        <span class="brand-mark">RH</span>
+        <span class="brand-name">RACCO HO</span>
+      </a>
+      <nav class="nav-menu" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#stickers">Projects</a>
+        <a href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer">Notes</a>
+        <a href="#links">About</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="solid-button" href="#stickers">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 4h16v16H4z"></path>
+            <path d="m22 6-10 7L2 6"></path>
+          </svg>
+          View Work
         </a>
+      </div>
+    </header>
 
-        <nav class="nav-menu" aria-label="Primary navigation">
-          <a href="#home">Home</a>
-          <a href="https://github.com/WhimsicalHe/WhimsicalHe/blob/main/images/sticker-cover.jpg" target="_blank" rel="noopener noreferrer">Projects</a>
-          <a href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer">Notes</a>
-          <a href="#links">About</a>
-        </nav>
-
-        <div class="nav-actions">
-          <a class="solid-button" href="#links">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4h16v16H4z"></path>
-              <path d="m22 6-10 7L2 6"></path>
-            </svg>
-            View Work
-          </a>
+    <section class="hero-main" id="home">
+      <div class="hero-copy">
+        <div class="eyebrow animate-softIn fade-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3l2.4 5.2L20 10.6l-5.1 2.1L12 18l-2.9-5.3L4 10.6l5.6-2.4L12 3Z"></path>
+          </svg>
+          Personal site for visual stories, stickers &amp; small experiments
         </div>
-      </header>
-
-      <section class="hero-main" id="home">
-        <div class="hero-copy">
-          <div class="eyebrow animate-softIn fade-1">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 3l2.4 5.2L20 10.6l-5.1 2.1L12 18l-2.9-5.3L4 10.6l5.6-2.4L12 3Z"></path>
-            </svg>
-            Personal site for visual stories, stickers & small experiments
-          </div>
-
-          <h1 class="hero-title animate-softIn fade-2" id="hero-title">
-            Turn Feelings<br />Into Visible
-          </h1>
-
-          <p class="hero-subtitle animate-softIn fade-3">
-            Hi, I am Racco Ho. I collect quiet moods, visual references, AI-assisted workflows, and tiny social reactions, then turn them into stickers, images, writing, and personal web experiments.
-          </p>
-
-          <div class="email-pill animate-softIn fade-4">
-            <span>Currently building a soft, awkward, honest sticker pack</span>
-            <a href="#links">Explore →</a>
-          </div>
+        <h1 class="hero-title animate-softIn fade-2" id="hero-title">Turn Feelings<br />Into Visible</h1>
+        <p class="hero-subtitle animate-softIn fade-3">Hi, I am Racco Ho. I collect quiet moods, visual references, AI-assisted workflows, and tiny social reactions, then turn them into stickers, images, writing, and personal web experiments.</p>
+        <div class="email-pill animate-softIn fade-4">
+          <span>Currently building a soft, awkward, honest sticker pack</span>
+          <a href="#stickers">Explore →</a>
         </div>
-      </section>
-
-      <footer class="footer-links" id="links">
-        <div class="socials">
-          <span class="social-label">Find me:</span>
-
-          <a class="social-icon" href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer" aria-label="X profile">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M17.6 3h3.1l-6.8 7.8L22 21h-6.4l-5-6.5L4.9 21H1.8l7.3-8.4L1.3 3h6.6l4.5 5.9L17.6 3Zm-1.1 16.2h1.7L7 4.7H5.2l11.3 14.5Z"></path>
-            </svg>
-          </a>
-
-          <a class="social-icon" href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-              <circle cx="12" cy="12" r="4"></circle>
-              <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
-            </svg>
-          </a>
-
-          <a class="social-icon social-icon-xhs" href="https://xhslink.com/m/186QZTYAQSd" target="_blank" rel="noopener noreferrer" aria-label="Xiaohongshu profile">
-            RED
-          </a>
-
-          <a class="social-icon" href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer" aria-label="Xiaoyuzhou podcast">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="8"></circle>
-              <path d="M8.8 12a3.2 3.2 0 1 0 6.4 0 3.2 3.2 0 0 0-6.4 0Z"></path>
-              <path d="M12 15.3v4.2"></path>
-              <path d="M9.7 18.2h4.6"></path>
-            </svg>
-          </a>
-        </div>
-
-        <div class="logo-row" aria-hidden="true">
-          <span>AI</span>
-          <span>VISUAL</span>
-          <span>STICKER</span>
-          <span>NOTES</span>
-        </div>
-
-        <span class="footer-note">Personal website / 2026</span>
-      </footer>
+      </div>
     </section>
-  </main>
+
+    <!-- Scroll hint -->
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 5v14M19 12l-7 7-7-7"/>
+      </svg>
+    </div>
+
+    <footer class="footer-links" id="links">
+      <div class="socials">
+        <span class="social-label">Find me:</span>
+        <a class="social-icon" href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer" aria-label="X profile">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 3h3.1l-6.8 7.8L22 21h-6.4l-5-6.5L4.9 21H1.8l7.3-8.4L1.3 3h6.6l4.5 5.9L17.6 3Zm-1.1 16.2h1.7L7 4.7H5.2l11.3 14.5Z"></path></svg>
+        </a>
+        <a class="social-icon" href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </a>
+        <a class="social-icon social-icon-xhs" href="https://xhslink.com/m/186QZTYAQSd" target="_blank" rel="noopener noreferrer" aria-label="Xiaohongshu profile">RED</a>
+        <a class="social-icon" href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer" aria-label="Xiaoyuzhou podcast">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="8"></circle>
+            <path d="M8.8 12a3.2 3.2 0 1 0 6.4 0 3.2 3.2 0 0 0-6.4 0Z"></path>
+            <path d="M12 15.3v4.2"></path>
+            <path d="M9.7 18.2h4.6"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="logo-row" aria-hidden="true">
+        <span>AI</span><span>VISUAL</span><span>STICKER</span><span>NOTES</span>
+      </div>
+      <span class="footer-note">Personal website / 2026</span>
+    </footer>
+  </section>
+
+  <!-- ===== STICKER SHOWCASE ===== -->
+  <section class="sticker-section" id="stickers">
+    <div class="sticker-inner">
+
+      <div class="sticker-header">
+        <span class="sticker-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          WeChat Sticker Packs
+        </span>
+        <h2 class="sticker-heading">理查德的日常生活</h2>
+        <p class="sticker-sub">把那些说不出口的情绪，变成一个表情发出去。两组已上架微信表情商店，欢迎下载使用。</p>
+      </div>
+
+      <div class="packs">
+
+        <!-- Pack 1 (先做的，排第二) -->
+        <div class="pack-card">
+          <span class="pack-label">Vol. 1</span>
+          <h3 class="pack-title">理查德日常生活</h3>
+          <p class="pack-desc">第一辑。生日快乐时的欢呼、被惹到时掏刀的威胁、遇到突发状况的惊慌、送花时的温柔微笑——日常里的小情绪，都在这里。</p>
+          <div class="sticker-grid">
+            <div class="sticker-item" onclick="openLightbox('stickers/pack1/birthday.png')"><img src="stickers/pack1/birthday.png" alt="生日快乐"></div>
+            <div class="sticker-item" onclick="openLightbox('stickers/pack1/knife.jpg')"><img src="stickers/pack1/knife.jpg" alt="拿刀"></div>
+            <div class="sticker-item" onclick="openLightbox('stickers/pack1/scared.png')"><img src="stickers/pack1/scared.png" alt="惊恐"></div>
+            <div class="sticker-item" onclick="openLightbox('stickers/pack1/flower.png')"><img src="stickers/pack1/flower.png" alt="送花"></div>
+          </div>
+          <a class="download-btn" href="https://w.url.cn/s/AXxZxMd" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            微信表情商店下载
+          </a>
+          <span class="download-hint">在微信中打开链接可直接添加到表情库</span>
+        </div>
+
+        <!-- Pack 2 (后做的，排在前面) -->
+        <div class="pack-card">
+          <span class="pack-label">Vol. 2</span>
+          <h3 class="pack-title">理查德日常生活 ²</h3>
+          <p class="pack-desc">第二辑。情绪更浓了——开心到冒星星、戴上耳机沉浸世界、难过到掉眼泪。日常生活的续集，依然真实。</p>
+          <div class="sticker-grid">
+            <div class="sticker-item" onclick="openLightbox('stickers/pack2/shy-smile.png')"><img src="stickers/pack2/shy-smile.png" alt="偷笑"></div>
+            <div class="sticker-item" onclick="openLightbox('stickers/pack2/happy.png')"><img src="stickers/pack2/happy.png" alt="开心"></div>
+            <div class="sticker-item" onclick="openLightbox('stickers/pack2/headphones.png')"><img src="stickers/pack2/headphones.png" alt="听歌"></div>
+            <div class="sticker-item" onclick="openLightbox('stickers/pack2/sad.png')"><img src="stickers/pack2/sad.png" alt="难过"></div>
+          </div>
+          <a class="download-btn" href="https://w.url.cn/s/AIdgMEW" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            微信表情商店下载
+          </a>
+          <span class="download-hint">在微信中打开链接可直接添加到表情库</span>
+        </div>
+
+      </div>
+
+      <div class="sticker-footer">
+        <a class="back-top" href="#home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+          Back to top
+        </a>
+        <p class="sticker-copy">Racco Ho / Personal website / 2026</p>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
 </body>
 </html>
