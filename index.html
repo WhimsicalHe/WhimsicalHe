@@ -578,6 +578,113 @@ a, button { font: inherit; }
 }
 .lightbox-close:hover { background: rgba(255, 255, 255, .25); }
 
+/* ===== WeChat Modal ===== */
+.wx-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
+}
+.wx-modal-overlay.active { opacity: 1; pointer-events: all; }
+.wx-modal {
+  position: relative;
+  width: min(90vw, 360px);
+  background: #fff;
+  border-radius: 22px;
+  padding: 36px 28px 28px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .3);
+  transform: translateY(20px) scale(.95);
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1);
+}
+.wx-modal-overlay.active .wx-modal { transform: translateY(0) scale(1); }
+.wx-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .05);
+  border: none;
+  color: #999;
+  font-size: 18px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background .2s ease;
+}
+.wx-modal-close:hover { background: rgba(0, 0, 0, .1); color: #666; }
+.wx-modal-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 18px;
+  background: #07c160;
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.wx-modal-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #1a1a1a;
+}
+.wx-modal-desc {
+  margin: 0 0 20px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #888;
+}
+.wx-modal-qr {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+.wx-modal-qr img { display: block; width: 100%; height: 100%; }
+.wx-modal-link-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 4px 4px 4px 12px;
+}
+.wx-modal-link-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 11px;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.wx-modal-copy {
+  flex: 0 0 auto;
+  border: none;
+  border-radius: 8px;
+  background: #1a332a;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: opacity .2s ease;
+}
+.wx-modal-copy:hover { opacity: .85; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1080px) {
   .hero-card { min-height: 900px; }
@@ -732,13 +839,13 @@ a, button { font: inherit; }
             <div class="sticker-item" onclick="openLightbox('stickers/pack2/headphones.png')"><img src="stickers/pack2/headphones.png" alt="听歌"></div>
             <div class="sticker-item" onclick="openLightbox('stickers/pack2/sad.png')"><img src="stickers/pack2/sad.png" alt="难过"></div>
           </div>
-          <a class="download-btn" href="https://w.url.cn/s/AIdgMEW" target="_blank" rel="noopener noreferrer">
+          <a class="download-btn" href="javascript:void(0)" onclick="openWxDownload('https://w.url.cn/s/AIdgMEW')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
             微信表情商店下载
           </a>
-          <span class="download-hint">在微信中打开链接可直接添加到表情库</span>
+          <span class="download-hint">点击后扫码或复制链接，在微信中打开</span>
         </div>
 
         <!-- Pack 1 (后做的，排第二) -->
@@ -752,13 +859,13 @@ a, button { font: inherit; }
             <div class="sticker-item" onclick="openLightbox('stickers/pack1/scared.png')"><img src="stickers/pack1/scared.png" alt="惊恐"></div>
             <div class="sticker-item" onclick="openLightbox('stickers/pack1/flower.png')"><img src="stickers/pack1/flower.png" alt="送花"></div>
           </div>
-          <a class="download-btn" href="https://w.url.cn/s/AXxZxMd" target="_blank" rel="noopener noreferrer">
+          <a class="download-btn" href="javascript:void(0)" onclick="openWxDownload('https://w.url.cn/s/AXxZxMd')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
             微信表情商店下载
           </a>
-          <span class="download-hint">在微信中打开链接可直接添加到表情库</span>
+          <span class="download-hint">点击后扫码或复制链接，在微信中打开</span>
         </div>
 
       </div>
@@ -782,6 +889,23 @@ a, button { font: inherit; }
   <img class="lightbox-img" id="lightboxImg" src="" alt="">
 </div>
 
+<!-- WeChat Download Modal -->
+<div class="wx-modal-overlay" id="wxModal" onclick="closeWxModal(event)">
+  <div class="wx-modal" onclick="event.stopPropagation()">
+    <button class="wx-modal-close" onclick="closeWxModal()" aria-label="Close">&times;</button>
+    <div class="wx-modal-icon">
+      <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor"><path d="M8.5 4C4.36 4 1 6.69 1 10c0 1.89 1.02 3.58 2.62 4.69L3 17l3-1.5c.8.2 1.63.3 2.5.3.3 0 .6-.01.9-.04C9.15 14.36 9 13.94 9 13.5 9 10.46 12.13 8 16 8c.27 0 .53.01.8.04C16.14 5.7 12.66 4 8.5 4zM6 7.5a1 1 0 110 2 1 1 0 010-2zm5 0a1 1 0 110 2 1 1 0 010-2zM16 9c-3.31 0-6 2.24-6 5 0 1.64.9 3.09 2.32 4.02L12 21l2.5-1.25c.48.12.99.19 1.5.19 3.31 0 6-2.24 6-5s-2.69-5-6-5zm-2 3.5a.75.75 0 110 1.5.75.75 0 010-1.5zm4 0a.75.75 0 110 1.5.75.75 0 010-1.5z"/></svg>
+    </div>
+    <h3 class="wx-modal-title">在微信中打开</h3>
+    <p class="wx-modal-desc">微信表情商店只能在微信里打开，<br>请用微信扫描下方二维码，<br>或复制链接发送到微信。</p>
+    <div class="wx-modal-qr" id="wxQrCode"></div>
+    <div class="wx-modal-link-box">
+      <span class="wx-modal-link-text" id="wxLinkText"></span>
+      <button class="wx-modal-copy" id="wxCopyBtn" onclick="copyWxLink()">复制链接</button>
+    </div>
+  </div>
+</div>
+
 <script>
 function openLightbox(src) {
   document.getElementById('lightboxImg').src = src;
@@ -791,8 +915,52 @@ function closeLightbox() {
   document.getElementById('lightbox').classList.remove('active');
 }
 document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'Escape') { closeLightbox(); closeWxModal(); }
 });
+
+/* ===== WeChat Download Logic ===== */
+function isWeChat() {
+  return /MicroMessenger/i.test(navigator.userAgent);
+}
+
+function openWxDownload(url) {
+  if (isWeChat()) {
+    window.location.href = url;
+    return;
+  }
+  // Non-WeChat: show modal with QR code
+  document.getElementById('wxLinkText').textContent = url;
+  // Generate QR code via public API
+  var qrApi = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=8&data=' + encodeURIComponent(url);
+  document.getElementById('wxQrCode').innerHTML = '<img src="' + qrApi + '" alt="QR Code" width="200" height="200">';
+  document.getElementById('wxModal').classList.add('active');
+}
+
+function closeWxModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('wxModal').classList.remove('active');
+}
+
+function copyWxLink() {
+  var link = document.getElementById('wxLinkText').textContent;
+  var btn = document.getElementById('wxCopyBtn');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(link).then(function() {
+      btn.textContent = '已复制!';
+      setTimeout(function() { btn.textContent = '复制链接'; }, 2000);
+    });
+  } else {
+    // Fallback
+    var ta = document.createElement('textarea');
+    ta.value = link;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '已复制!';
+    setTimeout(function() { btn.textContent = '复制链接'; }, 2000);
+  }
+}
 </script>
 
 </body>
