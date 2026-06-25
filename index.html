@@ -204,7 +204,7 @@ a, button { font: inherit; }
   font-weight: 820;
   letter-spacing: -.05em;
   line-height: 1;
-  max-width: 12ch;
+  max-width: 8ch;
   text-wrap: balance;
   text-shadow: 0 10px 32px rgba(0, 0, 0, .42);
 }
@@ -390,7 +390,21 @@ rgba(255,247,212,.18),
 transparent 40%
 ),
 
-linear-gradient(135deg, #e6f2ec 0%, #d6ebe3 50%, #cfe3da 100%);
+linear-gradient(
+135deg,
+
+#bddfd1 0%,
+
+#a7d1c1 30%,
+
+#93bdaa 65%,
+
+#84ad9a 100%
+);
+
+background-size:200%;
+
+animation:bgFlow 20s ease infinite;
 
 color:#1e332a;
 
@@ -419,8 +433,9 @@ background-position:0% 50%;
 
 }
 .sticker-inner {
-  width: min(100%, 620px);
-  max-width: 620px;
+  width:100%;
+max-width:none;
+margin:0;
 }
 .sticker-header {
   text-align: center;
@@ -819,7 +834,7 @@ overflow:hidden;
     <header class="topbar">
       <a class="brand" href="#" aria-label="Racco Ho home">
         <span class="brand-mark">RH</span>
-        <span class="brand-name">RACCO HO</span>
+        <span class="brand-name">O HO</span>
       </a>
       <nav class="nav-menu" aria-label="Primary navigation">
         <a href="#home">Home</a>
@@ -1044,4 +1059,4 @@ function copyWxLink() {
 </script>
 
 </body>
-</html>
+</html> 
