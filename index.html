@@ -40,7 +40,7 @@ a, button { font: inherit; }
 .hero-card {
   position: relative;
   min-height: 100svh;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
   display: flex;
   flex-direction: column;
@@ -59,12 +59,11 @@ a, button { font: inherit; }
 .hero-card::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -150px;
-  height: 150px;
-  background: linear-gradient(to bottom, #8ab9a8 0%, transparent 100%);
-  z-index: 20;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(18, 35, 28, .84) 0%, rgba(18, 35, 28, .72) 34%, rgba(18, 35, 28, .28) 66%, rgba(18, 35, 28, .12) 100%),
+    linear-gradient(180deg, rgba(18, 29, 22, .08) 0%, transparent 46%, rgba(24, 35, 28, .24) 100%);
   pointer-events: none;
 }
 .sun-wash {
@@ -366,11 +365,18 @@ a, button { font: inherit; }
 /* ===== STICKER SECTION ===== */
 .sticker-section {
 position:relative;
-margin-top: -100px;
-z-index: 5;
+margin-top:-80px;
+
+padding-top:
+clamp(150px,14vw,220px);
+
+z-index:2;
 padding:
+
 clamp(60px,10vw,120px)
+
 var(--page-padding-x)
+
 clamp(48px,8vw,96px);
 
 overflow:hidden;
@@ -822,6 +828,203 @@ overflow:hidden;
   .pack-card { padding: 24px 18px 28px; }
   .sticker-grid { grid-template-columns: repeat(2, 1fr); }
 }
+  /* ===== ORGANIC TRANSITION ===== */
+
+.organic-transition{
+
+position:absolute;
+
+left:0;
+
+bottom:-140px;
+
+width:100%;
+
+height:260px;
+
+pointer-events:none;
+
+z-index:30;
+
+}
+
+.organic-transition::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+radial-gradient(
+ellipse at center,
+rgba(216,235,224,.55),
+transparent 72%
+);
+
+filter:blur(40px);
+
+}
+
+/* photo */
+
+.floating-polaroid{
+
+position:absolute;
+
+right:12%;
+
+top:30px;
+
+width:210px;
+
+padding:10px;
+
+background:
+rgba(255,255,255,.72);
+
+border-radius:12px;
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+0 24px 70px rgba(0,0,0,.18);
+
+transform:
+rotate(-8deg);
+
+animation:
+floatPhoto 8s ease infinite;
+
+}
+
+.floating-polaroid img{
+
+width:100%;
+
+display:block;
+
+border-radius:8px;
+
+}
+
+@keyframes floatPhoto{
+
+50%{
+transform:
+translateY(14px)
+rotate(-5deg);
+}
+
+}
+
+/* leaf */
+
+.leaf{
+
+position:absolute;
+
+background:
+
+rgba(255,255,255,.22);
+
+border-radius:999px;
+
+filter:blur(2px);
+
+}
+
+.leaf-1{
+
+left:28%;
+
+top:90px;
+
+width:90px;
+
+height:28px;
+
+transform:
+rotate(18deg);
+
+}
+
+.leaf-2{
+
+left:34%;
+
+top:150px;
+
+width:70px;
+
+height:22px;
+
+transform:
+rotate(-12deg);
+
+}
+
+/* note */
+
+.note{
+
+position:absolute;
+
+left:40%;
+
+top:110px;
+
+color:
+
+rgba(255,255,255,.68);
+
+font-style:italic;
+
+font-size:14px;
+
+}
+
+/* particles */
+
+.particle{
+
+position:absolute;
+
+background:
+
+rgba(255,255,255,.4);
+
+border-radius:999px;
+
+filter:blur(4px);
+
+}
+
+.p1{
+width:10px;
+height:10px;
+
+left:54%;
+top:110px;
+}
+
+.p2{
+width:14px;
+height:14px;
+
+left:58%;
+top:150px;
+}
+
+.p3{
+width:6px;
+height:6px;
+
+left:50%;
+top:180px;
+}
 </style>
 </head>
 <body>
@@ -905,6 +1108,24 @@ overflow:hidden;
       </div>
       <span class="footer-note">Personal website / 2026</span>
     </footer>
+    <div class="organic-transition">
+
+<div class="floating-polaroid">
+<img src="./images/transition-polaroid.png" alt="">
+</div>
+
+<div class="leaf leaf-1"></div>
+<div class="leaf leaf-2"></div>
+
+<div class="note">
+small experiments ↓
+</div>
+
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+
+</div>
   </section>
 
   <!-- ===== STICKER SHOWCASE ===== -->
@@ -1030,4 +1251,32 @@ function openWxDownload(url) {
   document.getElementById('wxModal').classList.add('active');
 }
 
-function closeWx
+function closeWxModal(e) {
+  if (e && e.target !== e.currentTarget) return;
+  document.getElementById('wxModal').classList.remove('active');
+}
+
+function copyWxLink() {
+  var link = document.getElementById('wxLinkText').textContent;
+  var btn = document.getElementById('wxCopyBtn');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(link).then(function() {
+      btn.textContent = '已复制!';
+      setTimeout(function() { btn.textContent = '复制链接'; }, 2000);
+    });
+  } else {
+    // Fallback
+    var ta = document.createElement('textarea');
+    ta.value = link;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '已复制!';
+    setTimeout(function() { btn.textContent = '复制链接'; }, 2000);
+  }
+}
+</script>
+
+</body>
+</html>
