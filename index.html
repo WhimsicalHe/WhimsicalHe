@@ -1050,7 +1050,19 @@ top:180px;
   background:
     radial-gradient(circle at 18% 25%, rgba(217, 194, 173, .28), transparent 48%),
     radial-gradient(circle at 82% 72%, rgba(196, 180, 158, .22), transparent 42%),
-    linear-gradient(178deg, #f6f1eb 0%, #efe8df 38%, #e8dfd4 100%);
+    linear-gradient(
+      178deg,
+      /* 上方衔接 sticker 区的绿调 */
+      #b5cdbf 0%,
+      #c2d4c6 12%,
+      #d0dacd 28%,
+      /* 中间柔和过渡 */
+      #dde2d7 45%,
+      #e6ddd3 62%,
+      /* 下方进入暖米色 */
+      #efe8df 80%,
+      #e8dfd4 100%
+    );
   color: #3d3028;
 }
 .about-inner {
