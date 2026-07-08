@@ -562,14 +562,23 @@ a, button { font: inherit; }
   transition: fill .35s ease;
 }
 
-/* Subtle breathing animation on torn edge */
-@keyframes tornBreathe {
-  0%, 100% { transform: scaleY(1); }
-  50%      { transform: scaleY(1.003); }
-}
-.torn-divider svg {
-  transform-origin: center top;
-  animation: tornBreathe 8s ease-in-out infinite;
+/* Subtle paper-edge shadow for depth */
+.torn-divider .torn-shadow {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(45,38,31,.06) 20%,
+    rgba(45,38,31,.10) 50%,
+    rgba(45,38,31,.06) 80%,
+    transparent 100%
+  );
+  filter: blur(6px);
+  opacity: .8;
+  transition: opacity .35s ease;
 }
 
 /* ===== STICKER SECTION ===== */
@@ -1199,41 +1208,72 @@ a, button { font: inherit; }
 
     <!-- TORN PAPER DIVIDER → Stickers section -->
     <div class="torn-divider" style="position:relative;z-index:4;margin-top:-2px;" aria-hidden="true">
-      <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <filter id="tornEdge" x="-2%" y="-5%" width="104%" height="112%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+          <filter id="tornEdge" x="-2%" y="-8%" width="104%" height="118%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.18" numOctaves="4" seed="42" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
+            <!-- Subtle roughen for fiber-like edge -->
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" result="fiber"/>
+            <feComposite in="SourceGraphic" in2="fiber" operator="arithmetic" k1="0" k2="1" k3="-0.15" k4="0"/>
           </filter>
         </defs>
-        <path d="M0,0 L0,70 
-                 C20,66 40,74 60,67
-                 C80,59 100,71 120,63
-                 C140,54 160,68 180,61
-                 C200,53 220,66 240,58
-                 C260,50 280,64 300,57
-                 C320,49 340,62 360,55
-                 C380,47 400,61 420,53
-                 C440,45 460,59 480,51
-                 C500,43 520,57 540,49
-                 C560,41 580,55 600,47
-                 C620,39 640,53 660,45
-                 C680,37 700,51 720,43
-                 C740,35 760,49 780,41
-                 C800,33 820,47 840,39
-                 C860,31 880,45 900,37
-                 C920,29 940,43 960,35
-                 C980,27 1000,41 1020,33
-                 C1040,25 1060,39 1080,31
-                 C1100,23 1120,37 1140,29
-                 C1160,21 1180,35 1200,27
-                 C1220,19 1240,33 1260,25
-                 C1280,17 1300,31 1320,23
-                 C1340,15 1360,29 1380,21
-                 C1400,13 1420,27 1430,18
-                 L1440,0 Z" 
-              fill="var(--torn-fill)" filter="url(#tornEdge)" opacity="1"/>
+        <path d="M0,0
+                 L0,72
+                 C8,68 12,76 22,69
+                 C28,64 34,78 45,70
+                 C52,65 58,74 68,67
+                 C75,61 83,73 94,64
+                 C102,57 108,71 118,63
+                 C126,55 134,68 145,59
+                 C153,51 162,66 172,56
+                 C180,48 190,62 200,54
+                 C208,46 218,59 228,51
+                 C236,43 246,57 257,49
+                 C265,41 275,54 286,46
+                 C295,38 305,52 315,44
+                 C324,36 334,50 344,42
+                 C352,34 362,47 373,39
+                 C382,31 392,44 402,37
+                 C410,29 420,42 430,35
+                 C438,27 448,40 459,32
+                 C468,24 478,38 489,30
+                 C498,22 508,36 518,29
+                 C527,21 537,34 547,27
+                 C556,19 566,32 577,25
+                 C586,17 596,30 606,24
+                 C616,16 626,28 636,22
+                 C646,14 656,26 666,20
+                 C676,12 686,24 696,18
+                 C706,10 716,22 726,16
+                 C736,8 746,20 756,14
+                 C766,6 776,18 786,13
+                 C796,5 806,16 817,11
+                 C827,3 837,14 848,9
+                 C858,2 868,12 879,8
+                 C889,4 899,10 909,7
+                 C919,3 929,9 939,6
+                 C949,3 959,8 969,5
+                 C979,3 989,7 999,4
+                 C1009,3 1019,6 1029,4
+                 C1039,3 1049,5 1059,4
+                 C1069,3 1079,5 1089,4
+                 C1099,3 1109,4 1119,3
+                 C1129,3 1139,4 1149,3
+                 C1159,3 1169,3 1179,3
+                 C1189,3 1199,3 1209,3
+                 C1219,3 1229,3 1239,3
+                 C1249,3 1259,3 1269,3
+                 C1279,3 1289,3 1299,3
+                 C1309,3 1319,3 1329,3
+                 C1339,3 1349,3 1359,3
+                 C1369,3 1379,3 1389,3
+                 C1399,3 1409,3 1419,3
+                 C1429,3 1439,3 1440,3
+                 L1440,0 Z"
+              fill="var(--torn-fill)" filter="url(#tornEdge)"/>
       </svg>
+      <div class="torn-shadow"></div>
     </div>
   </section>
 
@@ -1307,30 +1347,61 @@ a, button { font: inherit; }
 
   <!-- TORN PAPER DIVIDER → About section -->
   <div class="torn-divider" style="position:relative;z-index:3;" aria-hidden="true">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 1440 75" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <filter id="tornEdge2" x="-2%" y="-5%" width="104%" height="118%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="7" result="noise2"/>
-          <feDisplacementMap in="SourceGraphic" in2="noise2" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+        <filter id="tornEdge2" x="-3%" y="-8%" width="106%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.22" numOctaves="4" seed="137" result="noise2"/>
+          <feDisplacementMap in="SourceGraphic" in2="noise2" scale="22" xChannelSelector="R" yChannelSelector="G"/>
+          <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" result="fiber2"/>
+          <feComposite in="SourceGraphic" in2="fiber2" operator="arithmetic" k1="0" k2="1" k3="-0.18" k4="0"/>
         </filter>
       </defs>
-      <path d="M0,0 L1440,0 L1440,60 
-               C1400,52 1370,62 1330,54 
-               C1290,45 1260,57 1220,48 
-               C1180,39 1150,51 1110,43 
-               C1070,34 1040,47 1000,38 
-               C960,29 930,42 890,34 
-               C850,25 820,38 780,30 
-               C740,22 710,34 670,27 
-               C630,19 600,31 560,24 
-               C520,16 490,29 450,21 
-               C410,13 380,26 340,18 
-               C300,10 270,23 230,16 
-               C190,8 160,21 120,14 
-               C80,6 50,19 20,12
-               C8,9 2,8 0,10 Z" 
-            fill="var(--torn-fill)" filter="url(#tornEdge2)" opacity="1"/>
+      <path d="M1440,0
+               L1440,70
+               C1425,65 1418,74 1404,67
+               C1393,61 1386,73 1372,64
+               C1361,56 1352,68 1340,59
+               C1327,50 1318,63 1304,54
+               C1293,45 1284,58 1270,49
+               C1259,40 1248,53 1234,44
+               C1223,35 1212,48 1198,39
+               C1187,30 1176,43 1162,35
+               C1151,26 1140,38 1126,30
+               C1115,21 1104,34 1090,26
+               C1079,17 1068,29 1054,22
+               C1043,13 1032,25 1018,18
+               C1007,9 996,21 982,14
+               C971,6 960,17 946,11
+               C935,4 924,14 910,9
+               C899,3 888,12 874,8
+               C863,3 852,10 838,7
+               C827,3 816,9 802,6
+               C791,3 780,8 766,6
+               C755,3 744,7 730,5
+               C719,3 708,7 694,5
+               C683,3 672,6 658,5
+               C647,3 636,6 622,4
+               C611,3 600,5 586,4
+               C575,3 564,5 550,4
+               C539,3 528,4 514,4
+               C503,3 492,4 478,3
+               C467,3 456,4 442,3
+               C431,3 420,3 406,3
+               C395,3 384,3 370,3
+               C359,3 348,3 334,3
+               C323,3 312,3 298,3
+               C287,3 276,3 262,3
+               C251,3 240,3 226,3
+               C215,3 204,3 190,3
+               C179,3 168,3 154,3
+               C143,3 132,3 118,3
+               C107,3 96,3 82,3
+               C71,3 60,3 46,3
+               C35,3 24,3 10,3
+               L0,0 Z"
+            fill="var(--torn-fill)" filter="url(#tornEdge2)"/>
     </svg>
+    <div class="torn-shadow"></div>
   </div>
 
   <!-- ===== ABOUT ===== -->
