@@ -281,59 +281,22 @@ a, button { font: inherit; }
   text-decoration: none;
   white-space: nowrap;
 }
-.email-pill {
-  display: flex;
-  width: min(100%, 320px);
-  min-height: 44px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 4px;
-  border: 1px solid rgba(255, 255, 255, .18);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, .14);
-  padding: 5px 5px 5px 17px;
-  backdrop-filter: blur(16px);
-}
-.email-pill span {
-  min-width: 0;
-  overflow: hidden;
-  color: rgba(255, 255, 255, .86);
-  font-size: 12px;
-  font-weight: 700;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.email-pill a {
-  display: inline-flex;
-  min-height: 34px;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-  border-radius: 999px;
-  background: #fff;
-  color: #1c3d2d;
-  padding: 0 16px;
-  font-size: 12px;
-  font-weight: 900;
-  text-decoration: none;
-  white-space: nowrap;
-}
 
-/* Scroll indicator */
+/* Scroll hint — subtle, blends into canvas */
 .scroll-hint {
   position: relative;
   z-index: 8;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 8px 0 4px;
+  gap: 6px;
+  padding: 10px 0 2px;
   color: var(--taupe);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .04em;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .12em;
   text-transform: uppercase;
+  opacity: .45;
 }
 .scroll-hint svg {
   width: 16px;
@@ -826,86 +789,35 @@ a, button { font: inherit; }
   .pack-card { padding: 24px 18px 28px; }
   .sticker-grid { grid-template-columns: repeat(2, 1fr); }
 }
-  /* ===== ORGANIC TRANSITION ===== */
+  /* ===== ORGANIC TRANSITION (Light Mode — Subtle) ===== */
 
 .organic-transition{
-
-position:absolute;
-
-left:0;
-
-bottom:-140px;
-
-width:100%;
-
-height:260px;
-
-pointer-events:none;
-
-z-index:30;
-
+  position:absolute;
+  left:0;
+  bottom:-120px;
+  width:100%;
+  height:180px;
+  pointer-events:none;
+  z-index:30;
+  opacity:.35;
 }
 
 .organic-transition::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
 radial-gradient(
 ellipse at center,
-rgba(197,217,202,.30),
+rgba(197,217,202,.20),
 transparent 72%
 );
-
-filter:blur(40px);
-
+  filter:blur(40px);
 }
 
-/* photo */
-
+/* photo — hide polaroid in light mode */
 .floating-polaroid{
-
-position:absolute;
-
-right:12%;
-
-top:30px;
-
-width:210px;
-
-padding:10px;
-
-background:
-var(--card-bg);
-
-border-radius:12px;
-
-backdrop-filter:blur(20px);
-
-box-shadow:
-0 24px 70px rgba(45,39,32,.12);
-
-transform:
-rotate(-8deg);
-
-animation:
-floatPhoto 8s ease infinite;
-
-}
-
-.floating-polaroid img{
-
-width:100%;
-
-display:block;
-
-border-radius:8px;
-
+  display:none;
 }
 
 @keyframes floatPhoto{
@@ -918,111 +830,51 @@ rotate(-5deg);
 
 }
 
-/* leaf */
-
+/* leaf — subtle in light mode */
 .leaf{
-
-position:absolute;
-
-background:
-
-rgba(197,217,202,.25);
-
-border-radius:999px;
-
-filter:blur(2px);
-
+  position:absolute;
+  background: rgba(197,217,202,.18);
+  border-radius:999px;
+  filter:blur(2px);
 }
 
 .leaf-1{
-
-left:28%;
-
-top:90px;
-
-width:90px;
-
-height:28px;
-
-transform:
-rotate(18deg);
-
+  left:28%;
+  top:60px;
+  width:70px;
+  height:22px;
+  transform: rotate(18deg);
 }
 
 .leaf-2{
-
-left:34%;
-
-top:150px;
-
-width:70px;
-
-height:22px;
-
-transform:
-rotate(-12deg);
-
+  left:34%;
+  top:100px;
+  width:50px;
+  height:16px;
+  transform: rotate(-12deg);
 }
 
 /* note */
-
 .note{
-
-position:absolute;
-
-left:40%;
-
-top:110px;
-
-color:
-
-rgba(90,77,62,.60);
-
-font-style:italic;
-
-font-size:14px;
-
+  position:absolute;
+  left:40%;
+  top:72px;
+  color: rgba(168,152,136,.35);
+  font-style:italic;
+  font-size:12px;
 }
 
 /* particles */
-
 .particle{
-
-position:absolute;
-
-background:
-
-rgba(168,152,136,.30);
-
-border-radius:999px;
-
-filter:blur(4px);
-
+  position:absolute;
+  background: rgba(168,152,136,.18);
+  border-radius:999px;
+  filter:blur(4px);
 }
 
-.p1{
-width:10px;
-height:10px;
-
-left:54%;
-top:110px;
-}
-
-.p2{
-width:14px;
-height:14px;
-
-left:58%;
-top:150px;
-}
-
-.p3{
-width:6px;
-height:6px;
-
-left:50%;
-top:180px;
-}
+.p1{width:8px;height:8px;left:54%;top:72px;}
+.p2{width:10px;height:10px;left:58%;top:100px;}
+.p3{width:5px;height:5px;left:50%;top:120px;}
 /* ===== ABOUT SECTION (Unified Canvas) ===== */
 .about-section {
   position: relative;
