@@ -75,59 +75,78 @@
   --font-ui: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
-/* ─── DARK MODE ─── */
+/* ─── DARK MODE (Industry-standard implementation) ─── */
+/* Based on: Figma(#1E1E1E) YouTube(#181818) Slack(#1D1D1D) Spotify layered surfaces */
+/* Key principles: NOT pure black (#000), NOT pure white text (#fff), surface layers create depth */
+
 [data-theme="dark"] {
-  --canvas-light: #1b1917;
-  --canvas-mid:   #201d1a;
-  --canvas-deep:  #171513;
+  /* Background layers — warm deep gray, never pure black */
+  --canvas-light: #18181b;
+  --canvas-mid:   #1c1b19;
+  --canvas-deep:  #161514;
+
+  /* Surface elevation system (lighter = higher) — like Spotify's approach */
+  --surface-0:    #18181b;   /* base page background */
+  --surface-1:    #222220;   /* cards, panels */
+  --surface-2:    #2c2a28;   /* elevated elements, dropdowns */
+  --surface-3:    #383533;   /* highest: modals, popovers */
+
+  /* Sage green — desaturated for dark bg (Material Design guideline) */
   --sage:         #8fa98d;
-  --sage-soft:    #6a8068;
-  --sage-muted:   rgba(143,169,141,.14);
-  --taupe:        #9e8e7c;
-  --taupe-dark:   #b5a694;
-  --warm-dark:    #c4b8aa;
-  --ink:          #ede6db;
-  --ink-soft:     #c4bbb0;
+  --sage-soft:    #5f7a5d;
+  --sage-muted:   rgba(143,169,141,.12);
 
-  /* Cards */
-  --card-bg:      rgba(38,34,30,.65);
-  --card-border:  rgba(158,142,124,.15);
-  --torn-fill:    #1b1917;
+  /* Taupe brown — warmer in dark mode */
+  --taupe:        #a09282;
+  --taupe-dark:   #b8aba0;
+  --warm-dark:    #c4bbb0;
 
-  /* Textures */
-  --grain-opacity: .04;
+  /* Ink/text — soft off-white, NEVER pure #ffffff (causes halation) */
+  --ink:          #e2ded7;     /* primary text: ~90% brightness */
+  --ink-soft:     #a09388;     /* secondary text: muted warm gray */
+
+  /* Cards — noticeably brighter than bg to create depth */
+  --card-bg:      rgba(42,40,37,.80);
+  --card-border:  rgba(255,255,255,.06);
+  --card-glow:    0 1px 0 rgba(255,255,255,.04) inset;
+
+  /* Torn paper fill matches section below it */
+  --torn-fill:    #18181b;
+
+  /* Textures — more visible in dark */
+  --grain-opacity: .045;
   --speckle-color: var(--taupe-dark);
   --botanical-stroke: var(--sage-soft);
 
-  /* Shadows — glow instead of drop in dark */
-  --shadow-sm: 0 2px 12px rgba(0,0,0,.20);
-  --shadow-md: 0 8px 30px rgba(0,0,0,.28);
-  --shadow-lg: 0 16px 48px rgba(0,0,0,.32);
+  /* Shadows — in dark mode, use subtle border-light + minimal drop */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.25), 0 1px 0 rgba(255,255,255,.03);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.30), 0 1px 0 rgba(255,255,255,.04);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.05);
 }
 
-/* Auto-detect system preference */
+/* Auto-detect system preference — same values as data-theme="dark" */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --canvas-light: #1b1917;
-    --canvas-mid:   #201d1a;
-    --canvas-deep:  #171513;
+    --canvas-light: #18181b;
+    --canvas-mid:   #1c1b19;
+    --canvas-deep:  #161514;
     --sage:         #8fa98d;
-    --sage-soft:    #6a8068;
-    --sage-muted:   rgba(143,169,141,.14);
-    --taupe:        #9e8e7c;
-    --taupe-dark:   #b5a694;
-    --warm-dark:    #c4b8aa;
-    --ink:          #ede6db;
-    --ink-soft:     #c4bbb0;
-    --card-bg:      rgba(38,34,30,.65);
-    --card-border:  rgba(158,142,124,.15);
-    --torn-fill:    #1b1917;
-    --grain-opacity: .04;
+    --sage-soft:    #5f7a5d;
+    --sage-muted:   rgba(143,169,141,.12);
+    --taupe:        #a09282;
+    --taupe-dark:   #b8aba0;
+    --warm-dark:    #c4bbb0;
+    --ink:          #e2ded7;
+    --ink-soft:     #a09388;
+    --card-bg:      rgba(42,40,37,.80);
+    --card-border:  rgba(255,255,255,.06);
+    --torn-fill:    #18181b;
+    --grain-opacity: .045;
     --speckle-color: var(--taupe-dark);
     --botanical-stroke: var(--sage-soft);
-    --shadow-sm: 0 2px 12px rgba(0,0,0,.20);
-    --shadow-md: 0 8px 30px rgba(0,0,0,.28);
-    --shadow-lg: 0 16px 48px rgba(0,0,0,.32);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.25), 0 1px 0 rgba(255,255,255,.03);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.30), 0 1px 0 rgba(255,255,255,.04);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.05);
   }
 }
 
@@ -145,8 +164,8 @@ body {
   text-rendering: optimizeLegibility;
   color: var(--ink);
   background:
-    radial-gradient(ellipse at 18% 8%, rgba(var(--sage),.10), transparent 48%),
-    radial-gradient(ellipse at 85% 88%, rgba(212,200,182,.12), transparent 48%),
+    radial-gradient(ellipse at 18% 8%, var(--sage-muted), transparent 48%),
+    radial-gradient(ellipse at 85% 88%, rgba(212,200,182,.10), transparent 48%),
     linear-gradient(175deg, var(--canvas-light) 0%, var(--canvas-mid) 50%, var(--canvas-deep) 100%);
   background-attachment: fixed;
   transition: color .35s ease, background .35s ease;
@@ -742,7 +761,7 @@ a, button { font: inherit; }
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-ui);
   font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--taupe-dark); background: rgba(166,150,130,.12);
+  color: var(--taupe-dark); background: var(--sage-muted);  /* adaptive */
   padding: 5px 14px; border-radius: 999px; margin-bottom: 18px;
   transition: all .25s ease;
 }
@@ -801,7 +820,7 @@ a, button { font: inherit; }
   display: inline-flex; align-items: center;
   font-family: var(--font-ui);
   font-size: 10.5px; font-weight: 700;
-  color: var(--warm-dark); background: rgba(166,150,130,.10);
+  color: var(--warm-dark); background: rgba(166,150,130,.10);  /* adaptive via dark override */
   padding: 5px 12px; border-radius: 8px; white-space: nowrap;
   letter-spacing: .03em;
   transition: all .25s ease;
@@ -822,7 +841,7 @@ a, button { font: inherit; }
   text-transform: uppercase;
   transition: all .25s ease;
 }
-.about-social a:hover { background: rgba(166,150,130,.08); color: var(--ink); }
+.about-social a:hover { background: rgba(166,150,130,.08); color: var(--ink); }  /* dark mode handled by [data-theme] rule */
 .about-social a svg { width: 13px; height: 13px; flex-shrink: 0; }
 
 .about-footer { text-align: center; margin-top: clamp(40px,6vw,56px); padding-top: 28px; border-top: 1px solid var(--card-border); transition: border-color .25s ease; }
@@ -915,6 +934,97 @@ a, button { font: inherit; }
   letter-spacing: .03em; text-transform: uppercase;
 }
 .wx-modal-copy:hover { opacity .85; }
+
+/* ===== DARK MODE ENHANCEMENTS ===== */
+/* These override specific elements that need extra care in dark mode */
+
+[data-theme="dark"] .pack-card,
+[data-theme="dark"] .email-pill,
+[data-theme="dark"] .nav-menu,
+[data-theme="dark"] .social-icon,
+[data-theme="dark"] .theme-toggle {
+  /* Subtle inner light edge — replaces invisible drop shadows in dark */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 16px rgba(0,0,0,.25);
+}
+
+[data-theme="dark"] .pack-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    0 8px 28px rgba(0,0,0,.32);
+}
+
+[data-theme="dark"] .solid-button {
+  /* Buttons get subtle glow instead of flat shadow */
+  box-shadow: 0 2px 8px rgba(0,0,0,.3), 0 0 0 1px rgba(255,255,255,.04) inset;
+}
+
+[data-theme="dark"] .about-photo {
+  /* Photo frame gets inner highlight */
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    0 8px 28px rgba(0,0,0,.30);
+}
+
+[data-theme="dark"] .lightbox-overlay {
+  background: rgba(0,0,0,.72);  /* darker overlay for contrast */
+}
+[data-theme="dark"] .lightbox-close {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.12);
+}
+
+[data-theme="dark"] .wx-modal-overlay {
+  background: rgba(0,0,0,.65);
+}
+[data-theme="dark"] .wx-modal {
+  background: var(--surface-1);
+  border-color: var(--card-border);
+}
+[data-theme="dark"] .wx-modal-close {
+  background: rgba(255,255,255,.06);
+  color: #888;
+}
+[data-theme="dark"] .wx-modal-link-box {
+  background: var(--surface-2);
+}
+
+[data-theme="dark"] .sticker-item {
+  background: var(--surface-2);  /* slightly lighter than bg */
+  border-color: var(--card-border);
+}
+
+[data-theme="dark"] .about-tag,
+[data-theme="dark"] .about-social a {
+  background: rgba(160,146,130,.10);
+  border-color: rgba(255,255,255,.06);
+}
+
+[data-theme="dark"] .brand-mark {
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.05);
+}
+
+/* Dark mode sun-wash becomes a subtle warm glow instead of bright wash */
+[data-theme="dark"] .sun-wash {
+  background: radial-gradient(circle, rgba(180,160,130,.10), transparent 64%);
+}
+
+/* Botanical art — slightly more visible in dark mode for atmosphere */
+[data-theme="dark"] .hero-botanical { opacity: .14; }
+[data-theme="dark"] .about-botanical { opacity: .12; }
+
+/* Torn divider — use surface-1 color in dark so it doesn't look like a hole */
+[data-theme="dark"] .torn-divider path {
+  fill: var(--canvas-light);
+}
+
+/* Scroll hint — more visible in dark mode */
+[data-theme="dark"] .scroll-hint { opacity: .50; }
+
+/* Footer note and logo row — softer in dark */
+[data-theme="dark"] .footer-note { color: var(--taupe); }
+[data-theme="dark"] .logo-row { color: var(--taupe); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1080px) {
