@@ -1,1774 +1,476 @@
 <!DOCTYPE html>
 <html lang="zh-CN" data-theme="light">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="color-scheme" content="light dark" />
-<title>Racco Ho | 情绪可视化个人网站</title>
-<meta name="description" content="Racco Ho 的个人网站。将情绪转化为可视化内容——微信表情包「理查德的日常生活」系列、视觉创作与网页小实验。Turn feelings into visible." />
-<meta name="keywords" content="Racco Ho, 个人网站, 情绪可视化, 微信表情包, 理查德的日常生活, 视觉创作, visual stories, stickers, AI art, web experiments" />
-<meta name="author" content="Racco Ho" />
-<meta name="robots" content="index, follow" />
-<link rel="canonical" href="https://whimsicalhe.pages.dev" />
-
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://whimsicalhe.pages.dev" />
-<meta property="og:title" content="Racco Ho | 情绪可视化个人网站" />
-<meta property="og:description" content="将情绪转化为可视化内容——微信表情包、视觉创作与网页小实验。Turn feelings into visible." />
-<meta property="og:site_name" content="Racco Ho" />
-<meta property="og:locale" content="zh_CN" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Racco Ho | 情绪可视化个人网站" />
-<meta name="twitter:description" content="将情绪转化为可视化内容——微信表情包、视觉创作与网页小实验。Turn feelings into visible." />
-
-<!-- Retro Serif Fonts: Playfair Display for headings, Lora for body, Inter for UI labels -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-<style>
-/* ============================================================
-   VINTAGE JOURNAL DESIGN SYSTEM
-   Retro serif typography · Torn paper dividers · Dark mode
-   Calm, soft, poetic — like flipping through an old journal
-   ============================================================ */
-
-/* ─── LIGHT MODE (Default) ─── */
-:root {
-  --page-padding-x: clamp(18px, 7vw, 72px);
-  --page-padding-y: clamp(18px, 4vw, 32px);
-
-  /* Vintage cream journal palette — warm, aged paper */
-  --canvas-light: #f5f0e8;
-  --canvas-mid:   #efe9de;
-  --canvas-deep:  #e8e0d3;
-  --sage:         #7a9078;
-  --sage-soft:    #b5c4b2;
-  --sage-muted:   rgba(181,196,178,.28);
-  --taupe:        #a69682;
-  --taupe-dark:   #887a68;
-  --warm-dark:    #5c5042;
-  --ink:          #2d261f;
-  --ink-soft:     #554b3e;
-
-  /* Cards */
-  --card-bg:      rgba(255,252,247,.60);
-  --card-border:  rgba(166,150,130,.18);
-  --torn-fill:    #f5f0e8;
-
-  /* Textures */
-  --grain-opacity: .032;
-  --speckle-color: var(--taupe);
-  --botanical-stroke: var(--sage);
-
-  /* Shadows */
-  --shadow-sm: 0 2px 12px rgba(45,38,31,.04);
-  --shadow-md: 0 8px 30px rgba(45,38,31,.06);
-  --shadow-lg: 0 16px 48px rgba(45,38,31,.08);
-
-  /* Font stack */
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  --font-body: 'Lora', Georgia, serif;
-  --font-ui: 'Inter', ui-sans-serif, system-ui, sans-serif;
-}
-
-/* ─── DARK MODE (Industry-standard implementation) ─── */
-/* Based on: Figma(#1E1E1E) YouTube(#181818) Slack(#1D1D1D) Spotify layered surfaces */
-/* Key principles: NOT pure black (#000), NOT pure white text (#fff), surface layers create depth */
-
-[data-theme="dark"] {
-  /* Background layers — warm deep gray, never pure black */
-  --canvas-light: #18181b;
-  --canvas-mid:   #1c1b19;
-  --canvas-deep:  #161514;
-
-  /* Surface elevation system (lighter = higher) — like Spotify's approach */
-  --surface-0:    #18181b;   /* base page background */
-  --surface-1:    #222220;   /* cards, panels */
-  --surface-2:    #2c2a28;   /* elevated elements, dropdowns */
-  --surface-3:    #383533;   /* highest: modals, popovers */
-
-  /* Sage green — desaturated for dark bg (Material Design guideline) */
-  --sage:         #8fa98d;
-  --sage-soft:    #5f7a5d;
-  --sage-muted:   rgba(143,169,141,.12);
-
-  /* Taupe brown — warmer in dark mode */
-  --taupe:        #a09282;
-  --taupe-dark:   #b8aba0;
-  --warm-dark:    #c4bbb0;
-
-  /* Ink/text — soft off-white, NEVER pure #ffffff (causes halation) */
-  --ink:          #e2ded7;     /* primary text: ~90% brightness */
-  --ink-soft:     #a09388;     /* secondary text: muted warm gray */
-
-  /* Cards — noticeably brighter than bg to create depth */
-  --card-bg:      rgba(42,40,37,.80);
-  --card-border:  rgba(255,255,255,.06);
-  --card-glow:    0 1px 0 rgba(255,255,255,.04) inset;
-
-  /* Torn paper fill matches section below it */
-  --torn-fill:    #18181b;
-
-  /* Textures — more visible in dark */
-  --grain-opacity: .045;
-  --speckle-color: var(--taupe-dark);
-  --botanical-stroke: var(--sage-soft);
-
-  /* Shadows — in dark mode, use subtle border-light + minimal drop */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.25), 0 1px 0 rgba(255,255,255,.03);
-  --shadow-md: 0 4px 16px rgba(0,0,0,.30), 0 1px 0 rgba(255,255,255,.04);
-  --shadow-lg: 0 8px 32px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.05);
-}
-
-/* Auto-detect system preference — same values as data-theme="dark" */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --canvas-light: #18181b;
-    --canvas-mid:   #1c1b19;
-    --canvas-deep:  #161514;
-    --sage:         #8fa98d;
-    --sage-soft:    #5f7a5d;
-    --sage-muted:   rgba(143,169,141,.12);
-    --taupe:        #a09282;
-    --taupe-dark:   #b8aba0;
-    --warm-dark:    #c4bbb0;
-    --ink:          #e2ded7;
-    --ink-soft:     #a09388;
-    --card-bg:      rgba(42,40,37,.80);
-    --card-border:  rgba(255,255,255,.06);
-    --torn-fill:    #18181b;
-    --grain-opacity: .045;
-    --speckle-color: var(--taupe-dark);
-    --botanical-stroke: var(--sage-soft);
-    --shadow-sm: 0 1px 3px rgba(0,0,0,.25), 0 1px 0 rgba(255,255,255,.03);
-    --shadow-md: 0 4px 16px rgba(0,0,0,.30), 0 1px 0 rgba(255,255,255,.04);
-    --shadow-lg: 0 8px 32px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.05);
-  }
-}
-
-* { box-sizing: border-box; }
-html { min-height: 100%; scroll-behavior: smooth; }
-
-body {
-  min-height: 100%;
-  margin: 0;
-  overflow-x: hidden;
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-  color: var(--ink);
-  background:
-    radial-gradient(ellipse at 18% 8%, var(--sage-muted), transparent 48%),
-    radial-gradient(ellipse at 85% 88%, rgba(212,200,182,.10), transparent 48%),
-    linear-gradient(175deg, var(--canvas-light) 0%, var(--canvas-mid) 50%, var(--canvas-deep) 100%);
-  background-attachment: fixed;
-  transition: color .35s ease, background .35s ease;
-}
-
-/* ─── Grain Texture Overlay (vintage film grain) ─── */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  pointer-events: none;
-  opacity: var(--grain-opacity);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
-}
-
-/* ─── Floating Atmospheric Speckles ─── */
-@keyframes floatSpeckle1 {
-  0%, 100% { transform: translate(0,0) scale(1); opacity: .26; }
-  33%      { transform: translate(8px,-12px) scale(1.3); opacity: .38; }
-  66%      { transform: translate(-4px,-6px) scale(.85); opacity: .20; }
-}
-@keyframes floatSpeckle2 {
-  0%, 100% { transform: translate(0,0); opacity: .20; }
-  50%      { transform: translate(-10px,-16px); opacity: .34; }
-}
-@keyframes floatSpeckle3 {
-  0%, 100% { transform: translate(0,0); opacity: .16; }
-  40%      { transform: translate(12px,-8px); opacity: .28; }
-  80%      { transform: translate(-6px,-14px); opacity: .12; }
-}
-.speckle {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  background: var(--speckle-color);
-  transition: background .35s ease;
-}
-.speckle-1 { width: 3px;  height: 3px;  top: 18%; left: 8%;  animation: floatSpeckle1 14s ease-in-out infinite; }
-.speckle-2 { width: 4px;  height: 4px;  top: 38%; left: 82%; animation: floatSpeckle2 18s ease-in-out infinite; }
-.speckle-3 { width: 2px;  height: 2px;  top: 62%; left: 14%; animation: floatSpeckle3 20s ease-in-out infinite; }
-.speckle-4 { width: 3px;  height: 3px;  top: 76%; left: 90%; animation: floatSpeckle1 16s ease-in-out infinite reverse; }
-.speckle-5 { width: 2px;  height: 2px;  top: 12%; left: 48%; animation: floatSpeckle2 22s ease-in-out infinite; }
-.speckle-6 { width: 3px;  height: 3px;  top: 52%; left: 94%; animation: floatSpeckle3 19s ease-in-out infinite reverse; }
-
-a, button { font: inherit; }
-.page { min-height: 100svh; position: relative; z-index: 1; }
-
-/* ─── Theme Toggle Button ─── */
-.theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px; height: 36px;
-  border: 1.5px solid var(--card-border);
-  border-radius: 999px;
-  background: var(--card-bg);
-  backdrop-filter: blur(14px);
-  color: var(--warm-dark);
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: background .25s ease, color .25s ease, transform .25s ease;
-}
-.theme-toggle:hover { background: var(--sage-muted); color: var(--ink); transform: rotate(18deg); }
-.theme-toggle svg { width: 16px; height: 16px; transition: transform .35s cubic-bezier(.4,0,.2,1); }
-[data-theme="dark"] .theme-toggle svg { transform: rotate(360deg); }
-
-@keyframes sunPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212,180,120,.20); }
-  50%      { box-shadow: 0 0 0 6px rgba(212,180,120,0); }
-}
-
-/* ===== HERO ===== */
-.hero-card {
-  position: relative;
-  min-height: 100svh;
-  overflow: visible;
-  isolation: isolate;
-  display: flex;
-  flex-direction: column;
-  padding: var(--page-padding-y) var(--page-padding-x) 0;
-  background: transparent;
-}
-   /* ===== HERO IMAGE V2 ===== */
-
-.hero-main {
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex:1;
-  padding:0 6vw;
-}
-
-
-.hero-visual {
-  position:absolute;
-  left:-2%;
-  top:3%;
-  width:min(52vw,680px);
-  height:92%;
-  z-index:1;
-  pointer-events:none;
-}
-
-
-.hero-visual img {
-  width:100%;
-  height:100%;
-  object-fit:contain;
-
-  opacity:.92;
-
-  filter:
-    drop-shadow(0 30px 50px rgba(80,60,40,.08));
-
-  -webkit-mask-image:
-    radial-gradient(
-      ellipse at center,
-      black 45%,
-      rgba(0,0,0,.75) 65%,
-      transparent 88%
-    );
-
-  mask-image:
-    radial-gradient(
-      ellipse at center,
-      black 45%,
-      rgba(0,0,0,.75) 65%,
-      transparent 88%
-    );
-}
-
-
-.hero-visual img {
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  
-  -webkit-mask-image:
-    linear-gradient(
-      to right,
-      transparent 0%,
-      black 18%,
-      black 82%,
-      transparent 100%
-    ),
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 12%,
-      black 82%,
-      transparent 100%
-    );
-
-  -webkit-mask-composite: destination-in;
-
-  mask-image:
-    linear-gradient(
-      to right,
-      transparent 0%,
-      black 18%,
-      black 82%,
-      transparent 100%
-    ),
-    linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 12%,
-      black 82%,
-      transparent 100%
-    );
-
-  mask-composite: intersect;
-
-  opacity:.95;
-}
-
-.hero-copy {
-  position:relative;
-  z-index:3;
-  width:min(500px,42%);
-  margin-left:auto;
-  transform:translateY(-20px);
-}
-
-
-.hero-title span {
-  color:#9d8fd0;
-}
-
-/* Hero botanical atmosphere */
-.hero-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    radial-gradient(ellipse at 72% 22%, rgba(181,196,178,.12), transparent 58%),
-    radial-gradient(ellipse at 22% 78%, rgba(212,200,182,.10), transparent 52%);
-  pointer-events: none;
-  transition: background .35s ease;
-}
-
-.hero-card::after { display: none; }
-
-/* Warm light wash */
-.sun-wash {
-  position: absolute;
-  inset: -18% auto auto -12%;
-  z-index: -1;
-  width: 54rem;
-  height: 42rem;
-  background: radial-gradient(circle, rgba(212,200,182,.18), transparent 64%);
-  pointer-events: none;
-}
-
-/* ─── Botanical Line Art — Right Side ─── */
-.hero-botanical {
-  position: absolute;
-  right: -4%;
-  top: 8%;
-  width: 38%;
-  height: 65%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: .11;
-  animation: botanicalSway 12s ease-in-out infinite;
-  transform-origin: bottom center;
-}
-@keyframes botanicalSway {
-  0%, 100% { transform: rotate(0deg); }
-  33%      { transform: rotate(0.8deg); }
-  66%      { transform: rotate(-0.5deg); }
-}
-.hero-botanical svg { width: 100%; height: 100%; }
-.hero-botanical path,
-.hero-botanical ellipse {
-  fill: none;
-  stroke: var(--botanical-stroke);
-  stroke-width: .7;
-  transition: stroke .35s ease;
-}
-
-/* ─── Top Bar / Navigation ─── */
-.topbar {
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--ink);
-  text-decoration: none;
-  flex: 0 0 auto;
-  transition: color .25s ease;
-}
-.brand-mark {
-  display: grid;
-  width: 40px; height: 40px;
-  place-items: center;
-  border: 1.5px solid var(--taupe);
-  border-radius: 12px;
-  background: var(--sage-muted);
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: -.02em;
-  color: var(--warm-dark);
-  transition: all .25s ease;
-}
-.brand-name {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: .06em;
-  white-space: nowrap;
-  color: var(--ink);
-  text-transform: uppercase;
-}
-.nav-menu {
-  display: flex; align-items: center; gap: 22px;
-  padding: 10px 18px;
-  border: 1px solid var(--card-border);
-  border-radius: 999px;
-  background: var(--card-bg);
-  backdrop-filter: blur(18px);
-  transition: all .25s ease;
-}
-.nav-menu a {
-  display: inline-flex; align-items: center;
-  font-family: var(--font-ui);
-  color: var(--warm-dark); font-size: 11.5px; font-weight: 700;
-  letter-spacing: .04em;
-  text-decoration: none; white-space: nowrap;
-  text-transform: uppercase;
-  transition: color .2s ease, transform .2s ease;
-}
-.nav-menu a:hover { color: var(--ink); transform: translateY(-1px); }
-.nav-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
-.solid-button {
-  display: inline-flex; min-height: 40px; align-items: center; justify-content: center; gap: 8px;
-  border-radius: 999px; background: var(--ink); color: var(--canvas-light);
-  padding: 0 18px;
-  font-family: var(--font-ui);
-  font-size: 11.5px; font-weight: 800;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  text-decoration: none; white-space: nowrap; cursor: pointer; border: none;
-  box-shadow: var(--shadow-sm);
-  transition: all .25s ease;
-}
-.solid-button:hover { opacity .88; transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.solid-button svg { width: 14px; height: 14px; flex: 0 0 auto; }
-
-/* ─── Hero Content ─── */
-.hero-main {
-  position: relative; z-index: 5; flex: 1;
-  display: flex; align-items: center;
-  padding-top: clamp(18px,3vw,36px); padding-bottom: clamp(18px,2vw,28px);
-  min-height: 0;
-}
-.hero-copy {
-  width: min(100%,640px);
-  max-width: 640px;
-  display: flex; flex-direction: column; gap: 24px;
-  padding-right: 18px;
-}
-.eyebrow {
-  display: inline-flex; align-items: center; gap: 9px;
-  max-width: 100%; min-height: 34px; width: fit-content;
-  border: 1.5px solid var(--card-border); border-radius: 999px;
-  background: var(--sage-muted); color: var(--warm-dark);
-  padding: 0 16px;
-  font-family: var(--font-ui);
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .08em;
-  line-height: 1;
-  text-transform: uppercase;
-  backdrop-filter: blur(16px);
-  transition: all .25s ease;
-}
-.eyebrow svg { width: 14px; height: 14px; flex: 0 0 auto; stroke: var(--sage); transition: stroke .25s ease; }
-.hero-title {
-  margin:0;
-  color:var(--ink);
-  font-family:var(--font-display);
-  font-size:clamp(3rem,5.5vw,5rem);
-  font-weight:700;
-  letter-spacing:-.04em;
-  line-height:1.05;
-  max-width:12ch;
-  text-wrap:balance;
-  transition:color .25s ease;
-}
-.hero-subtitle {
-  margin: 0; width: min(100%,520px);
-  color: var(--ink-soft);
-  font-family: var(--font-body);
-  font-size: clamp(1rem,1.15vw,1.08rem);
-  font-weight: 400;
-  line-height: 1.8;
-  transition: color .25s ease;
-}
-.email-pill {
-  display: flex; width: min(100%,340px); min-height: 46px;
-  align-items: center; justify-content: space-between; gap: 8px;
-  margin-top: 4px;
-  border: 1.5px solid var(--card-border); border-radius: 999px;
-  background: var(--card-bg); padding: 5px 5px 5px 18px;
-  backdrop-filter: blur(16px);
-  transition: all .25s ease;
-}
-.email-pill span {
-  min-width: 0; overflow: hidden;
-  font-family: var(--font-body);
-  color: var(--warm-dark); font-size: 14px; font-style: italic;
-  font-weight: 500;
-  text-overflow: ellipsis; white-space: nowrap;
-  transition: color .25s ease;
-}
-.email-pill a {
-  display: inline-flex; min-height: 34px; align-items: center; justify-content: center;
-  flex: 0 0 auto; border-radius: 999px; background: var(--ink); color: var(--canvas-light);
-  padding: 0 18px;
-  font-family: var(--font-ui);
-  font-size: 11.5px; font-weight: 800;
-  letter-spacing: .04em;
-  text-decoration: none; text-transform: uppercase; white-space: nowrap;
-  transition: all .2s ease;
-}
-.email-pill a:hover { transform: translateY(-1px); }
-
-/* Scroll hint */
-.scroll-hint {
-  position: relative; z-index: 8;
-  display: flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 12px 0 2px;
-  color: var(--taupe);
-  font-family: var(--font-ui);
-  font-size: 10px; font-weight: 600;
-  letter-spacing: .16em; text-transform: uppercase; opacity: .38;
-  transition: color .25s ease;
-}
-.scroll-hint svg { width: 16px; height: 16px; animation: bounceDown 2.5s ease-in-out infinite; }
-@keyframes bounceDown {
-  0%,100% { transform: translateY(0); }
-  50%     { transform: translateY(6px); }
-}
-
-/* Footer links (hero) */
-.footer-links {
-  position: relative; z-index: 8; margin-top: auto;
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 24px; flex-wrap: wrap; padding-top: 24px;
-  color: var(--warm-dark);
-  font-family: var(--font-ui);
-  font-size: 11px; font-weight: 700;
-  letter-spacing: .06em;
-  transition: color .25s ease;
-}
-.socials { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
-.social-label { margin-right: 2px; color: var(--warm-dark); white-space: nowrap; }
-.social-icon {
-  display: inline-grid; width: 38px; height: 38px; place-items: center;
-  border: 1.5px solid var(--card-border); border-radius: 999px;
-  background: var(--card-bg); color: var(--warm-dark); text-decoration: none;
-  backdrop-filter: blur(14px);
-  box-shadow: var(--shadow-sm);
-  transition: all .25s ease;
-  flex: 0 0 auto;
-}
-.social-icon:hover { background: var(--sage-muted); color: var(--ink); transform: translateY(-3px); box-shadow: var(--shadow-md); }
-.social-icon svg { width: 17px; height: 17px; display: block; }
-.social-icon-xhs {
-  font-family: var(--font-display);
-  font-size: 10px; font-weight: 900; letter-spacing: -.02em;
-}
-.logo-row {
-  display: flex; align-items: center; gap: 20px;
-  color: var(--taupe);
-  font-family: var(--font-display);
-  font-size: 13px; font-weight: 600;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  white-space: nowrap; flex-wrap: wrap;
-}
-.footer-note {
-  color: var(--taupe);
-  font-family: var(--font-ui);
-  font-size: 10.5px; font-weight: 700;
-  letter-spacing: .06em;
-  white-space: nowrap; flex: 0 0 auto;
-}
-
-/* ─── Scroll-triggered fade-in animations ─── */
-@keyframes softIn {
-  0%   { opacity: 0; transform: translateY(22px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-.animate-softIn { animation: softIn 1s cubic-bezier(.22,1,.36,1) both; }
-.fade-1 { animation-delay: .08s; }
-.fade-2 { animation-delay: .2s; }
-.fade-3 { animation-delay: .36s; }
-.fade-4 { animation-delay: .52s; }
-
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .75s cubic-bezier(.22,1,.36,1),
-              transform .75s cubic-bezier(.22,1,.36,1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .35s; }
-
-/* ===== TORN PAPER DIVIDERS ===== */
-.torn-divider {
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-  pointer-events: none;
-  margin: 0;
-  line-height: 0;
-  z-index: 4;
-}
-.torn-divider svg { display: block; width: 100%; height: auto; }
-.torn-divider path {
-  transition: fill .35s ease;
-}
-
-/* Subtle paper-edge shadow for depth */
-.torn-divider .torn-shadow {
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(45,38,31,.06) 20%,
-    rgba(45,38,31,.10) 50%,
-    rgba(45,38,31,.06) 80%,
-    transparent 100%
-  );
-  filter: blur(6px);
-  opacity: .8;
-  transition: opacity .35s ease;
-}
-
-/* ===== STICKER SECTION ===== */
-.sticker-section {
-  position: relative;
-  padding: clamp(80px,10vw,120px) var(--page-padding-x) clamp(48px,8vw,96px);
-  z-index: 2;
-  background: transparent;
-}
-.sticker-section::before {
-  content: "";
-  position: absolute; top: -60px; left: -5%; width: 110%; height: 180px; z-index: 0;
-  background:
-    radial-gradient(ellipse at 30% 50%, rgba(181,196,178,.12), transparent 58%),
-    radial-gradient(ellipse at 75% 45%, rgba(212,200,182,.08), transparent 54%);
-  filter: blur(32px);
-  pointer-events: none;
-  transition: background .35s ease;
-}
-.sticker-inner { width: 100%; max-width: none; margin: 0; position: relative; z-index: 1; }
-.sticker-header { text-align: center; margin-bottom: clamp(44px,6vw,68px); }
-.sticker-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-ui);
-  font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--sage); background: var(--sage-muted);
-  padding: 5px 14px; border-radius: 999px; margin-bottom: 18px;
-  transition: all .25s ease;
-}
-.sticker-eyebrow svg { width: 13px; height: 13px; stroke: var(--sage); transition: stroke .25s ease; }
-.sticker-heading {
-  font-family: var(--font-display);
-  font-size: clamp(2rem,4.2vw,2.8rem);
-  font-weight: 700;
-  letter-spacing: -.025em;
-  line-height: 1.15;
-  margin: 0 0 14px; color: var(--ink);
-  transition: color .25s ease;
-}
-.sticker-sub {
-  font-family: var(--font-body);
-  font-size: clamp(.95rem,1.4vw,1.06rem);
-  color: var(--ink-soft);
-  line-height: 1.8;
-  max-width: 480px; margin: 0 auto; font-weight: 400;
-  font-style: italic;
-  transition: color .25s ease;
-}
-
-/* Pack cards */
-.packs {
-  display: flex; flex-direction: row; overflow-x: auto; overflow-y: hidden;
-  gap: 42px; padding: 0 calc(var(--page-padding-x)) 24px;
-  scroll-snap-type: x mandatory; scroll-padding-left: 80px;
-  align-items: stretch; -webkit-overflow-scrolling: touch;
-}
-.packs::-webkit-scrollbar { display: none; }
-.pack-card {
-  flex: 0 0 min(72vw,640px); min-width: 420px; scroll-snap-align: center;
-  position: relative; overflow: hidden;
-  background: var(--card-bg); backdrop-filter: blur(20px);
-  border-radius: 20px;
-  padding: clamp(28px,4vw,40px) clamp(24px,3.5vw,36px) clamp(32px,4vw,44px);
-  box-shadow: var(--shadow-sm), var(--shadow-md);
-  border: 1px solid var(--card-border);
-  transition: transform .4s cubic-bezier(.22,1,.36,1), box-shadow .4s ease, background .35s ease;
-}
-.pack-card:hover {
-  transform: translateY(-6px) scale(1.005);
-  box-shadow: var(--shadow-md), var(--shadow-lg);
-}
-.pack-label {
-  display: inline-block;
-  font-family: var(--font-ui);
-  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--sage); background: var(--sage-muted);
-  padding: 4px 11px; border-radius: 6px; margin-bottom: 16px; font-weight: 800;
-  transition: all .25s ease;
-}
-.pack-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem,2.5vw,1.6rem);
-  font-weight: 700; letter-spacing: -.015em;
-  margin: 0 0 10px; color: var(--ink);
-  transition: color .25s ease;
-}
-.pack-desc {
-  font-family: var(--font-body);
-  color: var(--ink-soft);
-  font-size: clamp(.90rem,1.3vw,1rem);
-  margin: 0 0 28px; line-height: 1.72; font-weight: 400;
-  transition: color .25s ease;
-}
-
-.sticker-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 28px; }
-.sticker-item {
-  aspect-ratio: 1; border-radius: 16px; overflow: hidden;
-  background: var(--canvas-mid); cursor: pointer;
-  transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
-  border: 1px solid var(--card-border);
-}
-.sticker-item:hover { transform: scale(1.07); z-index: 1; box-shadow: var(--shadow-lg); }
-.sticker-item img { width: 100%; height: 100%; object-fit: contain; display: block; }
-
-.download-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--ink); color: var(--canvas-light); text-decoration: none;
-  padding: 13px 26px; border-radius: 12px;
-  font-family: var(--font-ui);
-  font-size: 11.5px; font-weight: 800;
-  letter-spacing: .05em; text-transform: uppercase;
-  box-shadow: var(--shadow-sm);
-  transition: all .25s ease;
-}
-.download-btn:hover { opacity .85; transform: translateY(-2px); box-shadow: var(--shadow-md); }
-.download-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
-.download-hint {
-  display: block;
-  font-family: var(--font-ui);
-  font-size: 10.5px; color: var(--taupe); margin-top: 8px; font-weight: 600;
-  transition: color .25s ease;
-}
-
-.sticker-footer { text-align: center; margin-top: clamp(48px,7vw,72px); padding-top: 32px; border-top: 1px solid var(--card-border); transition: border-color .25s ease; }
-.back-top {
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--warm-dark);
-  font-family: var(--font-ui);
-  font-size: 11.5px; font-weight: 700;
-  letter-spacing: .04em; text-transform: uppercase;
-  text-decoration: none; transition: all .2s ease;
-}
-.back-top:hover { color: var(--ink); transform: translateY(-2px); }
-.back-top svg { width: 14px; height: 14px; }
-.sticker-copy {
-  margin-top: 14px;
-  font-family: var(--font-ui);
-  font-size: 10px; color: var(--taupe); font-weight: 700;
-  letter-spacing: .08em;
-  transition: color .25s ease;
-}
-
-/* ===== ABOUT SECTION ===== */
-.about-section {
-  position: relative;
-  padding: clamp(80px,10vw,120px) var(--page-padding-x) clamp(48px,8vw,96px);
-  background: transparent; color: var(--ink);
-  transition: color .35s ease;
-}
-.about-section::before {
-  content: ""; position: absolute; top: -80px; left: -5%; width: 110%; height: 180px; z-index: 0;
-  background:
-    radial-gradient(ellipse at 70% 50%, rgba(212,200,182,.10), transparent 58%),
-    radial-gradient(ellipse at 25% 45%, rgba(181,196,178,.08), transparent 54%);
-  filter: blur(36px); pointer-events: none;
-  transition: background .35s ease;
-}
-
-/* Delicate botanical line — About left edge */
-.about-botanical {
-  position: absolute;
-  left: -2%;
-  bottom: -10%;
-  width: 28%;
-  height: 50%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: .09;
-  animation: botanicalSwayAlt 14s ease-in-out infinite;
-  transform-origin: bottom center;
-}
-@keyframes botanicalSwayAlt {
-  0%, 100% { transform: rotate(0deg); }
-  33%      { transform: rotate(-0.6deg); }
-  66%      { transform: rotate(0.7deg); }
-}
-.about-botanical svg { width: 100%; height: 100%; }
-.about-botanical path,
-.about-botanical ellipse {
-  fill: none;
-  stroke: var(--botanical-stroke);
-  stroke-width: .6;
-  transition: stroke .35s ease;
-}
-
-.about-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
-.about-header { text-align: center; margin-bottom: clamp(44px,6vw,64px); }
-.about-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-ui);
-  font-size: 10.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
-  color: var(--taupe-dark); background: var(--sage-muted);  /* adaptive */
-  padding: 5px 14px; border-radius: 999px; margin-bottom: 18px;
-  transition: all .25s ease;
-}
-.about-eyebrow svg { width: 13px; height: 13px; flex-shrink: 0; stroke: var(--taupe-dark); transition: stroke .25s ease; }
-.about-heading {
-  font-family: var(--font-display);
-  font-size: clamp(2rem,4vw,2.8rem);
-  font-weight: 700; letter-spacing: -.025em;
-  line-height: 1.15; margin: 0 0 12px; color: var(--ink);
-  transition: color .25s ease;
-}
-.about-sub {
-  font-family: var(--font-body);
-  font-size: clamp(.95rem,1.4vw,1.06rem);
-  color: var(--ink-soft); line-height: 1.8;
-  max-width: 480px; margin: 0 auto; font-weight: 400;
-  font-style: italic;
-  transition: color .25s ease;
-}
-
-.about-profile { display: flex; align-items: flex-start; gap: clamp(32px,5vw,56px); }
-.about-photo-wrap { flex: 0 0 auto; width: min(190px,40vw); position: relative; }
-.about-photo {
-  width: 100%; aspect-ratio: 1; border-radius: 22px; overflow: hidden;
-  background: var(--canvas-deep);
-  box-shadow: var(--shadow-md);
-  transition: background .25s ease, box-shadow .25s ease;
-}
-.about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.about-photo-sticker {
-  position: absolute; right: -14px; bottom: -14px;
-  width: 54px; height: 54px; border-radius: 14px;
-  background: var(--card-bg); backdrop-filter: blur(10px);
-  display: grid; place-items: center;
-  box-shadow: var(--shadow-md);
-  font-size: 24px;
-  transition: all .25s ease;
-}
-.about-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
-.about-text p {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: clamp(.92rem,1.2vw,1rem);
-  line-height: 1.85; color: var(--ink-soft); font-weight: 400;
-  transition: color .25s ease;
-}
-.about-text p.first {
-  font-family: var(--font-display);
-  font-size: clamp(1.05rem,1.5vw,1.15rem);
-  font-weight: 600; color: var(--ink); line-height: 1.65;
-  transition: color .25s ease;
-}
-
-.about-tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
-.about-tag {
-  display: inline-flex; align-items: center;
-  font-family: var(--font-ui);
-  font-size: 10.5px; font-weight: 700;
-  color: var(--warm-dark); background: rgba(166,150,130,.10);  /* adaptive via dark override */
-  padding: 5px 12px; border-radius: 8px; white-space: nowrap;
-  letter-spacing: .03em;
-  transition: all .25s ease;
-}
-.about-social { display: flex; align-items: center; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
-.about-social-label {
-  font-family: var(--font-ui);
-  font-size: 10.5px; font-weight: 700; color: var(--taupe-dark);
-  letter-spacing: .04em; text-transform: uppercase;
-  transition: color .25s ease;
-}
-.about-social a {
-  display: inline-flex; align-items: center; gap: 5px;
-  font-family: var(--font-ui);
-  font-size: 10.5px; font-weight: 700; color: var(--warm-dark); text-decoration: none;
-  border: 1.5px solid var(--card-border); border-radius: 999px; padding: 6px 14px;
-  letter-spacing: .03em;
-  text-transform: uppercase;
-  transition: all .25s ease;
-}
-.about-social a:hover { background: rgba(166,150,130,.08); color: var(--ink); }  /* dark mode handled by [data-theme] rule */
-.about-social a svg { width: 13px; height: 13px; flex-shrink: 0; }
-
-.about-footer { text-align: center; margin-top: clamp(40px,6vw,56px); padding-top: 28px; border-top: 1px solid var(--card-border); transition: border-color .25s ease; }
-.about-back {
-  display: inline-flex; align-items: center; gap: 6px;
-  color: var(--taupe-dark);
-  font-family: var(--font-ui);
-  font-size: 11.5px; font-weight: 700;
-  letter-spacing: .04em; text-transform: uppercase;
-  text-decoration: none; transition: all .2s ease;
-}
-.about-back:hover { color: var(--ink); transform: translateY(-2px); }
-.about-back svg { width: 14px; height: 14px; }
-.about-copy {
-  margin-top: 14px;
-  font-family: var(--font-ui);
-  font-size: 10px; color: var(--taupe); font-weight: 700;
-  letter-spacing: .08em; text-transform: uppercase;
-  transition: color .25s ease;
-}
-
-/* ===== Lightbox ===== */
-.lightbox-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,.60); backdrop-filter: blur(10px);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 999; opacity: 0; pointer-events: none; transition: opacity .3s ease;
-}
-.lightbox-overlay.active { opacity: 1; pointer-events: all; }
-.lightbox-img {
-  max-width: 92vw; max-height: 88vh; object-fit: contain; border-radius: 18px;
-  transform: scale(.94) translateY(10px); transition: transform .4s cubic-bezier(.22,1,.36,1);
-}
-.lightbox-overlay.active .lightbox-img { transform: scale(1) translateY(0); }
-.lightbox-close {
-  position: absolute; top: 24px; right: 24px; width: 42px; height: 42px; border-radius: 999px;
-  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
-  color: #fff; font-size: 20px; cursor: pointer; display: grid; place-items: center;
-  transition: background .2s ease;
-}
-.lightbox-close:hover { background: rgba(255,255,255,.28); }
-
-/* ===== WeChat Modal ===== */
-.wx-modal-overlay {
-  position: fixed; inset: 0; z-index: 2000;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(0,0,0,.55); backdrop-filter: blur(8px);
-  opacity: 0; pointer-events: none; transition: opacity .25s ease;
-}
-.wx-modal-overlay.active { opacity: 1; pointer-events: all; }
-.wx-modal {
-  position: relative; width: min(90vw,380px);
-  background: var(--canvas-light);
-  color: var(--ink);
-  border-radius: 22px; padding: 36px 28px 28px; text-align: center;
-  box-shadow: var(--shadow-lg);
-  transform: translateY(20px) scale(.95);
-  transition: transform .35s cubic-bezier(.22,1,.36,1), background .35s ease, color .35s ease;
-  border: 1px solid var(--card-border);
-}
-.wx-modal-overlay.active .wx-modal { transform: translateY(0) scale(1); }
-.wx-modal-close {
-  position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border-radius: 999px;
-  background: rgba(0,0,0,.05); border: none; color: #999; font-size: 18px;
-  cursor: pointer; display: grid; place-items: center; transition: background .2s ease;
-}
-.wx-modal-close:hover { background: rgba(0,0,0,.1); color: #666; }
-.wx-modal-icon { width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 18px; background: #07c160; color: #fff; display: grid; place-items: center; }
-.wx-modal-title {
-  font-family: var(--font-display);
-  margin: 0 0 8px; font-size: 20px; font-weight: 700; letter-spacing: -.01em;
-  color: var(--ink);
-}
-.wx-modal-desc {
-  font-family: var(--font-body);
-  margin: 0 0 20px; font-size: 14px; line-height: 1.7; color: var(--ink-soft);
-}
-.wx-modal-qr { width: 200px; height: 200px; margin: 0 auto 20px; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-border); background: #fff; }
-.wx-modal-qr img { display: block; width: 100%; height: 100%; }
-.wx-modal-link-box { display: flex; align-items: center; gap: 8px; background: var(--canvas-mid); border-radius: 12px; padding: 4px 4px 4px 12px; transition: background .25s ease; }
-.wx-modal-link-text {
-  font-family: var(--font-ui);
-  flex: 1; min-width: 0; font-size: 11px; color: var(--taupe); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.wx-modal-copy {
-  flex: 0 0 auto; border: none; border-radius: 8px;
-  background: var(--ink); color: var(--canvas-light);
-  font-family: var(--font-ui);
-  font-size: 11.5px; font-weight: 800;
-  padding: 8px 14px; cursor: pointer; transition: opacity .2s ease;
-  letter-spacing: .03em; text-transform: uppercase;
-}
-.wx-modal-copy:hover { opacity .85; }
-
-/* ===== DARK MODE ENHANCEMENTS ===== */
-/* These override specific elements that need extra care in dark mode */
-
-[data-theme="dark"] .pack-card,
-[data-theme="dark"] .email-pill,
-[data-theme="dark"] .nav-menu,
-[data-theme="dark"] .social-icon,
-[data-theme="dark"] .theme-toggle {
-  /* Subtle inner light edge — replaces invisible drop shadows in dark */
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.05),
-    0 4px 16px rgba(0,0,0,.25);
-}
-
-[data-theme="dark"] .pack-card:hover {
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.07),
-    0 8px 28px rgba(0,0,0,.32);
-}
-
-[data-theme="dark"] .solid-button {
-  /* Buttons get subtle glow instead of flat shadow */
-  box-shadow: 0 2px 8px rgba(0,0,0,.3), 0 0 0 1px rgba(255,255,255,.04) inset;
-}
-
-[data-theme="dark"] .about-photo {
-  /* Photo frame gets inner highlight */
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.06),
-    0 8px 28px rgba(0,0,0,.30);
-}
-
-[data-theme="dark"] .lightbox-overlay {
-  background: rgba(0,0,0,.72);  /* darker overlay for contrast */
-}
-[data-theme="dark"] .lightbox-close {
-  background: rgba(255,255,255,.08);
-  border-color: rgba(255,255,255,.12);
-}
-
-[data-theme="dark"] .wx-modal-overlay {
-  background: rgba(0,0,0,.65);
-}
-[data-theme="dark"] .wx-modal {
-  background: var(--surface-1);
-  border-color: var(--card-border);
-}
-[data-theme="dark"] .wx-modal-close {
-  background: rgba(255,255,255,.06);
-  color: #888;
-}
-[data-theme="dark"] .wx-modal-link-box {
-  background: var(--surface-2);
-}
-
-[data-theme="dark"] .sticker-item {
-  background: var(--surface-2);  /* slightly lighter than bg */
-  border-color: var(--card-border);
-}
-
-[data-theme="dark"] .about-tag,
-[data-theme="dark"] .about-social a {
-  background: rgba(160,146,130,.10);
-  border-color: rgba(255,255,255,.06);
-}
-
-[data-theme="dark"] .brand-mark {
-  box-shadow: inset 0 -1px 0 rgba(255,255,255,.05);
-}
-
-/* Dark mode sun-wash becomes a subtle warm glow instead of bright wash */
-[data-theme="dark"] .sun-wash {
-  background: radial-gradient(circle, rgba(180,160,130,.10), transparent 64%);
-}
-
-/* Botanical art — slightly more visible in dark mode for atmosphere */
-[data-theme="dark"] .hero-botanical { opacity: .14; }
-[data-theme="dark"] .about-botanical { opacity: .12; }
-
-/* Torn divider — use surface-1 color in dark so it doesn't look like a hole */
-[data-theme="dark"] .torn-divider path {
-  fill: var(--canvas-light);
-}
-
-/* Scroll hint — more visible in dark mode */
-[data-theme="dark"] .scroll-hint { opacity: .50; }
-
-/* Footer note and logo row — softer in dark */
-[data-theme="dark"] .footer-note { color: var(--taupe); }
-[data-theme="dark"] .logo-row { color: var(--taupe); }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 1080px) {
-  .hero-card { min-height: 900px; }
-  .topbar { gap: 14px; }
-  .nav-menu { display: none; }
-  .hero-copy { width: min(100%,560px); }
-  .hero-title { max-width: 10ch; }
-  .hero-botanical { opacity: .05; }
-}
-@media (max-width: 760px) 
-.hero-visual {
-  width:100%;
-  height:60%;
-  left:0;
-  top:5%;
-  opacity:.35;
-}
-
-.hero-copy {
-  width:100%;
-  transform:none;
-}
-
-.hero-copy {
-  width:100%;
-  max-width:100%;
-}
-  .hero-card { min-height: 100svh; padding: 20px 18px 18px; }
-  .topbar { align-items: flex-start; }
-  .brand-name { font-size: 13px; }
-  .solid-button { padding: 0 13px; }
-  .hero-main { align-items: flex-start; padding-top: 88px; padding-bottom: 18px; }
-  .hero-copy { width: 100%; max-width: 100%; padding-right: 0; gap: 18px; }
-  .eyebrow { min-height: 32px; padding: 0 12px; font-size: 10px; }
-  .hero-title { font-size: clamp(2.6rem,14vw,4.6rem); max-width: 8ch; }
-  .hero-subtitle { max-width: 100%; line-height: 1.7; }
-  .email-pill { width: 100%; max-width: 100%; }
-  .footer-links { gap: 16px 20px; padding-top: 14px; }
-  .logo-row { display: none; }
-  .footer-note { display: none; }
-  .sticker-grid { gap: 8px; }
-  .hero-botanical { display: none; }
-  .about-botanical { opacity: .03; }
-  .about-profile { flex-direction: column; align-items: center; text-align: center; }
-  .about-photo-wrap { width: min(140px,48vw); }
-  .about-photo-sticker { right: -8px; bottom: -8px; width: 40px; height: 40px; font-size: 18px; }
-  .about-social { justify-content: center; }
-  .about-tag-row { justify-content: center; }
-  /* Smaller torn dividers on mobile */
-  .torn-divider svg { height: 40px !important; }
-}
-@media (max-width: 430px) {
-  .hero-card { padding: 18px 16px 16px; }
-  .hero-main { padding-top: 84px; }
-  .email-pill { align-items: stretch; border-radius: 18px; flex-direction: column; padding: 14px; }
-  .email-pill span { white-space: normal; line-height: 1.4; }
-  .email-pill a { width: 100%; }
-  .pack-card { padding: 24px 18px 28px; }
-  .sticker-grid { grid-template-columns: repeat(2,1fr); }
-  .theme-toggle { position: static !important; }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Racco Ho — Turn feelings into visible</title>
+  <meta name="description" content="Racco Ho 的个人作品集。将情绪转化为可视化的创意内容——微信表情包「理查德的日常生活」系列、AI 插画与视觉实验。Editorial × Digital Garden × Soft AI." />
+  <meta name="keywords" content="Racco Ho, 个人网站, Portfolio, 情绪可视化, 微信表情包, 理查德日常生活, AI插画, visual stories, stickers, digital garden" />
+  <meta name="author" content="Racco Ho" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://whimsicalhe.pages.dev" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://whimsicalhe.pages.dev" />
+  <meta property="og:title" content="Racco Ho — Turn feelings into visible" />
+  <meta property="og:description" content="将情绪转化为可视化的创意内容——表情包、AI插画、视觉实验。A quiet digital garden of feelings." />
+  <meta property="og:site_name" content="Racco Ho" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:image" content="./assets/avatar/profile-picture.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Racco Ho — Turn feelings into visible" />
+  <meta name="twitter:description" content="将情绪转化为可视化的创意内容——表情包、AI插画、视觉实验。" />
+
+  <!-- Fonts: Cormorant Garamond (display/serif) + Inter (body/sans) per PRD -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./style.css" />
+
+  <!-- Favicon (placeholder) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>" />
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="./assets/hero/hero.jpg" type="image/jpeg" />
 </head>
+
 <body>
 
-<!-- Atmospheric floating speckles -->
-<div class="speckle speckle-1" aria-hidden="true"></div>
-<div class="speckle speckle-2" aria-hidden="true"></div>
-<div class="speckle speckle-3" aria-hidden="true"></div>
-<div class="speckle speckle-4" aria-hidden="true"></div>
-<div class="speckle speckle-5" aria-hidden="true"></div>
-<div class="speckle speckle-6" aria-hidden="true"></div>
+  <!-- Skip to content (a11y) -->
+  <a href="#main" class="skip-link">Skip to content</a>
 
-<main class="page">
-
-  <!-- ===== HERO ===== -->
-  <section class="hero-card" aria-labelledby="hero-title">
-    <div class="sun-wash"></div>
-
-    <!-- Delicate botanical line art — right side -->
-    <div class="hero-botanical" aria-hidden="true">
-      <svg viewBox="0 0 320 520" xmlns="http://www.w3.org/2000/svg">
-        <!-- Long flowing stem 1 -->
-        <path d="M280,520 C260,380 200,280 230,160 C250,80 300,40 310,0" opacity=".55"/>
-        <!-- Leaf 1 -->
-        <path d="M230,160 C210,130 180,140 195,170 C210,200 240,190 230,160Z" opacity=".38"/>
-        <!-- Leaf 2 -->
-        <path d="M250,240 C280,210 310,220 295,250 C280,280 250,270 250,240Z" opacity=".32"/>
-        <!-- Stem 2 -->
-        <path d="M120,520 C140,420 180,340 160,260 C140,180 100,120 90,60" opacity=".46"/>
-        <!-- Leaf 3 -->
-        <path d="M160,260 C130,230 110,250 135,275 C160,300 180,285 160,260Z" opacity=".28"/>
-        <!-- Small floating leaf -->
-        <path d="M100,120 C110,105 125,110 118,130 C110,150 95,140 100,120Z" opacity=".22"/>
-        <!-- Petal cluster -->
-        <ellipse cx="310" cy="40" rx="8" ry="12" transform="rotate(-30 310 40)" opacity=".18"/>
-        <ellipse cx="305" cy="55" rx="6" ry="10" transform="rotate(15 305 55)" opacity=".15"/>
-        <!-- Extra small leaves for richness -->
-        <path d="M270,300 C290,280 310,295 295,315 C280,335 265,320 270,300Z" opacity=".20"/>
-        <path d="M145,350 C125,330 115,348 138,365 C160,382 170,370 145,350Z" opacity=".18"/>
-      </svg>
-    </div>
-
-    <header class="topbar">
-      <a class="brand" href="#" aria-label="Racco Ho home">
-        <span class="brand-mark">RH</span>
-        <span class="brand-name">Racco Ho</span>
+  <!-- ══════════════════════════════════
+       NAVIGATION
+       ══════════════════════════════════ -->
+  <nav class="nav-wrapper" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <svg class="brand-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5" fill="none"/>
+          <circle cx="11" cy="13" r="2.5" fill="var(--lavender)" opacity=".7"/>
+          <circle cx="21" cy="14" r="2" fill="var(--peach)" opacity=".7"/>
+          <path d="M10 22 Q16 18 22 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        Racco Ho
       </a>
-      <nav class="nav-menu" aria-label="Primary navigation">
+
+      <div class="nav-links">
         <a href="#home">Home</a>
-        <a href="#stickers">Projects</a>
-        <a href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer">Notes</a>
+        <a href="#works">Works</a>
+        <a href="#stickers">Sticker Packs</a>
+        <a href="#experiments">Experiments</a>
         <a href="#about">About</a>
-      </nav>
-      <div class="nav-actions">
-        <!-- Dark mode toggle -->
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
-          <svg id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-          <svg id="moonIcon" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
-          </svg>
-        </button>
-        <a class="solid-button" href="#stickers">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M4 4h16v16H4z"></path>
-            <path d="m22 6-10 7L2 6"></path>
-          </svg>
-          View Work
-        </a>
+        <a href="#contact">Contact</a>
       </div>
-    </header>
 
-   <section class="hero-main" id="home">
+      <div class="nav-actions">
+        <button class="theme-btn" id="themeToggle" aria-label="Toggle theme">
+          <svg data-icon="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg data-icon="moon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <a href="#contact" class="btn-primary">
+          Say Hello
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-  <div class="hero-visual" aria-hidden="true">
-    <img src="./images/personal-hero.png" alt="">
+  <!-- Mobile nav overlay + panel -->
+  <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+  <div class="mobile-nav-panel" id="mobilePanel" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <a href="#home">Home</a>
+    <a href="#works">Works</a>
+    <a href="#stickers">Sticker Packs</a>
+    <a href="#experiments">Experiments</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <div style="margin-top:auto;padding-top:24px;border-top:1px solid var(--glass-border);font-size:12px;color:var(--ink-faint);">
+      &copy; 2026 Racco Ho
+    </div>
   </div>
 
-  <div class="hero-copy">
-        <div class="eyebrow animate-softIn fade-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M12 3l2.4 5.2L20 10.6l-5.1 2.1L12 18l-2.9-5.3L4 10.6l5.6-2.4L12 3Z"></path>
-          </svg>
-          Personal site for visual stories &amp; quiet experiments
-        </div><h1 class="hero-title animate-softIn fade-2" id="hero-title">
-  Turn feelings<br>
-  <span>into visible.</span>
-</h1>
-        <p class="hero-subtitle animate-softIn fade-3">Hi, I'm Racco Ho. I collect quiet moods, visual references, and fragments of everyday life, then turn them into stickers, images, writing, and small experiments on the web.</p>
-        <div class="email-pill animate-softIn fade-4">
-          <span>Currently building something soft &amp; honest</span>
-          <a href="#stickers">Explore →</a>
+  <!-- Mouse glow element -->
+  <div class="mouse-glow" style="position:fixed;z-index:-1;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,var(--lavender),transparent 70%);opacity:.08;pointer-events:none;transition:left .15s linear,top .15s linear;"></div>
+
+
+  <!-- ══════════════════════════════════
+       MAIN CONTENT
+       ══════════════════════════════════ -->
+  <main id="main">
+
+    <!-- ═══ HERO SECTION ═══ -->
+    <section class="hero" id="home">
+
+      <!-- Background floating blobs -->
+      <div class="hero-bg-blobs" aria-hidden="true">
+        <div class="blob blob--sky"></div>
+        <div class="blob blob--lavender"></div>
+        <div class="blob blob--mint"></div>
+        <div class="blob blob--peach"></div>
+        <div class="blob blob--butter"></div>
+      </div>
+
+      <div class="container hero-grid">
+
+        <!-- Left: AI Illustration (45%) with gradient mask -->
+        <div class="hero-visual reveal">
+          <!-- Floating decorative elements around illustration -->
+          <div class="hero-floaters" aria-hidden="true">
+            <!-- Sky blue square — echoes the illustration's blue glasses & notebook -->
+            <svg class="hero-floater hero-floater--1" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="48" height="48" rx="16" fill="#8DC5EE" opacity=".28"/><rect x="18" y="18" width="28" height="28" rx="10" fill="#B7A9E8" opacity=".22"/></svg>
+            <!-- Warm peach circle — echoes the notification badges & hearts -->
+            <svg class="hero-floater hero-floater--2" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="28" cy="28" r="22" fill="#FFC9B8" opacity=".32"/><circle cx="30" cy="24" r="12" fill="#FFE89B" opacity=".35"/></svg>
+            <!-- Sage diamond — echoes the robot's green eyes -->
+            <svg class="hero-floater hero-floater--3" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 4L46 26L26 48L6 26Z" fill="#BDD5AA" opacity=".25" transform="rotate(15 26 26)"/></svg>
+            <!-- Mint rounded rect — echoes the paper/book textures -->
+            <svg class="hero-floater hero-floater--4" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="40" height="40" rx="20" fill="#BFE8D8" opacity=".26"/><rect x="18" y="18" width="24" height="24" rx="12" fill="#8DC5EE" opacity=".18"/></svg>
+          </div>
+          <!-- Hero image — replace this file to change hero image -->
+          <img
+            class="hero-visual-img"
+            src="./assets/hero/hero.jpg"
+            alt="Racco Ho — AI illustration portrait"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+
+        <!-- Right: Copy (55%) -->
+        <div class="hero-copy">
+          <div class="hero-badge reveal">
+            <span class="hero-badge-dot"></span>
+            Welcome to my digital garden
+          </div>
+
+          <h1 class="hero-title reveal reveal-d1">
+            Turn feelings<br>into <em>visible</em>.
+          </h1>
+
+          <p class="hero-desc reveal reveal-d2">
+            I transform emotions and everyday inspirations into visual stories, stickers, and digital experiences.
+            This is where I share my creative journey.
+          </p>
+
+          <div class="hero-actions reveal reveal-d3">
+            <a href="#works" class="btn-primary">
+              Explore My Works
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="#about" class="btn-ghost">
+              Learn more about me
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <div class="hero-social reveal reveal-d3">
+            <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.886-7.687-6.742 7.687H.l7.73-8.835L.016 2.25h8.04l5.314 6.97zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+            </a>
+            <a href="https://www.xiaohongshu.com/user/profile" target="_blank" rel="noopener noreferrer" aria-label="Xiaohongshu (RED)">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z" opacity=".7"/><text x="12" y="16.5" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor">RED</text></svg>
+            </a>
+            <a href="https://podcast.link/" target="_blank" rel="noopener noreferrer" aria-label="Podcast">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Garden thread connector below hero -->
+      <div class="container garden-thread" aria-hidden="true">
+        <svg viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 40 Q150 10 300 36 T600 38 T900 35 Q1050 28 1200 44" vector-effect="non-scaling-stroke"/>
+          <path d="M100 60 Q300 75 500 58 T850 62 Q1000 55 1150 65" opacity=".4" vector-effect="non-scaling-stroke"/>
+        </svg>
+      </div>
+    </section>
+
+
+    <!-- ═══ FEATURED WORKS ═══ -->
+    <section class="section" id="works">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <span class="eyebrow">Featured Works</span>
+            <h2 class="section-title">A selection of my recent creations.</h2>
+          </div>
+          <a href="#" class="section-link">
+            View all works
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="works-list">
+
+          <!-- Work Card 1: Richard Daily Life Vol.1 -->
+          <article class="work-card reveal reveal-d1">
+            <div class="work-preview">
+              <img src="./stickers/pack1/birthday.png" alt="Richard sticker preview 1" loading="lazy" />
+              <img src="./stickers/pack1/knife.jpg" alt="Richard sticker preview 2" loading="lazy" />
+              <img src="./stickers/pack1/scared.png" alt="Richard sticker preview 3" loading="lazy" />
+              <img src="./stickers/pack1/flower.png" alt="Richard sticker preview 4" loading="lazy" />
+            </div>
+            <div class="work-info">
+              <span class="work-tag work-tag--sticker">Sticker Pack</span>
+              <h3 class="work-title">Richard Daily Life Vol.1</h3>
+              <p class="work-desc">The first volume of Richard's daily life. A collection of warm and funny moments.</p>
+              <div class="work-meta">
+                <span>24 stickers</span>
+                <span>&middot;</span>
+                <span>WeChat</span>
+                <span>&middot;</span>
+                <span>2024</span>
+              </div>
+            </div>
+            <a href="#stickers" class="btn-view">
+              View Project
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+
+          <!-- Work Card 2: Richard Daily Life Vol.2 -->
+          <article class="work-card reveal reveal-d2">
+            <div class="work-preview">
+              <img src="./stickers/pack2/shy-smile.png" alt="Richard sticker preview 1" loading="lazy" />
+              <img src="./stickers/pack2/happy.png" alt="Richard sticker preview 2" loading="lazy" />
+              <img src="./stickers/pack2/headphones.png" alt="Richard sticker preview 3" loading="lazy" />
+              <img src="./stickers/pack2/sad.png" alt="Richard sticker preview 4" loading="lazy" />
+            </div>
+            <div class="work-info">
+              <span class="work-tag work-tag--sticker">Sticker Pack</span>
+              <h3 class="work-title">Richard Daily Life Vol.2</h3>
+              <p class="work-desc">More stories, more emotions. Let's keep growing together.</p>
+              <div class="work-meta">
+                <span>24 stickers</span>
+                <span>&middot;</span>
+                <span>WeChat</span>
+                <span>&middot;</span>
+                <span>2025</span>
+              </div>
+            </div>
+            <a href="#stickers" class="btn-view">
+              View Project
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+
+        </div>
+
+        <!-- Pagination dots -->
+        <div class="works-dots reveal reveal-d3" aria-hidden="true">
+          <span class="active"></span><span></span><span></span>
         </div>
       </div>
     </section>
 
-    <!-- Scroll hint -->
-    <div class="scroll-hint">
-      <span>Scroll down</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M12 5v14M19 12l-7 7-7 7"/>
-      </svg>
-    </div>
 
-    <footer class="footer-links" id="links">
-      <div class="socials">
-        <span class="social-label">Find me:</span>
-        <a class="social-icon" href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer" aria-label="X profile">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 3h3.1l-6.8 7.8L22 21h-6.4l-5-6.5L4.9 21H1.8l7.3-8.4L1.3 3h6.6l4.5 5.9L17.6 3Zm-1.1 16.2h1.7L7 4.7H5.2l11.3 14.5Z"></path></svg>
-        </a>
-        <a class="social-icon" href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
-            <circle cx="12" cy="12" r="4"></circle>
-            <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"></circle>
-          </svg>
-        </a>
-        <a class="social-icon social-icon-xhs" href="https://xhslink.com/m/186QZTYAQSd" target="_blank" rel="noopener noreferrer" aria-label="Xiaohongshu profile">RED</a>
-        <a class="social-icon" href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer" aria-label="Xiaoyuzhou podcast">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="8"></circle>
-            <path d="M8.8 12a3.2 3.2 0 1 0 6.4 0 3.2 3.2 0 0 0-6.4 0Z"></path>
-            <path d="M12 15.3v4.2"></path>
-            <path d="M9.7 18.2h4.6"></path>
-          </svg>
-        </a>
-      </div>
-      <div class="logo-row" aria-hidden="true">
-        <span>AI</span><span>VISUAL</span><span>STICKER</span><span>NOTES</span>
-      </div>
-      <span class="footer-note">Personal website / 2026</span>
-    </footer>
-
-    <!-- TORN PAPER DIVIDER → Stickers section -->
-    <div class="torn-divider" style="position:relative;z-index:4;margin-top:-2px;" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <filter id="tornEdge" x="-2%" y="-8%" width="104%" height="118%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.18" numOctaves="4" seed="42" result="noise"/>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="18" xChannelSelector="R" yChannelSelector="G"/>
-            <!-- Subtle roughen for fiber-like edge -->
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" result="fiber"/>
-            <feComposite in="SourceGraphic" in2="fiber" operator="arithmetic" k1="0" k2="1" k3="-0.15" k4="0"/>
-          </filter>
-        </defs>
-        <path d="M0,0
-                 L0,72
-                 C8,68 12,76 22,69
-                 C28,64 34,78 45,70
-                 C52,65 58,74 68,67
-                 C75,61 83,73 94,64
-                 C102,57 108,71 118,63
-                 C126,55 134,68 145,59
-                 C153,51 162,66 172,56
-                 C180,48 190,62 200,54
-                 C208,46 218,59 228,51
-                 C236,43 246,57 257,49
-                 C265,41 275,54 286,46
-                 C295,38 305,52 315,44
-                 C324,36 334,50 344,42
-                 C352,34 362,47 373,39
-                 C382,31 392,44 402,37
-                 C410,29 420,42 430,35
-                 C438,27 448,40 459,32
-                 C468,24 478,38 489,30
-                 C498,22 508,36 518,29
-                 C527,21 537,34 547,27
-                 C556,19 566,32 577,25
-                 C586,17 596,30 606,24
-                 C616,16 626,28 636,22
-                 C646,14 656,26 666,20
-                 C676,12 686,24 696,18
-                 C706,10 716,22 726,16
-                 C736,8 746,20 756,14
-                 C766,6 776,18 786,13
-                 C796,5 806,16 817,11
-                 C827,3 837,14 848,9
-                 C858,2 868,12 879,8
-                 C889,4 899,10 909,7
-                 C919,3 929,9 939,6
-                 C949,3 959,8 969,5
-                 C979,3 989,7 999,4
-                 C1009,3 1019,6 1029,4
-                 C1039,3 1049,5 1059,4
-                 C1069,3 1079,5 1089,4
-                 C1099,3 1109,4 1119,3
-                 C1129,3 1139,4 1149,3
-                 C1159,3 1169,3 1179,3
-                 C1189,3 1199,3 1209,3
-                 C1219,3 1229,3 1239,3
-                 C1249,3 1259,3 1269,3
-                 C1279,3 1289,3 1299,3
-                 C1309,3 1319,3 1329,3
-                 C1339,3 1349,3 1359,3
-                 C1369,3 1379,3 1389,3
-                 C1399,3 1409,3 1419,3
-                 C1429,3 1439,3 1440,3
-                 L1440,0 Z"
-              fill="var(--torn-fill)" filter="url(#tornEdge)"/>
-      </svg>
-      <div class="torn-shadow"></div>
-    </div>
-  </section>
-
-  <!-- ===== STICKER SHOWCASE ===== -->
-  <section class="sticker-section" id="stickers">
-    <div class="sticker-inner">
-
-      <div class="sticker-header reveal">
-        <span class="sticker-eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          WeChat Sticker Packs
-        </span>
-        <h2 class="sticker-heading">理查德的日常生活</h2>
-        <p class="sticker-sub">把那些说不出口的情绪，变成一个表情发出去。两组已上架微信表情商店。</p>
-      </div>
-
-      <div class="packs reveal reveal-delay-1">
-
-        <!-- Pack 2 -->
-        <div class="pack-card">
-          <span class="pack-label">Vol. 2</span>
-          <h3 class="pack-title">理查德日常生活 ²</h3>
-          <p class="pack-desc">第二辑。情绪更浓了——开心到冒星星、戴上耳机沉浸世界、难过到掉眼泪。日常生活的续集，依然真实。</p>
-          <div class="sticker-grid">
-            <div class="sticker-item" onclick="openLightbox('stickers/pack2/shy-smile.png')"><img src="stickers/pack2/shy-smile.png" alt="偷笑"></div>
-            <div class="sticker-item" onclick="openLightbox('stickers/pack2/happy.png')"><img src="stickers/pack2/happy.png" alt="开心"></div>
-            <div class="sticker-item" onclick="openLightbox('stickers/pack2/headphones.png')"><img src="stickers/pack2/headphones.png" alt="听歌"></div>
-            <div class="sticker-item" onclick="openLightbox('stickers/pack2/sad.png')"><img src="stickers/pack2/sad.png" alt="难过"></div>
+    <!-- ═══ STICKER PACKS ═══ -->
+    <section class="section" id="stickers">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <span class="eyebrow">Sticker Packs</span>
+            <h2 class="section-title">All sticker packs I've created so far.</h2>
           </div>
-          <a class="download-btn" href="javascript:void(0)" onclick="openWxDownload('https://w.url.cn/s/AXxZxMd')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            微信表情商店下载
+          <a href="#" class="section-link">
+            See all packs
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
-          <span class="download-hint">点击后扫码或复制链接，在微信中打开</span>
         </div>
 
-        <!-- Pack 1 -->
-        <div class="pack-card">
-          <span class="pack-label">Vol. 1</span>
-          <h3 class="pack-title">理查德日常生活</h3>
-          <p class="pack-desc">第一辑。生日快乐时的欢呼、被惹到时掏刀的威胁、遇到突发状况的惊慌、送花时的温柔微笑——日常里的小情绪。</p>
-          <div class="sticker-grid">
-            <div class="sticker-item" onclick="openLightbox('stickers/pack1/birthday.png')"><img src="stickers/pack1/birthday.png" alt="生日快乐"></div>
-            <div class="sticker-item" onclick="openLightbox('stickers/pack1/knife.jpg')"><img src="stickers/pack1/knife.jpg" alt="拿刀"></div>
-            <div class="sticker-item" onclick="openLightbox('stickers/pack1/scared.png')"><img src="stickers/pack1/scared.png" alt="惊恐"></div>
-            <div class="sticker-item" onclick="openLightbox('stickers/pack1/flower.png')"><img src="stickers/pack1/flower.png" alt="送花"></div>
+        <div class="sticker-list">
+
+          <!-- Sticker Pack Row 1 -->
+          <div class="sticker-row reveal reveal-d1">
+            <div class="sticker-thumb">
+              <img src="./stickers/pack1/birthday.png" alt="Richard Daily Life Vol.1 cover" loading="lazy" />
+            </div>
+            <div class="sticker-info">
+              <div class="sticker-name">理查德的日常生活 Vol.1</div>
+              <div class="sticker-count">24 stickers</div>
+              <div class="sticker-tags">
+                <span class="sticker-chip">日常</span>
+                <span class="sticker-chip sticker-chip--warm">温暖</span>
+              </div>
+            </div>
+            <div class="sticker-action">
+              <a class="btn-view" href="javascript:void(0)" onclick="openWxDownload('https://w.url.cn/s/AIdgMEW')">
+                View Pack
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
           </div>
-          <a class="download-btn" href="javascript:void(0)" onclick="openWxDownload('https://w.url.cn/s/AIdgMEW')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/>
-            </svg>
-            微信表情商店下载
-          </a>
-          <span class="download-hint">点击后扫码或复制链接，在微信中打开</span>
+
+          <!-- Sticker Pack Row 2 -->
+          <div class="sticker-row reveal reveal-d2">
+            <div class="sticker-thumb">
+              <img src="./stickers/pack2/shy-smile.png" alt="Richard Daily Life Vol.2 cover" loading="lazy" />
+            </div>
+            <div class="sticker-info">
+              <div class="sticker-name">理查德的日常生活 Vol.2</div>
+              <div class="sticker-count">24 stickers</div>
+              <div class="sticker-tags">
+                <span class="sticker-chip">情绪</span>
+                <span class="sticker-chip sticker-chip--warm">治愈</span>
+              </div>
+            </div>
+            <div class="sticker-action">
+              <a class="btn-view" href="javascript:void(0)" onclick="openWxDownload('https://w.url.cn/s/AXxZxMd')">
+                View Pack
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══ ABOUT ME ═══ -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <span class="eyebrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              About Me
+            </span>
+            <h2 class="section-title">Nice to meet you</h2>
+          </div>
+          <span style="font-size:var(--text-xs);color:var(--ink-faint);">ISFP &middot; Museum wanderer &middot; Fragrance hunter</span>
         </div>
 
+        <div class="about-layout reveal reveal-d1">
+          <!-- Avatar -->
+          <div class="about-avatar-wrap">
+            <div class="about-avatar">
+              <img src="./assets/avatar/profile-picture.jpg" alt="Racco Ho" loading="lazy" decoding="async" />
+            </div>
+            <div class="about-signature">Racco Ho ✦</div>
+          </div>
+
+          <!-- Bio -->
+          <div class="about-content">
+            <h3 class="about-greeting">Hi, I'm <em>Racco Ho</em>.</h3>
+            <p class="about-bio">
+              I'm a visual storyteller and AI creator. I studied English (International Communication)
+              at university — which is probably why this site bounces between two languages without apology.
+            </p>
+            <p class="about-bio">
+              When I'm not designing stickers, I'm wandering through museums and galleries,
+              hunting down the next scent, or capturing quiet moments with my camera.
+              My headphones are usually spinning R&amp;B, alternative pop, or whatever Olivia / Sabrina / Ariana just dropped.
+            </p>
+            <p class="about-bio">
+              I run a couple of content accounts on Xiaohongshu and Instagram.
+              It started as fun, but I genuinely fell in love with visual storytelling —
+              the way a single image or a well-placed sticker can say what words can't.
+            </p>
+            <div class="about-tags">
+              <span class="about-tag about-tag--lavender">Creator</span>
+              <span class="about-tag about-tag--sky">Designer</span>
+              <span class="about-tag about-tag--sage">AI Explorer</span>
+              <span class="about-tag about-tag--peach">Tea Lover</span>
+              <span class="about-tag about-tag--mint">Introvert</span>
+            </div>
+          </div>
+
+          <!-- Details column -->
+          <aside class="about-details reveal reveal-d2">
+            <div class="about-detail-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Based in Guangzhou, China
+            </div>
+            <div class="about-detail-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Born in 2001
+            </div>
+            <div class="about-detail-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 007.82 7.82A2 2 0 0122 16.92z"/></svg>
+              EN / 中文 / JP-?
+            </div>
+            <div class="about-detail-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Always curious, forever learning.
+            </div>
+          </aside>
+        </div>
       </div>
+    </section>
 
-      <div class="sticker-footer reveal reveal-delay-2">
-        <a class="back-top" href="#home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-          Back to top
-        </a>
-        <p class="sticker-copy">Racco Ho / Personal website / 2026</p>
-      </div>
+  </main>
 
-    </div>
-  </section>
 
-  <!-- TORN PAPER DIVIDER → About section -->
-  <div class="torn-divider" style="position:relative;z-index:3;" aria-hidden="true">
-    <svg viewBox="0 0 1440 75" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="tornEdge2" x="-3%" y="-8%" width="106%" height="120%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.22" numOctaves="4" seed="137" result="noise2"/>
-          <feDisplacementMap in="SourceGraphic" in2="noise2" scale="22" xChannelSelector="R" yChannelSelector="G"/>
-          <feTurbulence type="fractalNoise" baseFrequency="0.72" numOctaves="2" result="fiber2"/>
-          <feComposite in="SourceGraphic" in2="fiber2" operator="arithmetic" k1="0" k2="1" k3="-0.18" k4="0"/>
-        </filter>
-      </defs>
-      <path d="M1440,0
-               L1440,70
-               C1425,65 1418,74 1404,67
-               C1393,61 1386,73 1372,64
-               C1361,56 1352,68 1340,59
-               C1327,50 1318,63 1304,54
-               C1293,45 1284,58 1270,49
-               C1259,40 1248,53 1234,44
-               C1223,35 1212,48 1198,39
-               C1187,30 1176,43 1162,35
-               C1151,26 1140,38 1126,30
-               C1115,21 1104,34 1090,26
-               C1079,17 1068,29 1054,22
-               C1043,13 1032,25 1018,18
-               C1007,9 996,21 982,14
-               C971,6 960,17 946,11
-               C935,4 924,14 910,9
-               C899,3 888,12 874,8
-               C863,3 852,10 838,7
-               C827,3 816,9 802,6
-               C791,3 780,8 766,6
-               C755,3 744,7 730,5
-               C719,3 708,7 694,5
-               C683,3 672,6 658,5
-               C647,3 636,6 622,4
-               C611,3 600,5 586,4
-               C575,3 564,5 550,4
-               C539,3 528,4 514,4
-               C503,3 492,4 478,3
-               C467,3 456,4 442,3
-               C431,3 420,3 406,3
-               C395,3 384,3 370,3
-               C359,3 348,3 334,3
-               C323,3 312,3 298,3
-               C287,3 276,3 262,3
-               C251,3 240,3 226,3
-               C215,3 204,3 190,3
-               C179,3 168,3 154,3
-               C143,3 132,3 118,3
-               C107,3 96,3 82,3
-               C71,3 60,3 46,3
-               C35,3 24,3 10,3
-               L0,0 Z"
-            fill="var(--torn-fill)" filter="url(#tornEdge2)"/>
-    </svg>
-    <div class="torn-shadow"></div>
-  </div>
+  <!-- ══════════════════════════════════
+       FOOTER
+       ══════════════════════════════════ -->
+  <footer class="footer" id="contact">
+    <div class="container footer-inner">
 
-  <!-- ===== ABOUT ===== -->
-  <section class="about-section" id="about" aria-labelledby="about-title">
-
-    <!-- Delicate botanical line — left edge -->
-    <div class="about-botanical" aria-hidden="true">
-      <svg viewBox="0 0 280 480" xmlns="http://www.w3.org/2000/svg">
-        <path d="M260,0 C240,120 220,200 250,320 C270,400 280,440 280,480" opacity=".45"/>
-        <path d="M250,320 C220,310 215,330 235,345 C255,360 270,340 250,320Z" opacity=".28"/>
-        <path d="M180,40 C160,70 140,120 160,180 C180,240 210,260 200,300" opacity=".36"/>
-        <ellipse cx="195" cy="200" rx="10" ry="14" transform="rotate(20 195 200)" opacity=".18"/>
-        <ellipse cx="208" cy="215" rx="7" ry="10" transform="rotate(-15 208 215)" opacity=".15"/>
-        <!-- Extra stems for depth -->
-        <path d="M220,480 C235,380 260,300 245,220 C232,155 205,100 198,50" opacity=".32"/>
-        <path d="M245,220 C225,210 218,228 238,242 C258,256 268,240 245,220Z" opacity=".22"/>
-      </svg>
-    </div>
-
-    <div class="about-inner">
-
-      <div class="about-header reveal">
-        <span class="about-eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
-          About Me
+      <div class="footer-brand">
+        <span class="footer-brand-name">
+          <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="11" cy="13" r="2.5" fill="var(--lavender)" opacity=".6"/><circle cx="21" cy="14" r="2" fill="var(--peach)" opacity=".6"/><path d="M10 22 Q16 18 22 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+          Racco Ho
         </span>
-        <h2 class="about-heading" id="about-title">Nice to meet you</h2>
-        <p class="about-sub">ISFP, museum wanderer, fragrance hunter — figuring things out one sticker at a time.</p>
+        <span class="footer-brand-tagline">Design &middot; Writing &middot; AI</span>
       </div>
 
-      <div class="about-profile reveal reveal-delay-1">
-        <div class="about-photo-wrap">
-          <div class="about-photo">
-            <img src="./images/profile-picture.jpg" alt="Racco Ho">
-          </div>
-          <div class="about-photo-sticker" aria-hidden="true">🎨</div>
+      <div class="footer-center">
+        <span class="footer-quote">Let's connect and create something beautiful.</span>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-social">
+          <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.886-7.687-6.742 7.687H.l7.73-8.835L.016 2.25h8.04l5.314 6.97zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+          </a>
+          <a href="https://www.xiaohongshu.com/user/profile" target="_blank" rel="noopener noreferrer" aria-label="RED">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z" opacity=".7"/><text x="12" y="16.5" text-anchor="middle" font-size="9" font-weight="800" fill="currentColor">RED</text></svg>
+          </a>
+          <a href="https://podcast.link/" target="_blank" rel="noopener noreferrer" aria-label="Podcast">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </a>
         </div>
-
-        <div class="about-text">
-          <p class="first">Hi, I'm Racco Ho. I studied English (International Communication) at university — which is probably why this site bounces between two languages without apology.</p>
-          <p>When I'm not designing stickers, I'm wandering through museums and galleries, hunting down the next scent, or capturing quiet moments with my camera. My headphones are usually spinning R&amp;B, alternative pop, or whatever Olivia / Sabrina / Ariana just dropped.</p>
-          <p>I run a couple of content accounts on Xiaohongshu and Instagram. It started as fun, but I genuinely fell in love with visual storytelling — the way a single image or a well-placed sticker can say what words can't.</p>
-          <p>One day I want to travel solo, visit more museums than I can count, and meet people who get excited about the same strange, beautiful things I do. My DMs are always open.</p>
-
-          <div class="about-tag-row">
-            <span class="about-tag">R&amp;B &amp; Pop</span>
-            <span class="about-tag">Photography</span>
-            <span class="about-tag">Museums</span>
-            <span class="about-tag">Fragrance</span>
-            <span class="about-tag">Fashion</span>
-            <span class="about-tag">Psychology</span>
-          </div>
-
-          <div class="about-social">
-            <span class="about-social-label">Find me elsewhere:</span>
-            <a href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 3h3.1l-6.8 7.8L22 21h-6.4l-5-6.5L4.9 21H1.8l7.3-8.4L1.3 3h6.6l4.5 5.9L17.6 3Zm-1.1 16.2h1.7L7 4.7H5.2l11.3 14.5Z"></path></svg>
-              X
-            </a>
-            <a href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle></svg>
-              Instagram
-            </a>
-            <a href="https://xhslink.com/m/186QZTYAQSd" target="_blank" rel="noopener noreferrer">RED</a>
-            <a href="https://www.xiaoyuzhoufm.com/podcast/68ff17c9a8493db5d4509028" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"></circle><path d="M8.8 12a3.2 3.2 0 1 0 6.4 0 3.2 3.2 0 0 0-6.4 0Z"></path><path d="M12 15.3v4.2"></path><path d="M9.7 18.2h4.6"></path></svg>
-              Podcast
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="about-footer reveal reveal-delay-2">
-        <a class="about-back" href="#home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-          Back to top
-        </a>
-        <p class="about-copy">Glad you stopped by. Hope you find something here that resonates.</p>
+        <span>&copy; 2026 Racco Ho. All rights reserved.</span>
+        <button class="back-to-top" aria-label="Back to top">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+        </button>
       </div>
 
     </div>
-  </section>
+  </footer>
 
-</main>
 
-<!-- Lightbox -->
-<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
-  <img class="lightbox-img" id="lightboxImg" src="" alt="">
-</div>
+  <!-- ══════════════════════════════════
+       SCRIPTS
+       ══════════════════════════════════ -->
+  <script src="./script.js" defer></script>
 
-<!-- WeChat Download Modal -->
-<div class="wx-modal-overlay" id="wxModal" onclick="closeWxModal(event)">
-  <div class="wx-modal" onclick="event.stopPropagation()">
-    <button class="wx-modal-close" onclick="closeWxModal()" aria-label="Close">&times;</button>
-    <div class="wx-modal-icon">
-      <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor"><path d="M8.5 4C4.36 4 1 6.69 1 10c0 1.89 1.02 3.58 2.62 4.69L3 17l3-1.5c.8.2 1.63.3 2.5.3.3 0 .6-.01.9-.04C9.15 14.36 9 13.94 9 13.5 9 10.46 12.13 8 16 8c.27 0 .53.01.8.04C16.14 5.7 12.66 4 8.5 4zM6 7.5a1 1 0 110 2 1 1 0 010-2zm5 0a1 1 0 110 2 1 1 0 010-2zM16 9c-3.31 0-6 2.24-6 5 0 1.64.9 3.09 2.32 4.02L12 21l2.5-1.25c.48.12.99.19 1.5.19 3.31 0 6-2.24 6-5s-2.69-5-6-5zm-2 3.5a.75.75 0 110 1.5.75.75 0 010-1.5zm4 0a.75.75 0 110 1.5.75.75 0 010-1.5z"/></svg>
-    </div>
-    <h3 class="wx-modal-title">在微信中打开</h3>
-    <p class="wx-modal-desc">微信表情商店只能在微信里打开，<br/>请用微信扫描下方二维码，<br/>或复制链接发送到微信。</p>
-    <div class="wx-modal-qr" id="wxQrCode"></div>
-    <div class="wx-modal-link-box">
-      <span class="wx-modal-link-text" id="wxLinkText"></span>
-      <button class="wx-modal-copy" id="wxCopyBtn" onclick="copyWxLink()">复制链接</button>
-    </div>
-  </div>
-</div>
-
-<script>
-/* ════════════════════════════════════════
-   THEME TOGGLE — Light ↔ Dark Mode
-   ════════════════════════════════════════ */
-(function() {
-  const toggle = document.getElementById('themeToggle');
-  const sunIcon = document.getElementById('sunIcon');
-  const moonIcon = document.getElementById('moonIcon');
-  const html = document.documentElement;
-
-  // Read saved preference or default to light
-  var saved = localStorage.getItem('theme') || 'light';
-  if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-    html.setAttribute('data-theme', 'dark');
-    updateIcons(true);
-  } else {
-    html.setAttribute('data-theme', 'light');
-    updateIcons(false);
-  }
-
-  toggle.addEventListener('click', function() {
-    var isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    updateIcons(!isDark);
-  });
-
-  function updateIcons(isDark) {
-    if (isDark) {
-      sunIcon.style.display = 'block';
-      moonIcon.style.display = 'none';
-    } else {
-      sunIcon.style.display = 'none';
-      moonIcon.style.display = 'block';
+  <!-- WeChat download helper (kept from V1) -->
+  <script>
+    function openWxDownload(url) {
+      if (confirm('即将跳转到微信表情商店下载此表情包。\n\n即将跳转到 WeChat Sticker Store to download this pack.')) {
+        window.open(url, '_blank');
+      }
     }
-  }
-})();
-
-/* ════════════════════════════════════════
-   SCROLL REVEAL ANIMATION (IntersectionObserver)
-   Elements with class "reveal" animate into view
-   ════════════════════════════════════════ */
-(function() {
-  var reveals = document.querySelectorAll('.reveal');
-  if (!reveals.length) return;
-
-  // Check for reduced motion preference
-  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if ('IntersectionObserver' in window && !prefersReducedMotion) {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    reveals.forEach(function(el) { observer.observe(el); });
-  } else {
-    // Fallback: show everything immediately
-    reveals.forEach(function(el) { el.classList.add('visible'); });
-  }
-})();
-
-/* ════════════════════════════════════════
-   LIGHTBOX
-   ════════════════════════════════════════ */
-function openLightbox(src) {
-  document.getElementById('lightboxImg').src = src;
-  document.getElementById('lightbox').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('active');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') { closeLightbox(); closeWxModal(); }
-});
-
-/* ════════════════════════════════════════
-   WECHAT DOWNLOAD MODAL
-   ════════════════════════════════════════ */
-function isWeChat() {
-  return /MicroMessenger/i.test(navigator.userAgent);
-}
-
-function openWxDownload(url) {
-  if (isWeChat()) {
-    window.location.href = url;
-    return;
-  }
-  document.getElementById('wxLinkText').textContent = url;
-  var qrApi = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=8&data=' + encodeURIComponent(url);
-  document.getElementById('wxQrCode').innerHTML = '<img src="' + qrApi + '" alt="QR Code" width="200" height="200">';
-  document.getElementById('wxModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeWxModal(e) {
-  if (e && e.target !== e.currentTarget) return;
-  document.getElementById('wxModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function copyWxLink() {
-  var link = document.getElementById('wxLinkText').textContent;
-  var btn = document.getElementById('wxCopyBtn');
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(link).then(function() {
-      btn.textContent = '已复制!';
-      setTimeout(function() { btn.textContent = '复制链接'; }, 2000);
-    });
-  } else {
-    var ta = document.createElement('textarea');
-    ta.value = link;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    btn.textContent = '已复制!';
-    setTimeout(function() { btn.textContent = '复制链接'; }, 2000);
-  }
-}
-</script>
+  </script>
 
 </body>
 </html>
