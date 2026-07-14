@@ -1490,6 +1490,8 @@ h1, .hero-title {
 
 .hero-grid {
   gap: clamp(2rem, 5vw, 5rem);
+  /* Shift both illustration and text rightward */
+  padding-left: clamp(24px, 5vw, 80px);
 }
 
 .hero-visual {
@@ -1579,4 +1581,241 @@ section:not(.hero)::before {
   height:160px;
   background:radial-gradient(ellipse,rgba(177,169,218,.12),transparent 70%);
   pointer-events:none;
+}
+
+/* ══════════════════════════════════════════════════════════
+   DARK MODE COMPLETE OVERRIDES
+   Fixes the broken dark mode where only hero was styled
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Body & Global Background ── */
+[data-theme="dark"] body {
+  background-color: #1a1816;
+}
+[data-theme="dark"] body::before {
+  opacity: .08;
+}
+[data-theme="dark"] ::selection {
+  background: rgba(183,169,232,.35);
+}
+
+/* ── Section Backgrounds (fixes white-sections-below-hero bug) ── */
+[data-theme="dark"] #works,
+[data-theme="dark"] #stickers,
+[data-theme="dark"] #about {
+  background: transparent;
+}
+[data-theme="dark"] .section {
+  background-color: transparent;
+}
+
+/* ── Hero Area ── */
+[data-theme="dark"] .hero {
+  /* Clean dark background — no ugly gradients */
+  background: linear-gradient(
+    175deg,
+    rgba(30,28,25,1) 0%,
+    rgba(26,24,22,1) 50%,
+    rgba(28,26,24,1) 100%
+  ) !important;
+}
+/* Phase2 hero blob decorations — dim in dark */
+[data-theme="dark"] .hero::before,
+[data-theme="dark"] .hero::after {
+  opacity: .12;
+}
+/* Soft section transition ellipses — dim in dark */
+[data-theme="dark"] section:not(.hero)::before {
+  background: radial-gradient(ellipse, rgba(120,100,140,.08), transparent 70%);
+}
+
+/* ── Hero Illustration ── */
+[data-theme="dark"] .hero-visual::before {
+  background: radial-gradient(circle, rgba(120,100,140,.18), transparent 65%);
+}
+[data-theme="dark"] .hero-visual-img {
+  filter: brightness(.82) contrast(1.06);
+  box-shadow:
+    0 35px 80px rgba(0,0,0,.35),
+    0 5px 20px rgba(0,0,0,.15) inset !important;
+}
+
+/* ── Hero Badge ── */
+[data-theme="dark"] .hero-badge {
+  background: rgba(40,38,34,.72);
+  border-color: rgba(255,255,255,.08);
+}
+[data-theme="dark"] .hero-badge-dot {
+  background: #a39bd4;
+  box-shadow: 0 0 14px rgba(163,155,212,.7);
+}
+
+/* ── Typography ── */
+[data-theme="dark"] .hero-title {
+  color: var(--ink);
+}
+[data-theme="dark"] .hero-subtitle {
+  color: var(--ink-soft);
+}
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .section-desc {
+  color: var(--ink);
+}
+[data-theme="dark"] .section-header .link-arrow {
+  color: var(--ink-faint);
+}
+[data-theme="dark"] .section-header .link-arrow:hover {
+  color: var(--lavender);
+}
+
+/* ── Work Cards ── */
+[data-theme="dark"] .work-card {
+  background: rgba(35,33,30,.72);
+  border-color: rgba(255,255,255,.06);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+[data-theme="dark"] .work-card:hover {
+  background: rgba(42,40,36,.8);
+  box-shadow: 0 18px 50px rgba(0,0,0,.3), var(--glow-lavender);
+}
+[data-theme="dark"] .work-card h3 {
+  color: var(--ink);
+}
+[data-theme="dark"] .work-card p {
+  color: var(--ink-soft);
+}
+[data-theme="dark"] .work-tag {
+  background: rgba(183,169,232,.12);
+  color: #c4bde8;
+  border-color: rgba(183,169,232,.15);
+}
+
+/* ── Sticker Packs ── */
+[data-theme="dark"] .sticker-grid-item {
+  background: rgba(35,33,30,.6);
+  border-color: rgba(255,255,255,.06);
+}
+[data-theme="dark"] .sticker-grid-item:hover {
+  background: rgba(42,40,36,.75);
+  box-shadow: 0 16px 44px rgba(0,0,0,.25);
+}
+
+/* ── About Section ── */
+[data-theme="dark"] .about-content {
+  background: rgba(35,33,30,.5);
+  border-color: rgba(255,255,255,.06);
+}
+[data-theme="dark"] .about-content p {
+  color: var(--ink-soft);
+}
+[data-theme="dark"] .avatar-frame {
+  border-color: rgba(255,255,255,.08);
+  box-shadow: 0 8px 32px rgba(0,0,0,.2);
+}
+
+/* ── Buttons ── */
+[data-theme="dark"] .btn-primary {
+  background: linear-gradient(135deg, #9b8ed4, #7fb9e6);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(155,142,212,.3);
+}
+[data-theme="dark"] .btn-secondary {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.1);
+  color: var(--ink);
+}
+[data-theme="dark"] .btn-secondary:hover {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.15);
+}
+[data-theme="dark"] .btn-view {
+  background: rgba(183,169,232,.14);
+  color: #d4cee8;
+  border-color: rgba(183,169,232,.2);
+}
+[data-theme="dark"] .btn-view:hover {
+  background: rgba(183,169,232,.22);
+}
+
+/* ── Navigation ── */
+[data-theme="dark"] .nav-wrapper {
+  background: rgba(26,24,22,.82);
+  border-bottom-color: rgba(255,255,255,.06);
+}
+[data-theme="dark"] .nav-links a {
+  color: var(--ink-soft);
+}
+[data-theme="dark"] .nav-links a:hover {
+  color: var(--ink);
+}
+[data-theme="dark"] .brand {
+  color: var(--ink);
+}
+[data-theme="dark"] .theme-toggle {
+  color: var(--ink-soft);
+}
+[data-theme="dark"] .theme-toggle:hover {
+  color: var(--ink);
+}
+
+/* ── Footer ── */
+[data-theme="dark"] .footer {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(30,28,25,.5) 30%,
+    rgba(26,24,22,.85) 100%
+  );
+  border-top-color: rgba(255,255,255,.06);
+}
+[data-theme="dark"] .footer p,
+[data-theme="dark"] .footer a {
+  color: var(--ink-faint);
+}
+[data-theme="dark"] .footer a:hover {
+  color: var(--lavender);
+}
+[data-theme="dark"] .social-links a {
+  color: var(--ink-faint);
+}
+[data-theme="dark"] .social-links a:hover {
+  color: var(--lavender);
+  transform: translateY(-3px);
+}
+
+/* ── Eyebrow / Labels ── */
+[data-theme="dark"] .eyebrow {
+  background: rgba(183,169,232,.08);
+  border-color: rgba(183,169,232,.12);
+  color: #c4bde8;
+}
+
+/* ── Scroll / Misc Elements ── */
+[data-theme="dark"] .garden-thread {
+  opacity: .1;
+}
+[data-theme="dark"] .floater {
+  opacity: .2;
+}
+[data-theme="dark"] .back-to-top {
+  background: rgba(35,33,30,.8);
+  border-color: rgba(255,255,255,.08);
+  color: var(--ink-soft);
+}
+[data-theme="dark"] .back-to-top:hover {
+  background: rgba(45,43,38,.9);
+  color: var(--ink);
+}
+
+/* ── Phase2 Override Layer: Cards & Buttons ── */
+[data-theme="dark"] .card,
+[data-theme="dark"] .project-card {
+  background: rgba(35,33,30,.65);
+  border-color: rgba(255,255,255,.06);
+  box-shadow: 0 18px 50px rgba(0,0,0,.2);
+}
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 24px 60px rgba(0,0,0,.3), var(--glow-lavender);
 }
