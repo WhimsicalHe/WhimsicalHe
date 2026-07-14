@@ -1,0 +1,48 @@
+/* WhimsicalHe V2 - Digital Garden Layer */
+
+:root {
+  --v2-lavender: rgba(177,169,218,.28);
+  --v2-glow: rgba(127,185,230,.18);
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 12%, var(--v2-lavender), transparent 30rem),
+    radial-gradient(circle at 88% 20%, var(--v2-glow), transparent 26rem),
+    var(--canvas-light);
+}
+
+.hero {
+  isolation: isolate;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(177,169,218,.2);
+  filter: blur(60px);
+  z-index: -1;
+}
+
+.card,
+.pack-card,
+.work-card {
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(120,100,150,.12);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+.card:hover,
+.pack-card:hover,
+.work-card:hover {
+  transform: translateY(-5px);
+}
+
+h1,
+.hero-title {
+  letter-spacing: -.045em;
+}
