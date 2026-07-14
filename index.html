@@ -258,8 +258,9 @@ a, button { font: inherit; }
   position:relative;
   display:flex;
   align-items:center;
-  justify-content:flex-end;
+  justify-content:space-between;
   flex:1;
+  padding:0 6vw;
 }
 
 
@@ -346,12 +347,12 @@ a, button { font: inherit; }
   opacity:.95;
 }
 
-
 .hero-copy {
   position:relative;
   z-index:3;
-  width:min(520px,45%);
+  width:min(500px,42%);
   margin-left:auto;
+  transform:translateY(-20px);
 }
 
 
@@ -517,15 +518,16 @@ a, button { font: inherit; }
 }
 .eyebrow svg { width: 14px; height: 14px; flex: 0 0 auto; stroke: var(--sage); transition: stroke .25s ease; }
 .hero-title {
-  margin: 0; color: var(--ink);
-  font-family: var(--font-display);
-  font-size: clamp(3rem,6.5vw,5.8rem);
-  font-weight: 700;
-  letter-spacing: -.03em;
-  line-height: 1.08;
-  max-width: 11ch;
-  text-wrap: balance;
-  transition: color .25s ease;
+  margin:0;
+  color:var(--ink);
+  font-family:var(--font-display);
+  font-size:clamp(3rem,5.5vw,5rem);
+  font-weight:700;
+  letter-spacing:-.04em;
+  line-height:1.05;
+  max-width:12ch;
+  text-wrap:balance;
+  transition:color .25s ease;
 }
 .hero-subtitle {
   margin: 0; width: min(100%,520px);
@@ -1150,13 +1152,18 @@ a, button { font: inherit; }
   .hero-title { max-width: 10ch; }
   .hero-botanical { opacity: .05; }
 }
-@media (max-width: 760px) {
-   .hero-visual {
+@media (max-width: 760px) 
+.hero-visual {
   width:100%;
-  height:55%;
+  height:60%;
   left:0;
-  top:10%;
+  top:5%;
   opacity:.35;
+}
+
+.hero-copy {
+  width:100%;
+  transform:none;
 }
 
 .hero-copy {
