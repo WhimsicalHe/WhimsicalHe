@@ -61,7 +61,7 @@
 
   /* Typography: Editorial Serif (Cormorant) + Modern Sans (Inter) per PRD */
   --font-display: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  --font-body: "Times New Roman", "Noto Serif SC", serif;
+  --font-body: 'EB Garamond', serif;
   --font-mono:    'JetBrains Mono', 'SF Mono', ui-monospace, monospace;
 
   /* Font sizes — fluid clamp */
