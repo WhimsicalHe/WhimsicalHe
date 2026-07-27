@@ -1,16 +1,19 @@
 /* WhimsicalHe V2 - Digital Garden Layer */
 
 :root {
-  --v2-lavender: rgba(177,169,218,.45);
-  --v2-glow: rgba(127,185,230,.32);
+  --v2-lavender: rgba(177,169,218,.75);
+  --v2-glow: rgba(127,185,230,.55);
+  --v2-rose: rgba(232,180,184,.35);
   --canvas-light: var(--cream);
 }
 
 body {
   background:
-    radial-gradient(circle at 12% 12%, var(--v2-lavender), transparent 30rem),
-    radial-gradient(circle at 88% 20%, var(--v2-glow), transparent 26rem),
+    radial-gradient(ellipse 40rem 30rem at 10% 8%, var(--v2-lavender), transparent 65%),
+    radial-gradient(ellipse 36rem 28rem at 92% 18%, var(--v2-glow), transparent 65%),
+    radial-gradient(ellipse 50rem 35rem at 50% 100%, var(--v2-rose), transparent 70%),
     var(--canvas-light);
+  background-attachment: fixed;
 }
 
 .hero {
@@ -21,29 +24,73 @@ body {
 .hero::before {
   content: "";
   position: absolute;
-  top: -40px;
-  left: 10%;
-  width: 300px;
-  height: 300px;
+  top: -60px;
+  left: 8%;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
-  background: rgba(177,169,218,.4);
-  filter: blur(50px);
+  background: rgba(177,169,218,.55);
+  filter: blur(80px);
+  z-index: -1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  right: 5%;
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  background: rgba(127,185,230,.45);
+  filter: blur(80px);
   z-index: -1;
 }
 
 .card,
 .pack-card,
 .work-card {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(120,100,150,.22);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  background-color: rgba(255,255,255,.55);
+  border: 1.5px solid rgba(120,100,150,.32);
+  box-shadow: 0 6px 28px rgba(120,100,150,.10);
   transition: transform .35s ease, box-shadow .35s ease;
 }
 
 .card:hover,
 .pack-card:hover,
 .work-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
+  box-shadow: 0 14px 36px rgba(120,100,150,.18);
+}
+
+.section-title,
+h2.section-title,
+h2 {
+  position: relative;
+  padding-bottom: 14px;
+  margin-bottom: 8px;
+}
+
+.section-title::after,
+h2.section-title::after,
+h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(177,169,218,.85), rgba(127,185,230,.7));
+}
+
+.section-title.center::after,
+h2.center::after,
+h2.section-title.center::after {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 h1,
