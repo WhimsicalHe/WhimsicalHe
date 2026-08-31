@@ -1,0 +1,27 @@
+/* Fine-tune Chinese typography: smaller, lighter, quieter than the Latin display type. */
+.sticker-intro h2 {
+  font-size: clamp(2.65rem, 4.8vw, 5rem);
+  line-height: .9;
+  letter-spacing: -.025em;
+}
+
+.sticker-intro p:not(.eyebrow),
+.work-card p,
+.archive-item__title,
+.about-copy p:not(.about-lead),
+.section-head > p {
+  font-size: .92em;
+}
+
+@media (max-width: 900px) {
+  .sticker-intro h2 {
+    font-size: clamp(2.4rem, 8.5vw, 4.2rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .sticker-intro h2 {
+    font-size: clamp(2.15rem, 10vw, 3.4rem);
+    line-height: .92;
+  }
+}
