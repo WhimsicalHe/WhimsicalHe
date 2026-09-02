@@ -1,0 +1,131 @@
+/* Racco Ho typography + responsive spacing refinement */
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --racco-serif:'Newsreader', 'Noto Serif SC', 'Songti SC', Georgia, serif;
+  --racco-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html,body,
+button,input,textarea,select{
+  font-family:var(--racco-serif);
+}
+
+body{font-size:16px;line-height:1.58}
+
+h1,h2,h3,
+.wordmark,
+.mobile-nav-panel a,
+.hero__intro,
+.section-head>p,
+.type-piece p,
+.type-piece em,
+.archive-item__title,
+.about-lead,
+.contact-main h2,
+.contact-main p,
+.sticker-intro h2,
+.sticker-pack h3,
+.hero__note{
+  font-family:var(--racco-serif)!important;
+  font-optical-sizing:auto;
+  font-kerning:normal;
+}
+
+.nav-links a,
+.nav-contact,
+.hero__index,
+.section-no,
+.contact-label,
+.work-card__meta,
+.archive-item__date,
+.archive-item__type,
+.hero__caption,
+.hero__kicker,
+.eyebrow,
+.sticker-pack span,
+.contact-foot,
+.hero__link,
+.text-link,
+.pack-link{
+  font-family:var(--racco-mono)!important;
+}
+
+.wordmark{font-size:20px;font-weight:500;letter-spacing:.075em}
+
+.hero__copy{
+  max-width:760px;
+  padding-top:50px;
+}
+
+.hero h1{
+  max-width:none;
+  font-size:clamp(3.55rem,6.2vw,6.6rem);
+  line-height:1.01;
+  letter-spacing:-.035em;
+}
+
+.hero h1 br{
+  display:block;
+  content:'';
+  margin:0;
+}
+
+.hero h1 em{font-style:italic;font-weight:400}
+.hero__intro{font-size:19px;line-height:1.35;max-width:440px;margin-top:30px}
+
+.section-head h2{line-height:.92;letter-spacing:-.035em}
+.work-card h3{line-height:.96;letter-spacing:-.025em}
+.archive-item__title{line-height:1.02}
+.about-lead{line-height:.98}
+.contact-main h2{line-height:.82}
+.sticker-intro h2{line-height:.9}
+
+/* Keep the hero statement airy instead of stacking into a cramped block. */
+@media (min-width:901px){
+  .hero h1{max-width:780px}
+  .hero__copy{padding-top:62px;padding-bottom:48px}
+}
+
+@media (max-width:900px){
+  .hero{padding-top:34px;padding-bottom:86px}
+  .hero__copy{padding:44px 0 30px;max-width:680px}
+  .hero h1{
+    font-size:clamp(3rem,10.6vw,5.1rem);
+    line-height:1.02;
+    letter-spacing:-.03em;
+  }
+  .hero__intro{font-size:18px;line-height:1.4;margin-top:28px}
+  .hero__portrait{width:100%;max-width:620px}
+  .section-head h2{line-height:.94}
+}
+
+@media (max-width:600px){
+  .hero{padding-top:28px;padding-bottom:70px}
+  .hero__copy{padding:34px 0 26px}
+  .hero__kicker{margin-bottom:18px}
+  .hero h1{
+    font-size:clamp(2.6rem,9.6vw,4.1rem);
+    line-height:1.06;
+    letter-spacing:-.022em;
+  }
+  .hero h1 em{display:inline}
+  .hero__intro{font-size:17px;line-height:1.46;max-width:33ch}
+  .hero__link{margin-top:26px}
+  .section{padding-top:78px;padding-bottom:78px}
+  .section-head{margin-bottom:40px}
+  .section-head h2{font-size:clamp(3.2rem,15vw,4.5rem);line-height:.93}
+  .section-head>p{font-size:17px;line-height:1.38;max-width:25ch}
+  .work-card__meta{font-size:9px;letter-spacing:.08em}
+  .work-card h3{font-size:clamp(2rem,9vw,3rem)}
+  .archive-item{line-height:1.1}
+  .archive-item__title{font-size:1.45rem;line-height:1.04}
+  .sticker-intro h2{font-size:clamp(2.35rem,10.5vw,3.6rem);line-height:.96}
+  .sticker-pack h3{font-size:23px;line-height:.98}
+  .about-lead{font-size:clamp(2.1rem,8vw,3.1rem);line-height:1.0}
+  .contact-main h2{font-size:clamp(4rem,18vw,5.7rem);line-height:.84}
+}
+
+@media (min-width:601px) and (max-width:1100px){
+  .hero h1{font-size:clamp(3.3rem,6.8vw,5.8rem)}
+}
