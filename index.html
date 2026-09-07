@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./racco-paper.css" />
+  <link rel="stylesheet" href="./racco-paper.css?v=20260907" />
 </head>
 <body>
   <nav class="site-nav" aria-label="Main navigation">
@@ -35,9 +35,9 @@
       </div>
       <div class="hero__visual">
         <div class="print-photo">
-          <img src="./images/personal-hero.png" alt="Racco Ho visual" />
+          <img src="./images/personal-hero.png" alt="Racco Ho visual" loading="eager" decoding="async" />
         </div>
-        <div class="hero__caption">A city, a day, a piece of paper / 2026</div>
+        <div class="hero__caption">self portrait / 2026</div>
       </div>
     </section>
 
@@ -46,30 +46,33 @@
     <section class="section band" id="works">
       <div class="section-head">
         <div><div class="section-no">01</div><h2 class="section-title">Projects</h2></div>
-        <p>Selected things I've made. Images will be added here later.</p>
+        <p>Four small seasonal pieces. The front images are being assembled into the collection.</p>
       </div>
 
-      <div class="works-grid">
-        <article class="work-card large">
-          <div class="placeholder"><span>IMAGE AREA / PROJECT 01</span></div>
-          <div class="work-meta"><span>01 / VISUAL WORK</span><span>ONGOING</span></div>
-          <h3>Project title goes here.</h3>
-          <p>A large image area reserved for one of your finished works, with enough room for a short note underneath.</p>
-          <a class="work-link" href="#">View project ↗</a>
+      <div class="works-grid seasonal-grid">
+        <article class="work-card seasonal-card seasonal-card--spring">
+          <div class="seasonal-frame" aria-label="Spring piece front image area"><div class="seasonal-mark">SPRING / 01</div><span>FRONT IMAGE</span></div>
+          <div class="work-meta"><span>01 / POSTCARD</span><span>SPRING 2026</span></div>
+          <h3>Spring</h3>
+          <p>A quiet beginning. Front assembled; reverse side still in progress.</p>
         </article>
-
-        <article class="work-card">
-          <div class="placeholder portrait"><span>IMAGE AREA / PROJECT 02</span></div>
-          <div class="work-meta"><span>02 / OBJECT</span><span>2026</span></div>
-          <h3>Another thing I kept.</h3>
-          <p>Small editorial caption. Quiet, simple, no portfolio jargon.</p>
+        <article class="work-card seasonal-card seasonal-card--summer">
+          <div class="seasonal-frame" aria-label="Summer piece front image area"><div class="seasonal-mark">SUMMER / 02</div><span>FRONT IMAGE</span></div>
+          <div class="work-meta"><span>02 / POSTCARD</span><span>SUMMER 2026</span></div>
+          <h3>Summer</h3>
+          <p>Warmth, colour, and a little more noise. Reverse side still being refined.</p>
         </article>
-
-        <article class="work-card">
-          <div class="placeholder small"><span>IMAGE AREA / PROJECT 03</span></div>
-          <div class="work-meta"><span>03 / FRAGMENT</span><span>2026</span></div>
-          <h3>Fragments.</h3>
-          <p>Photographs, graphics, stickers, experiments, or whatever deserves a page.</p>
+        <article class="work-card seasonal-card seasonal-card--autumn">
+          <div class="seasonal-frame" aria-label="Autumn piece front image area"><div class="seasonal-mark">AUTUMN / 03</div><span>FRONT IMAGE</span></div>
+          <div class="work-meta"><span>03 / POSTCARD</span><span>AUTUMN 2026</span></div>
+          <h3>Autumn</h3>
+          <p>A slower palette and a softer edge. Reverse side still being refined.</p>
+        </article>
+        <article class="work-card seasonal-card seasonal-card--winter">
+          <div class="seasonal-frame" aria-label="Winter piece front image area"><div class="seasonal-mark">WINTER / 04</div><span>FRONT IMAGE</span></div>
+          <div class="work-meta"><span>04 / POSTCARD</span><span>WINTER 2026</span></div>
+          <h3>Winter</h3>
+          <p>The last piece in the cycle. Front assembled; reverse side still in progress.</p>
         </article>
       </div>
     </section>
