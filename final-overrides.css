@@ -143,7 +143,16 @@ body:after{display:none!important}
 .torn:before{top:-12px;height:32px}
 
 .band{padding-top:54px}
-.band .section-head{max-width:1400px;margin-bottom:48px}
+.band .section-head{margin-bottom:48px}
+/* Keep section numbers 01 / 02 / 03 on one shared left axis. */
+.band .section-head,
+.archive-wrap,
+.notes-grid{
+  width:100%;
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+}
 .section-no{font-size:10px;letter-spacing:.18em;color:var(--muted)}
 .section-title{
   font-family:var(--serif);
@@ -153,25 +162,28 @@ body:after{display:none!important}
 .section-head .section-title{font-size:clamp(52px,5.5vw,84px);line-height:.86}
 .section-head p{font-size:17px;line-height:1.2;max-width:300px}
 
+/* Return postcards to the earlier two-column editorial layout. */
 .works-grid.seasonal-grid{
-  max-width:1400px;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:34px;
+  max-width:none;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:82px 72px;
 }
-.seasonal-card:nth-child(n){margin-top:0}
+.seasonal-card:nth-child(2){margin-top:70px}
+.seasonal-card:nth-child(3){margin-top:-25px}
+.seasonal-card:nth-child(4){margin-top:45px}
 .seasonal-frame{
-  aspect-ratio:4/5;
-  border:0;
+  aspect-ratio:3/2;
+  border:1px solid rgba(46,52,53,.09);
   background:#e9dfcf;
-  box-shadow:0 8px 24px rgba(46,52,53,.06);
+  box-shadow:0 1px 0 rgba(46,52,53,.05),0 20px 45px rgba(46,52,53,.05);
 }
-.seasonal-frame:after{opacity:.12}
+.seasonal-frame:after{opacity:.10}
 .seasonal-frame img{filter:saturate(.78) contrast(.9) brightness(1.06)}
 .seasonal-card .work-meta{margin-top:14px;font-size:9px;letter-spacing:.16em}
-.seasonal-card h3{font-size:32px;margin:10px 0 5px}
-.seasonal-card p{font-size:12px;line-height:1.4;max-width:220px;margin:0;color:var(--muted)}
+.seasonal-card h3{font-size:40px;margin:10px 0 7px}
+.seasonal-card p{font-size:13px;line-height:1.55;max-width:400px;margin:0;color:var(--muted)}
 
-.archive-wrap{max-width:1200px;grid-template-columns:.8fr 1fr;gap:100px}
+.archive-wrap{grid-template-columns:.8fr 1fr;gap:100px}
 .archive-copy p{font-size:22px;line-height:1.12}
 .archive-links{
   display:grid;
@@ -185,7 +197,12 @@ body:after{display:none!important}
 .doodle{min-height:400px}
 
 .notes-main{max-width:380px}
-.contact{background:#627d8d}
+.contact{
+  background:#627d8d;
+  padding-left:10vw;
+  padding-right:10vw;
+}
+.contact-foot{max-width:none}
 
 @media(max-width:900px){
   .nav-links{gap:20px}
@@ -211,6 +228,8 @@ body:after{display:none!important}
   .hero-star--two{right:4%}
   .hero-star--three{right:8%;bottom:10%}
   .works-grid.seasonal-grid{grid-template-columns:1fr;gap:42px}
+  .seasonal-card:nth-child(n){margin-top:0}
   .seasonal-frame{aspect-ratio:3/2}
   .archive-wrap,.notes-grid{grid-template-columns:1fr;gap:44px}
+  .contact{padding-left:8vw;padding-right:8vw}
 }
