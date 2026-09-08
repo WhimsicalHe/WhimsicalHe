@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" width="1600" height="1200">
+  <defs>
+    <filter id="paper" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="2" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="mono"/>
+      <feComponentTransfer in="mono">
+        <feFuncA type="table" tableValues="0 0.16"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="mono" mode="multiply"/>
+    </filter>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F2EBD9"/>
+      <stop offset="0.68" stop-color="#F1E8D5"/>
+      <stop offset="1" stop-color="#EEE0C5"/>
+    </linearGradient>
+    <radialGradient id="planet" cx="32%" cy="27%" r="80%">
+      <stop offset="0" stop-color="#D9E5EA"/>
+      <stop offset="0.7" stop-color="#B7C8D0"/>
+      <stop offset="1" stop-color="#94A8B3"/>
+    </radialGradient>
+    <linearGradient id="dune1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#EAC78E"/>
+      <stop offset="1" stop-color="#F1D5A4"/>
+    </linearGradient>
+    <linearGradient id="dune2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C8B29A"/>
+      <stop offset="1" stop-color="#D9C7B5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1200" fill="url(#sky)"/>
+
+  <g opacity="0.82" filter="url(#paper)">
+    <path d="M430 150 C600 60 805 90 985 210 C1125 305 1245 300 1430 250 C1298 380 1090 425 940 370 C760 303 610 320 430 150Z" fill="#D8D0E4" opacity="0.38"/>
+    <path d="M520 205 C685 145 850 170 1000 275 C1120 360 1240 355 1370 315" fill="none" stroke="#B8A9CA" stroke-width="34" stroke-linecap="round" opacity="0.36"/>
+    <path d="M615 235 C755 205 880 230 995 305 C1075 357 1175 355 1260 338" fill="none" stroke="#EFE8D9" stroke-width="24" stroke-linecap="round" opacity="0.78"/>
+  </g>
+
+  <g>
+    <circle cx="1080" cy="250" r="150" fill="url(#planet)" stroke="#8F9FA8" stroke-width="5" opacity="0.88"/>
+    <path d="M985 205 C1025 184 1060 193 1100 213 C1145 234 1185 226 1215 209" fill="none" stroke="#F4EFE3" stroke-width="18" opacity="0.44" stroke-linecap="round"/>
+    <path d="M955 275 C1008 247 1052 265 1091 285 C1130 305 1178 298 1219 271" fill="none" stroke="#A5BAC5" stroke-width="22" opacity="0.56" stroke-linecap="round"/>
+    <path d="M930 360 C1010 300 1115 310 1255 355" fill="none" stroke="#B6A5CA" stroke-width="18" opacity="0.5" stroke-linecap="round"/>
+    <path d="M870 307 C965 200 1140 180 1325 280" fill="none" stroke="#B1A1C3" stroke-width="16" opacity="0.56" stroke-linecap="round"/>
+    <path d="M852 312 C970 190 1150 184 1340 302" fill="none" stroke="#E8DECF" stroke-width="11" opacity="0.82" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#6C7D8C" opacity="0.66">
+    <circle cx="722" cy="92" r="4"/><circle cx="809" cy="140" r="7"/><circle cx="895" cy="74" r="3"/>
+    <circle cx="1265" cy="100" r="5"/><circle cx="1368" cy="165" r="3"/><circle cx="1415" cy="105" r="6"/>
+    <circle cx="1242" cy="425" r="4"/><circle cx="1337" cy="397" r="6"/><circle cx="764" cy="405" r="4"/>
+  </g>
+  <g fill="none" stroke="#D4B56D" opacity="0.75">
+    <path d="M1320 115 l0 44 M1298 137 l44 0" stroke-width="4"/>
+    <path d="M1210 432 l0 30 M1195 447 l30 0" stroke-width="3"/>
+  </g>
+
+  <g fill="#2A3B4C" opacity="0.9" font-family="Georgia, 'Times New Roman', serif">
+    <text x="105" y="505" font-size="68">Victory won't</text>
+    <text x="105" y="580" font-size="68">come to us unless</text>
+    <text x="105" y="655" font-size="68">we go for it.</text>
+    <text x="380" y="730" font-size="38">— Maya Angelou</text>
+  </g>
+
+  <g opacity="0.86" filter="url(#paper)">
+    <path d="M0 880 C205 830 335 855 525 905 C735 960 910 945 1115 845 C1325 745 1470 720 1600 760 L1600 1200 L0 1200Z" fill="url(#dune2)"/>
+    <path d="M0 930 C205 865 362 905 540 955 C770 1020 940 1005 1145 900 C1330 805 1485 792 1600 830 L1600 1200 L0 1200Z" fill="url(#dune1)"/>
+    <path d="M0 1085 C190 1015 370 1040 555 1090 C790 1150 1010 1108 1200 1005 C1370 915 1505 917 1600 950 L1600 1200 L0 1200Z" fill="#8EA0AB" opacity="0.58"/>
+  </g>
+
+  <g fill="#F2EBD9">
+    <circle cx="1400" cy="970" r="4"/><circle cx="1328" cy="1018" r="3"/><circle cx="1455" cy="1060" r="5"/>
+    <circle cx="1255" cy="1118" r="3"/><circle cx="1168" cy="1050" r="4"/><circle cx="1510" cy="1120" r="3"/>
+  </g>
+</svg>
