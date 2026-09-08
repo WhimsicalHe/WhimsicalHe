@@ -8,45 +8,91 @@
   <meta name="author" content="Racco Ho" />
   <title>Racco Ho — Personal Publication</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./racco-paper.css?v=20260908-2" />
-  <link rel="stylesheet" href="./final-overrides.css?v=20260908-1" />
+  <link rel="stylesheet" href="./final-overrides.css?v=20260908-2" />
 </head>
 <body>
   <nav class="site-nav" aria-label="Main navigation">
     <div class="site-nav__inner">
       <a class="wordmark" href="#home">RACCO HO</a>
-      <div class="nav-links"><a href="#works">Projects</a><a href="#archive">Archive</a><a href="#notes">Notes</a></div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#works">Projects</a>
+        <a href="#archive">Archive</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
   </nav>
   <main>
     <section class="section hero" id="home">
       <div class="hero__copy">
         <div class="hero__kicker">Personal publication / 001</div>
-        <h1>Things I made.<br />Things I noticed.<br /><em>Things I'm still figuring out.</em></h1>
-        <p class="hero__intro">Victory won't come to us unless we go for it. —— Maya Angelou</p>
+        <h1>Victory won't come<br />to us unless we go for it.</h1>
+        <p class="hero__quote">—— Maya Angelou</p>
+        <div class="hero__things">
+          <span>Things I made.</span>
+          <span>Things I noticed.</span>
+          <span>Things I'm still figuring out.</span>
+        </div>
         <a class="hero__link" href="#works">Enter the archive <span>↓</span></a>
-        <div class="hero__note">I make things when an idea refuses to leave me alone.</div>
       </div>
-      <div class="hero__visual"><div class="print-photo"><img src="./images/personal-hero.png" alt="Racco Ho visual" loading="eager" decoding="async" /></div><div class="hero__caption">self portrait / 2026</div></div>
+      <div class="hero__visual" aria-hidden="true">
+        <div class="hero-planet"></div>
+        <div class="hero-star hero-star--one">✶</div>
+        <div class="hero-star hero-star--two">✦</div>
+        <div class="hero-star hero-star--three">✧</div>
+      </div>
     </section>
+
     <div class="torn" aria-hidden="true"></div>
+
     <section class="section band" id="works">
-      <div class="section-head"><div><div class="section-no">01</div><h2 class="section-title">Projects</h2></div><p>Four small seasonal pieces, shown here as the front images of the collection.</p></div>
+      <div class="section-head">
+        <div><div class="section-no">01</div><h2 class="section-title">Featured Projects</h2></div>
+        <p>Four small seasonal pieces, shown here as the front images of the collection.</p>
+      </div>
       <div class="works-grid seasonal-grid">
-        <article class="work-card seasonal-card seasonal-card--spring"><div class="seasonal-frame"><img src="./images/botanical-garden.jpg" alt="Spring postcard front — botanical garden" loading="lazy" decoding="async" /><div class="seasonal-mark">SPRING / 01</div></div><div class="work-meta"><span>01 / POSTCARD</span><span>SPRING 2026</span></div><h3>Spring</h3><p>A quiet beginning, collected in the botanical garden. Front image assembled; reverse side in progress.</p></article>
-        <article class="work-card seasonal-card seasonal-card--summer"><div class="seasonal-frame"><img src="./images/summer-coast.jpg" alt="Summer postcard front — coast" loading="lazy" decoding="async" /><div class="seasonal-mark">SUMMER / 02</div></div><div class="work-meta"><span>02 / POSTCARD</span><span>SUMMER 2026</span></div><h3>Summer</h3><p>Warmth, colour, and a little more noise. Front image assembled; reverse side in progress.</p></article>
-        <article class="work-card seasonal-card seasonal-card--autumn"><div class="seasonal-frame"><img src="./images/autumn-street.png" alt="Autumn postcard front — street" loading="lazy" decoding="async" /><div class="seasonal-mark">AUTUMN / 03</div></div><div class="work-meta"><span>03 / POSTCARD</span><span>AUTUMN 2026</span></div><h3>Autumn</h3><p>A slower palette and a softer edge. Front image assembled; reverse side in progress.</p></article>
-        <article class="work-card seasonal-card seasonal-card--winter"><div class="seasonal-frame"><img src="./images/winter-market.png" alt="Winter postcard front — Christmas market" loading="lazy" decoding="async" /><div class="seasonal-mark">WINTER / 04</div></div><div class="work-meta"><span>04 / POSTCARD</span><span>WINTER 2026</span></div><h3>Winter</h3><p>The last piece in the cycle. Front image assembled; reverse side in progress.</p></article>
+        <article class="work-card seasonal-card seasonal-card--spring"><div class="seasonal-frame"><img src="./images/botanical-garden.jpg" alt="Spring postcard front — botanical garden" loading="lazy" decoding="async" /></div><div class="work-meta"><span>SPRING</span><span>01</span></div><h3>Spring</h3><p>A quiet beginning, collected in the botanical garden.</p></article>
+        <article class="work-card seasonal-card seasonal-card--summer"><div class="seasonal-frame"><img src="./images/summer-coast.jpg" alt="Summer postcard front — coast" loading="lazy" decoding="async" /></div><div class="work-meta"><span>SUMMER</span><span>02</span></div><h3>Summer</h3><p>Warmth, colour, and a little more noise.</p></article>
+        <article class="work-card seasonal-card seasonal-card--autumn"><div class="seasonal-frame"><img src="./images/autumn-street.png" alt="Autumn postcard front — street" loading="lazy" decoding="async" /></div><div class="work-meta"><span>AUTUMN</span><span>03</span></div><h3>Autumn</h3><p>A slower palette and a softer edge.</p></article>
+        <article class="work-card seasonal-card seasonal-card--winter"><div class="seasonal-frame"><img src="./images/winter-market.png" alt="Winter postcard front — Christmas market" loading="lazy" decoding="async" /></div><div class="work-meta"><span>WINTER</span><span>04</span></div><h3>Winter</h3><p>The last piece in the cycle.</p></article>
       </div>
     </section>
+
     <div class="torn" aria-hidden="true"></div>
-    <section class="section arch" id="archive"><div class="archive-wrap"><div class="archive-copy"><div class="section-no">02</div><h2 class="section-title">Archive</h2><p>Not everything needs to become a project. Some things can simply remain here: a season, a photograph, a thought, a half-finished idea.</p></div><div class="doodle" aria-hidden="true"><div class="orbit"></div><div class="planet"></div><div class="moon"></div><div class="star s1">✶</div><div class="star s2">✦</div><div class="star s3">✧</div></div></div></section>
+
+    <section class="section arch" id="archive">
+      <div class="archive-wrap">
+        <div class="archive-copy" id="about">
+          <div class="section-no">02</div>
+          <h2 class="section-title">Archive</h2>
+          <p>Not everything needs to become a project. Some things can simply remain here: a season, a photograph, a thought, a half-finished idea.</p>
+          <div class="archive-links"><span>Photos</span><span>Objects</span><span>Stickers</span><span>Words</span><span>Other things</span></div>
+        </div>
+        <div class="doodle" aria-hidden="true"><div class="orbit"></div><div class="planet"></div><div class="moon"></div><div class="star s1">✶</div><div class="star s2">✦</div><div class="star s3">✧</div></div>
+      </div>
+    </section>
+
     <div class="torn" aria-hidden="true"></div>
-    <section class="section notes" id="notes"><div class="notes-grid"><div><div class="section-no">03</div><h2 class="section-title">Notes</h2><p class="notes-main">Fragments of my everyday, things that stay with me, and questions I keep asking.</p></div><div class="notes-list"><article class="note"><h3>NOTE / 017</h3><p>Maybe a personal website doesn't need to explain what kind of person you are.</p></article><article class="note"><h3>NOTE / 021</h3><p>The things you leave behind usually say enough.</p></article><article class="note"><h3>NOTE / 028</h3><p>Still figuring out what deserves to be made, and what can simply be noticed.</p></article></div></div></section>
+
+    <section class="section notes" id="notes">
+      <div class="notes-grid">
+        <div><div class="section-no">03</div><h2 class="section-title">Notes</h2><p class="notes-main">Fragments of my everyday, things that stay with me, and questions I keep asking.</p></div>
+        <div class="notes-list"><article class="note"><h3>NOTE / 017</h3><p>Maybe a personal website doesn't need to explain what kind of person you are.</p></article><article class="note"><h3>NOTE / 021</h3><p>The things you leave behind usually say enough.</p></article><article class="note"><h3>NOTE / 028</h3><p>Still figuring out what deserves to be made, and what can simply be noticed.</p></article></div>
+      </div>
+    </section>
+
     <div class="torn" aria-hidden="true"></div>
-    <section class="section contact" id="contact"><div class="section-no" style="color:rgba(243,237,224,.75)">04 / FIND ME</div><h2>Racco Ho.</h2><p>More pictures, notes, experiments, and unfinished things elsewhere.</p><div class="contact-links"><a href="https://github.com/WhimsicalHe/WhimsicalHe" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer">X ↗</a><a href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div><div class="contact-foot"><span>Racco Ho</span><span>Made with curiosity.</span><span>© 2026</span></div></section>
+
+    <section class="section contact" id="contact">
+      <div class="section-no" style="color:rgba(243,237,224,.75)">04 / FIND ME</div>
+      <h2>Racco Ho.</h2><p>More pictures, notes, experiments, and unfinished things elsewhere.</p>
+      <div class="contact-links"><a href="https://github.com/WhimsicalHe/WhimsicalHe" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://x.com/Heisracco" target="_blank" rel="noopener noreferrer">X ↗</a><a href="https://www.instagram.com/heisracco/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
+      <div class="contact-foot"><span>Racco Ho</span><span>Made with curiosity.</span><span>© 2026</span></div>
+    </section>
   </main>
 </body>
 </html>
