@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 860" role="img" aria-labelledby="title desc">
+  <title id="title">Racco Ho — hand-drawn lakeside portrait</title>
+  <desc id="desc">A watercolor and pencil inspired illustration of a portrait beside a lake, hills and temple roofs.</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9bb6cf"/>
+      <stop offset="1" stop-color="#e8dfc9"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7899a8"/>
+      <stop offset="1" stop-color="#b9c6b9"/>
+    </linearGradient>
+    <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="8" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="4"/>
+    </filter>
+    <filter id="paper" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" seed="12" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="gray"/>
+      <feComponentTransfer><feFuncA type="table" tableValues="0 .11"/></feComponentTransfer>
+      <feBlend in="SourceGraphic" in2="gray" mode="multiply"/>
+    </filter>
+  </defs>
+
+  <rect width="900" height="860" fill="#f5f0e4"/>
+  <rect x="24" y="24" width="852" height="812" rx="2" fill="url(#sky)"/>
+
+  <!-- loose pencil sky -->
+  <g opacity=".22" stroke="#657f91" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#rough)">
+    <path d="M65 102 C190 74 245 117 360 92 S600 84 824 111"/>
+    <path d="M48 136 C170 111 278 152 395 121 S635 117 844 146"/>
+  </g>
+
+  <!-- hills -->
+  <path d="M24 414 Q138 292 276 344 T520 338 Q683 246 876 322 L876 555 L24 555Z" fill="#748473" filter="url(#rough)"/>
+  <path d="M24 445 Q151 355 289 391 T530 385 Q700 304 876 369 L876 553 L24 553Z" fill="#61715f" opacity=".78"/>
+
+  <!-- distant temple shapes -->
+  <g stroke="#65564d" stroke-width="4" stroke-linejoin="round" fill="#ac7651" filter="url(#rough)">
+    <path d="M650 420 L715 376 L780 419 L758 419 L758 435 L671 435 L671 419Z"/>
+    <path d="M690 456 L744 419 L802 455 L787 455 L787 485 L705 485 L705 455Z" fill="#b77d57"/>
+    <path d="M625 478 L665 452 L711 479 L702 479 L702 507 L640 507 L640 478Z" fill="#aa7351"/>
+  </g>
+  <g stroke="#544944" stroke-width="2" fill="none" opacity=".75">
+    <path d="M665 435 L665 505 M687 435 L687 505 M758 435 L758 507 M780 455 L780 485"/>
+  </g>
+
+  <!-- lake -->
+  <path d="M24 494 Q220 471 410 500 T876 490 L876 836 L24 836Z" fill="url(#water)"/>
+  <g stroke="#e5e4d4" stroke-width="4" opacity=".48" fill="none" stroke-linecap="round">
+    <path d="M46 554 C155 540 238 564 342 552 S590 541 750 559"/>
+    <path d="M100 626 C220 604 355 634 480 615 S710 610 840 628"/>
+    <path d="M45 703 C178 676 299 711 432 690 S672 687 855 704"/>
+    <path d="M65 770 C198 748 322 781 482 757 S704 752 840 770"/>
+  </g>
+
+  <!-- person, based on the source composition -->
+  <g filter="url(#rough)">
+    <path d="M66 776 C86 669 153 610 238 592 C308 576 379 600 445 673 L475 836 L58 836Z" fill="#f2f0e9" stroke="#5d656a" stroke-width="5"/>
+    <path d="M160 590 C150 500 161 400 236 354 C309 309 408 330 452 395 C481 439 478 521 445 583 C413 642 351 675 274 665 C210 657 171 630 160 590Z" fill="#e3b190" stroke="#514b49" stroke-width="6"/>
+    <path d="M163 402 C171 326 254 275 347 293 C421 307 458 345 475 403 C438 388 404 364 355 359 C278 351 215 372 163 402Z" fill="#272a2d" stroke="#3d3837" stroke-width="5"/>
+    <!-- glasses -->
+    <g fill="none" stroke="#394550" stroke-width="10" stroke-linejoin="round">
+      <rect x="171" y="426" width="121" height="76" rx="19"/>
+      <rect x="319" y="426" width="121" height="76" rx="19"/>
+      <path d="M292 454 C301 447 310 447 319 454"/>
+      <path d="M168 448 L143 435"/>
+      <path d="M442 449 L465 440"/>
+    </g>
+    <!-- face pencil marks -->
+    <g fill="none" stroke="#9b6659" stroke-width="4" stroke-linecap="round" opacity=".7">
+      <path d="M278 535 Q316 559 350 538"/>
+      <path d="M296 571 Q323 583 355 571"/>
+      <path d="M230 518 Q244 513 258 518"/>
+      <path d="M365 518 Q379 513 392 518"/>
+    </g>
+  </g>
+
+  <!-- rail and bird -->
+  <g stroke="#4f5752" fill="none" stroke-width="5" opacity=".85" filter="url(#rough)">
+    <path d="M32 706 L867 770"/>
+    <path d="M32 752 L867 816"/>
+    <path d="M152 716 L145 760 M310 728 L302 775 M498 744 L490 789 M674 759 L668 803"/>
+  </g>
+  <path d="M774 739 Q801 714 828 739 Q809 759 781 754Z" fill="#313534" filter="url(#rough)"/>
+  <circle cx="812" cy="732" r="3" fill="#f5f0e4"/>
+
+  <!-- tiny paint swatches -->
+  <g transform="translate(45 52)">
+    <circle cx="0" cy="0" r="7" fill="#7899a8"/>
+    <circle cx="23" cy="0" r="7" fill="#61715f"/>
+    <circle cx="46" cy="0" r="7" fill="#ac7651"/>
+  </g>
+
+  <rect x="24" y="24" width="852" height="812" fill="none" stroke="#776f65" stroke-opacity=".32" stroke-width="2"/>
+  <rect x="24" y="24" width="852" height="812" fill="none" stroke="#fffaf0" stroke-opacity=".33" stroke-width="12" filter="url(#paper)"/>
+</svg>
