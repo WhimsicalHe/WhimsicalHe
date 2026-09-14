@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./racco-paper.css?v=20260908-4" />
   <link rel="stylesheet" href="./final-overrides.css?v=20260908-7" />
+  <link rel="stylesheet" href="./zine-reveal.css?v=20260914-1" />
 </head>
 <body>
   <nav class="site-nav" aria-label="Main navigation">
@@ -22,6 +23,7 @@
         <a href="#about">About</a>
         <a href="#works">Projects</a>
         <a href="#archive">Archive</a>
+        <a href="#zine">Zine</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -52,6 +54,25 @@
             <span class="hero__attribution">Maya Angelou</span>
             <a class="hero__link" href="#works">Enter the archive <span>↓</span></a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section zine-reveal" id="zine">
+      <div class="zine-reveal__inner">
+        <div class="zine-reveal__copy">
+          <div class="zine-reveal__label">04 / ZINE STUDY</div>
+          <h2 class="zine-reveal__title">A photograph, translated by hand.</h2>
+          <p class="zine-reveal__note">A small study from one of my photographs: lake, hill, temple roofs, water, a face, and all the little imperfections that make a memory feel physical.</p>
+          <a class="zine-reveal__link" href="#contact">Keep looking ↓</a>
+        </div>
+        <div class="zine-reveal__stage" data-zine-stage>
+          <div class="zine-reveal__frame">
+            <img src="./assets/racco-handdrawn.svg" alt="Hand-drawn watercolor and pencil reinterpretation of a lakeside portrait photograph" loading="lazy" decoding="async" />
+            <div class="zine-reveal__glaze" aria-hidden="true"></div>
+            <div class="zine-reveal__mark">RACCO HO / 01</div>
+          </div>
+          <div class="zine-reveal__caption"><span>WATERCOLOR / PENCIL</span><span>DRAG YOUR EYES ACROSS</span></div>
         </div>
       </div>
     </section>
@@ -115,6 +136,33 @@
       });
     }, { threshold: 0.15 });
     tornEdges.forEach((edge) => observer.observe(edge));
+
+    const zineStages = document.querySelectorAll('[data-zine-stage]');
+    const zineObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          zineObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.22 });
+    zineStages.forEach((stage) => zineObserver.observe(stage));
+
+    zineStages.forEach((stage) => {
+      stage.addEventListener('pointermove', (event) => {
+        const frame = stage.querySelector('.zine-reveal__frame');
+        const rect = frame.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+        frame.style.setProperty('--mx', `${Math.max(0, Math.min(100, x))}%`);
+        frame.style.setProperty('--my', `${Math.max(0, Math.min(100, y))}%`);
+      });
+      stage.addEventListener('pointerleave', () => {
+        const frame = stage.querySelector('.zine-reveal__frame');
+        frame.style.setProperty('--mx', '50%');
+        frame.style.setProperty('--my', '50%');
+      });
+    });
   </script>
 </body>
 </html>
