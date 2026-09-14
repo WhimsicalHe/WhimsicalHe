@@ -1,0 +1,81 @@
+/* Publication layout adjustments — 2026-09-14 */
+
+/* 01: give the publication title field more visual width and keep the editorial text from collapsing into the left edge. */
+.hero__editorial-grid{
+  grid-template-columns:84px minmax(0,1fr) 280px;
+  column-gap:42px;
+}
+.hero__lead{max-width:none;}
+.hero__things{max-width:none;gap:9px;}
+.hero__thing{max-width:none;}
+.hero__thing:nth-child(1){margin-left:0;}
+.hero__thing:nth-child(2){margin-left:7vw;}
+.hero__thing:nth-child(3){margin-left:14vw;}
+.hero__thing:nth-child(4){margin-left:21vw;}
+
+/* 01–04 section numbering: one common left edge. */
+.band .section-head,
+.archive-wrap,
+.notes-grid,
+.contact-inner{
+  width:100%;
+  max-width:var(--page);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* 02: paired images should feel deliberately equal in scale. */
+.seasonal-card:nth-child(1),
+.seasonal-card:nth-child(2){
+  align-self:start;
+}
+.seasonal-card:nth-child(2){margin-top:0;}
+.seasonal-card:nth-child(1) .seasonal-frame,
+.seasonal-card:nth-child(2) .seasonal-frame{
+  aspect-ratio:4 / 3;
+}
+
+/* 04: notes use straightforward sequential numbering and a quiet more link. */
+.notes-list{position:relative;}
+.notes-more{
+  display:block;
+  width:max-content;
+  margin:24px 0 0 auto;
+  color:var(--ink);
+  font:9px/1 var(--mono);
+  letter-spacing:.18em;
+  text-transform:lowercase;
+  text-decoration:none;
+  opacity:.72;
+}
+.notes-more:hover{opacity:1;}
+
+/* FIND ME: keep the section number on the shared left rail, but move the name/content into the page a little. */
+.contact-inner{position:relative;}
+.contact h2,
+.contact p,
+.contact-links{
+  margin-left:8.5vw;
+}
+.contact h2{margin-right:0;}
+.contact p{max-width:470px;}
+.contact-links{margin-top:41px;}
+
+@media(max-width:900px){
+  .hero__editorial-grid{
+    grid-template-columns:40px minmax(0,1fr);
+    column-gap:22px;
+  }
+  .hero__things{font-size:clamp(49px,8.5vw,76px);gap:7px;}
+  .hero__thing:nth-child(2){margin-left:4vw;}
+  .hero__thing:nth-child(3){margin-left:8vw;}
+  .hero__thing:nth-child(4){margin-left:12vw;}
+
+  .seasonal-card:nth-child(1),
+  .seasonal-card:nth-child(2){margin-top:0;}
+  .seasonal-card:nth-child(n) .seasonal-frame{aspect-ratio:4 / 3;}
+
+  .contact h2,
+  .contact p,
+  .contact-links{margin-left:4vw;}
+}
